@@ -13,6 +13,7 @@ plugins {
   	id 'org.openjfx.javafxplugin' version '0.0.8'
   	id 'war'
   	id "org.gretty" version "3.0.3"
+  	id "jacoco"
   	id "org.sonarqube" version "3.0"
 }
 
