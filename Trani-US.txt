@@ -1,5 +1,0 @@
-•As a student, I want to receive an email (which contains the date of the test and the subject ) 3 days before that programmed test, 
-so that I remember to study that subject.
-•As a student, I want to ask questions to the teacher and to the classmates, so that I can ask for their help.
-•As a parent, I want to receive an email, from the administrative office, every time a new school’s event  is announced ,
-which contains information about school’s events*, so that I can stay informed about the school’s events*.

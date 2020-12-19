@@ -31,4 +31,4 @@ addons:
     
 #launch the scripts
 script:
-  - ./gradlew sonarqube
+  - ./gradlew clean check jacocoTestReport sonarqube build

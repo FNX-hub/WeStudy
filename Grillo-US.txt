@@ -1,3 +1,0 @@
-As a student, I want to see the assignments, so that I can organize my study
-As a student, I want to send my assignments to the teacher, so that the teacher corrects them 
-As a parent, I want to book a meeting  with a teacher, so that I can talk with her/him about my child’s scholastic career

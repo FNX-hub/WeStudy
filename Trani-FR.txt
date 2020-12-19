@@ -1,8 +1,0 @@
-4) The system shall send an e-mail to every student of a class, 3 days before a programmed test, which contains:
-	-Subject of the test
-	-Topics covered by the test
-	-Duration of the test
-	-Date (DD/MM - hh:mm) of the test
-5) The system shall provide a booking system for meeting*, based on temporal slot of 15 minutes, a parent can book only a single slot.
-6) The system shall show to a student the list of assignments* ordered by delivery date 
-(the first in the list is the one with the nearest delivery date).

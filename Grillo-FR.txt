@@ -1,3 +1,0 @@
-The system shall provide a private chat between a teacher and a parent
-The system shall provide a chat, related to a subject, with the teacher and the class
-The system shall provide a creating assignment feature for teachers
