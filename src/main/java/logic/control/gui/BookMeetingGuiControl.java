@@ -17,7 +17,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.stage.StageStyle;
 
-public class BookMeetingGuiControl extends GuiControl {
+public class BookMeetingGuiControl extends RootGuiControl {
 
 	@FXML
 	private Parent root;

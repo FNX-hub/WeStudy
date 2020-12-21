@@ -6,15 +6,14 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.control.gui.ProfessorGuiControl">
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.control.gui.ProfessorRootGuiControl">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
          <menus>
-            <Menu mnemonicParsing="false" text="Classes">
-               <items>
-                  <MenuItem fx:id="mitmSeeClasses" mnemonicParsing="false" onAction="#seeClasses" text="See Classes" />
-                  <Menu fx:id="mSelectClass" mnemonicParsing="false" text="Select Class" />
-               </items>
+            <Menu mnemonicParsing="false">
+               <graphic>
+                  <Label fx:id="mClasses" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#seeClasses" text="Classes" />
+               </graphic>
             </Menu>
             <Menu mnemonicParsing="false">
                <graphic>

@@ -1,7 +1,7 @@
 package logic.view.fx;
 
 import logic.control.SimpleLogger;
-import logic.control.gui.GuiControl;
+import logic.control.gui.RootGuiControl;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -32,11 +32,11 @@ public class View {
 			rootLayout = loader.load();
 			if (stage != null) {
 				stage.setScene(new Scene(rootLayout));				
-				GuiControl control = loader.getController();
+				RootGuiControl control = loader.getController();
 				control.setIstance(this);
 				control.setModality();
 			}
-			}
+		}
 		catch (Exception e) {
 			e.printStackTrace();
 			Alert alert = new Alert(AlertType.ERROR);

@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import logic.view.fx.View;
 
 
-public class LoginGuiControl extends GuiControl {
+public class LoginGuiControl extends RootGuiControl {
 	 
 	@FXML
 	private Parent root;

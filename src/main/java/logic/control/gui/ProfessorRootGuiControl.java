@@ -1,27 +1,23 @@
 package logic.control.gui;
 
-import logic.control.AppLauncher;
-import logic.control.SimpleLogger;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import logic.model.Observer;
+import logic.control.AppLauncher;
+import logic.control.SimpleLogger;
 import logic.view.fx.View;
 
-public class ProfessorGuiControl extends GuiControl implements Observer {
+public class ProfessorRootGuiControl extends RootGuiControl {
 
 	private static final String MEETINGMENU = "/MeetingMenu.fxml"; 
 	
 	@FXML
 	private BorderPane root;
 	@FXML
-	private MenuItem mitmSeeClasses;
-	@FXML
-	private Menu mSelectClass;
+	private Label mClasses;
 	@FXML
 	private Label mQuestions;
 	@FXML
@@ -43,7 +39,6 @@ public class ProfessorGuiControl extends GuiControl implements Observer {
 	@FXML
 	private void initialize() {
 		SimpleLogger.method(this, "initialize");
-		this.mSelectClass.getItems().add(new MenuItem("runtime classrooms"));
 		setScene(MEETINGMENU);
 	}
 	
@@ -62,12 +57,7 @@ public class ProfessorGuiControl extends GuiControl implements Observer {
 	@FXML
 	private void seeClasses() {
 		SimpleLogger.method(this, "seeClasses");
-		//setScene("/MeetingMenu.fxml");
-	}
-	@FXML
-	private void selectClass() {
-		SimpleLogger.method(this, "selectClasses");
-		//setScene("/MeetingMenu.fxml");
+		setScene("/ClassesMenu.fxml");
 	}
 	
 	/*
@@ -76,7 +66,7 @@ public class ProfessorGuiControl extends GuiControl implements Observer {
 	@FXML
 	private void seeQuestions() {
 		SimpleLogger.method(this, "seeQuestion");
-		//setScene("/MeetingMenu.fxml");
+		setScene("/QuestionsRoot.fxml");
 	}
 	
 	/*
@@ -85,7 +75,7 @@ public class ProfessorGuiControl extends GuiControl implements Observer {
 	@FXML
 	private void seeEvents() {
 		SimpleLogger.method(this, "seeEvents");
-		//setScene("/MeetingMenu.fxml");
+		setScene("/EventsMenu.fxml");
 	}
 	
 	/*

@@ -70,6 +70,9 @@ dependencies {
     // https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc10
 	//compile group: 'com.oracle.database.jdbc', name: 'ojdbc10', version: '19.8.0.0'
 	
+	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.22'
+	
 	// https://mvnrepository.com/artifact/com.mysql.jdbc/org.motechproject.com.mysql.jdbc
 	//compile group: 'com.mysql.jdbc', name: 'org.motechproject.com.mysql.jdbc', version: '5.1.32-r028'
 	
