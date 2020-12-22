@@ -14,13 +14,13 @@ public class ManageMeetingControl {
 	}
 	public void confirmMeeeting() {
 		meeting.setConfirmed(true);
-		System.out.println("meeting confirmed");	//TODO DAO access to persistence
+		SimpleLogger.info("meeting confirmed"); // DAO access to persistence
 	}
 	public void abortMeeeting() {
-		System.out.println("meeting aborted");		//TODO kill thread
+		SimpleLogger.info("meeting aborted"); // kill thread
 	}
 	public void deleteMeeeting() {
-		System.out.println("meeting deleted");		//TODO DAO access to persistence
+		SimpleLogger.info("meeting deleted"); //DAO access to persistence
 	}
 	public void modifyMeeting(String date, String subject, String student, String message) {
 		meeting.modify(date, subject, student, message);
