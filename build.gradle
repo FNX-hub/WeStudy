@@ -25,6 +25,8 @@ javafx {
 sonarqube {
   properties {
     property "sonar.projectKey", "FNX-hub_WeStudy"
+    property "sonar.organization", "fnx-hub"
+    property "sonar.host.url", "https://sonarcloud.io"
   }
 }
 
