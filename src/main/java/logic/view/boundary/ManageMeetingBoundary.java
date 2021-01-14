@@ -4,29 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 import logic.control.ManageMeetingControl;
+import logic.control.SimpleLogger;
 import logic.model.Meeting;
+import logic.model.Parent;
+import logic.model.Professor;
+import logic.model.User;
+import logic.model.UserType;
 import logic.model.bean.MeetingBean;
+import logic.model.dao.DaoFactory;
+import logic.model.exceptio.FormException;
 
 public abstract class ManageMeetingBoundary {
 	
-	private List<Meeting> meetingList;
-	protected MeetingBean bean;
+	private List<MeetingBean> meetingList;
 	
 	public ManageMeetingBoundary() {
 		this.meetingList = new ArrayList<>();
-		this.bean = new MeetingBean();
 	}
-	public List<Meeting> getMeetings() {
-		return null;	// TODO DAO access to persistence
+	
+	public List<MeetingBean> getMeetings() {
+		return null;
 	}
-	public void bookMeeting(String dataForm) {
-		bean.newMeeting(dataForm);
+	
+	public void bookMeeting(String parentId, String professorId, String date, String message) {
 	}
-	public void modifyMeeting(Meeting meeting, String dataForm) {
-		bean.modifyMeeting(meeting, dataForm);
+	
+	public void deleteMeeting(Meeting bean) {
 	}
-	public void deleteMeeting(Meeting meeting) {
-		new ManageMeetingControl(meeting).deleteMeeeting();
-		meetingList.remove(meeting);
+	
+	public void confirmMeeting(Meeting bean) {
 	}
 }

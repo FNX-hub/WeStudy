@@ -18,22 +18,23 @@ import logic.control.SimpleLogger;
  * Singleton class with the responsibility to create the connection with the DB 
  * @author Simone
  */
-public class ConnectorDao {
+public class DaoConnector {
 
 	private Connection connection;
-	private static final ConnectorDao istance = new ConnectorDao();
+	private static final DaoConnector istance = new DaoConnector();
 	
-	private ConnectorDao() {
+	private DaoConnector() {
 		connect();
 	}
 	
-	public static ConnectorDao getIstance() {
+	public static DaoConnector getIstance() {
 		return istance;
 	}
 	
 	/**
 	 * Attempts to establish a connection to the application database.
 	 * The connection specks are in the configuration file {@code db_setting}.
+	 * <p>
 	 * If the file is missing or rise an {@link IOExeption}.
 	 * If the connection fail rise an {@link SQLExeption}
 	 */
@@ -64,16 +65,11 @@ public class ConnectorDao {
 	}
 	
 	public Connection getConnection() {
-		return connection;
-	}
-
-	public void close() {
 		try {
-			connection.close();
-			SimpleLogger.info("Connection closed");
+			if(connection.isClosed()) connect();
 		} catch (SQLException e) {
-			SimpleLogger.info("Unable to close Connection");
-			e.printStackTrace();
+			SimpleLogger.severe("Unable to verify connection to DB");			
 		}
+		return connection;
 	}
 }
