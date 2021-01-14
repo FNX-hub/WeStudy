@@ -2,7 +2,7 @@ package logic.model;
 
 public abstract class User {
 
-	private String id;
+	private String id; //id OVVERO user name
 	private String surname;
 	private String name;
 	private String password;
@@ -30,9 +30,11 @@ public abstract class User {
 		this.password = password;
 	}
 
+	/*
 	@Override
 	public String toString() {
 		return String.format("%s%nUserId: %s%nName: %s%nSurname: %s%nPassword: %s%n", super.toString(), id, name, surname, password);
 	}
+	*/
 	
 }

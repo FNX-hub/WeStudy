@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title> Login </title>
+<title> Resume Login </title>
 
 
 
@@ -27,40 +27,46 @@
 					out.println("Role: ");
 				%>
 				
-				<jsp:useBean id="LoginBean" scope="request" class="logic.control.LoginBean" />
+				<jsp:useBean id="LoginBean" scope="request" class="logic.control.LoginControl" />
 				
 				<% 
-					if( logic.control.LoginBean.tryLogin(request.getParameter("insertedUsername") , request.getParameter("insertedPassword") ) == "Professor") 
+					String loginResult = logic.control.LoginControl.tryLogin(request.getParameter("insertedUsername") , request.getParameter("insertedPassword") );				 
+					if(loginResult == "Professor")
 					{
 						out.println("Professor");
+				%>
+						<a href="mainPageProfessor.jsp" class="w3-bar-item w3-button"> <b> Click Here to Start </b> </a>
+				<%
 					}
-					if( logic.control.LoginBean.tryLogin(request.getParameter("insertedUsername") , request.getParameter("insertedPassword") ) == "Student") 
+					if( loginResult == "Student") 
 					{
 						out.println("Student");
+				%>
+						<a href="mainPageStudent.jsp" class="w3-bar-item w3-button"> <b> Click Here to Start </b> </a>
+				<%
 					}
-					if( logic.control.LoginBean.tryLogin(request.getParameter("insertedUsername") , request.getParameter("insertedPassword") ) == "Parent") 
+					if( loginResult == "Parent") 
 					{
 						out.println("Parent");
+				%>						
+						<a href="mainPageParent.jsp" class="w3-bar-item w3-button"> <b> Click Here to Start </b> </a>
+				<%
 					}
-					if( logic.control.LoginBean.tryLogin(request.getParameter("insertedUsername") , request.getParameter("insertedPassword") ) == "Error")
+					if( loginResult == "NoUser")
 					{
-						out.println("ERROR");
+						out.println("ERROR: User not found");
+				%>
+					<a href="index.jsp" class="w3-bar-item w3-button"> <b> Click Here to retry to Login </b> </a>
+				<%
+					}
+					if( loginResult == "WrongPassword")
+					{
+						out.println("ERROR: Incorrect password");
+				%>
+					<a href="index.jsp" class="w3-bar-item w3-button"> <b> Click Here to retry to Login </b> </a>
+				<%
 					}
 				%>
-				
-				
-				<% out.println( logic.control.LoginBean.nothing() ); %>
-				
-
-				
-				<%! 
-					public int somma (int primo, int secondo){
-					return (primo + secondo); } 
-				%>
-				
-				<%= somma (2,3)%>
-
-				<button type="submit"  style="border-radius: 250px; class="btn btn-outline-dark"> Start </button>
 		</div>
 	</div>
 </body>

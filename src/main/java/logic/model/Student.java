@@ -1,20 +1,35 @@
 package logic.model;
 
-public class Student extends User {
+import java.util.ArrayList;
+import java.util.List;
 
-	private String parentId;
+public class Student extends User {
+	private List<Grade> grades; 
 	
 	public Student(String id, String surname, String name, String password, String parentId) {
 		super(id, surname, name, password);
-		this.parentId = parentId;
+		this.grades = new ArrayList<Grade>(); 
+		
 	}
 
-	public String getParentId() {
-		return parentId;
+	public List<Grade> getGrades() {
+		return grades;
 	}
 
+	public void setGrades(List<Grade> grades) {
+		this.grades = grades;
+	}
+
+	public void addGrade(Grade grade) {
+		this.grades.add(grade);
+	}
+
+	/*
+	//TODO commentato perchè non so se ti serve, se nemmeno a te serve, cancellalalo
 	@Override
 	public String toString() {
 		return String.format("%s%nParentId: %s", super.toString(), parentId) ;
 	}
+	*/
+
 }
