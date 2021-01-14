@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import logic.model.Observer;
 import logic.view.fx.View;
 
-public class MeetingMenuGuiControl implements Observer {
+public class MeetingMenuGuiControl {
 
 	@FXML
 	private Parent root;

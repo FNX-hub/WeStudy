@@ -10,7 +10,7 @@ import logic.control.SimpleLogger;
 import logic.model.Observer;
 import logic.view.fx.View;
 
-public class QuestionRootGuiControl implements Observer {
+public class QuestionRootGuiControl {
 
 	@FXML
 	private Parent root;

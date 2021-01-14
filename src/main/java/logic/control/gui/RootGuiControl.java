@@ -6,7 +6,7 @@ import logic.control.SimpleLogger;
 import logic.model.Observer;
 import logic.view.fx.View;
 
-public abstract class RootGuiControl implements Observer {
+public abstract class RootGuiControl {
 	
 	protected View istance;
 

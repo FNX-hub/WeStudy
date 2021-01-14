@@ -8,7 +8,7 @@ import logic.control.SimpleLogger;
 import logic.model.Observer;
 import logic.view.fx.View;
 
-public class EventsMenuGuiControl implements Observer {
+public class EventsMenuGuiControl {
 
 	@FXML
 	private Parent root;

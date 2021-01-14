@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import logic.model.Observer;
 
-public class EventGuiControl implements Observer {
+public class EventGuiControl {
 
 	@FXML
 	private Label lblEventName;

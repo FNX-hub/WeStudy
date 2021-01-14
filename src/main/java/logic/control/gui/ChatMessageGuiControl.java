@@ -7,7 +7,7 @@ import javafx.scene.text.Text;
 import logic.control.SimpleLogger;
 import logic.model.Observer;
 
-public class ChatMessageGuiControl implements Observer {
+public class ChatMessageGuiControl  {
 
 	@FXML
 	private Parent root;

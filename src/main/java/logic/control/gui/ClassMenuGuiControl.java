@@ -6,7 +6,7 @@ import javafx.scene.layout.FlowPane;
 import logic.model.Observer;
 import logic.view.fx.View;
 
-public class ClassMenuGuiControl implements Observer {
+public class ClassMenuGuiControl {
 
 	@FXML
 	private Parent root;
