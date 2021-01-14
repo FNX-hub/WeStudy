@@ -12,7 +12,7 @@ import logic.model.User;
 import logic.model.UserType;
 import logic.model.bean.MeetingBean;
 import logic.model.dao.DaoFactory;
-import logic.model.exceptio.FormException;
+import logic.model.exception.FormException;
 
 public abstract class ManageMeetingBoundary {
 	

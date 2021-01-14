@@ -7,7 +7,7 @@ import com.mysql.cj.util.StringUtils;
 
 import logic.model.Meeting;
 import logic.model.Subject;
-import logic.model.exceptio.FormException;
+import logic.model.exception.FormException;
 
 public class MeetingBean extends Subject {
 
