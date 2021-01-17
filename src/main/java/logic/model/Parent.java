@@ -1,17 +1,19 @@
 package logic.model;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import logic.model.dao.DaoFactory;
 
 public class Parent extends User {
 
 	private String phoneNumber;
 	private List<Student> children;
 	
-	public Parent(String id, String surname, String name, String password, String phoneNumber) {
+	
+	public Parent(Integer id, String surname, String name, String password, String phoneNumber) {
 		super(id, surname, name, password);
 		this.phoneNumber = phoneNumber;
-		this.children = new ArrayList<Student>();
+		this.children = DaoFactory.getStudentDao().getAll();
 	}
 
 	

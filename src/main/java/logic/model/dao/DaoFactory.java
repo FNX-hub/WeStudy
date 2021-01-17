@@ -17,4 +17,8 @@ public class DaoFactory {
 	public static ParentDao getParentDao() {
 		return new ParentDao();
 	}
+
+	public static StudentDao getStudentDao() {
+		return new StudentDao();
+	}
 }

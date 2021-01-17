@@ -84,7 +84,7 @@ public class ParentDao implements Dao<Parent> {
 				Statement stm = c.createStatement();
 			)
 		{
-			stm.executeUpdate(s);
+			stm.executeUpdate(s); //necessario per fare un'operazione crud che non sia la select(read)
 			SimpleLogger.info(String.format("Insert: %s", t.toString()));
 		} catch (SQLException e) {
 			SimpleLogger.severe(String.format(ERROR, s, e.getMessage()));
@@ -120,6 +120,7 @@ public class ParentDao implements Dao<Parent> {
 			SimpleLogger.info(String.format("Delete: %s", t.toString()));
 		} catch (SQLException e) {
 			SimpleLogger.severe(String.format(ERROR, s, e.getMessage()));
+			
 		}
 	}
 }

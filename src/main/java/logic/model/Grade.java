@@ -8,6 +8,12 @@ public class Grade {
 	Date date;
 	String description;
 	
+	//Utilizzato dalla DAO
+	public Grade(Integer mark, String description) {
+		this.mark = mark;
+		this.description = description;
+	}
+	
 	public Grade(ClassCourse course, Integer mark, Date date, String description) {
 		this.course = course;
 		this.mark = mark;

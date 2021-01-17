@@ -21,7 +21,7 @@ public class StudentDao implements Dao<Student> {
 	// SQL statements
 	
 	private static final String SELECT = "SELECT * FROM studnet";
-	private static final String SELECT_BY_ID = "SELECT * FROM studnet WHERE id = '%s'";
+	private static final String SELECT_BY_ID = "SELECT * FROM student WHERE id = '%s'";
 	private static final String INSERT = "INSERT INTO student VALUES (%s,'%s','%s', '%s', '%s')";
 	private static final String UPDATE = "UPDATE studnet SET id = '%s', surname = '%s', name = '%s', password = '%s', parent_id = '%s' WHERE id = '%s'";
 	private static final String DELETE = "DELETE FROM student WHERE id = '%s'";

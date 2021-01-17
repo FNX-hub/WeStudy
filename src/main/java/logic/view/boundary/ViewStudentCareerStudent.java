@@ -1,12 +1,16 @@
 package logic.view.boundary;
 
+import logic.control.ViewStudentCareer;
+
 public class ViewStudentCareerStudent implements ViewStudentCareerInterface{
 
 	@Override
 	public void viewCareer(String studentUsername) {
-		//Istanzia e chiama il controller applicativo
-		//ViewStudentCareer viewStudentCareerController = new ViewStudentCareer();
+		//Istanzia il controller applicativo corrispondente
+		ViewStudentCareer viewStudentCareerController = new ViewStudentCareer();
 		
+		//TODO
+		//viewStudentCareerController
 		
 		//Inizializza un DAO
 		//ViewStudentCareerDummyDAO vscDAO = new ViewStudentCareerDummyDAO();

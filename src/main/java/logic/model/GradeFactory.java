@@ -11,13 +11,6 @@ public class GradeFactory {
 	
 	public Grade createGrade(ClassCourse course,Integer mark,String description ){
 		Date todayDate = new Date();
-		
-		/*
-		try {}
-		per controllare la correttezza della data???
-		catch();
-		*/
-		
 		Grade newGrade = new Grade(course,mark,todayDate,description);
 		return newGrade;
 	}

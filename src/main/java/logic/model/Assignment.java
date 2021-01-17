@@ -12,7 +12,6 @@ public class Assignment {
 		//this.deadlineDate = new Date(); TODO
 		this.creationDate = new Date(); //Data attuale
 		this.description = description;
-		
 	}
 
 	public Date getCreationDate() {

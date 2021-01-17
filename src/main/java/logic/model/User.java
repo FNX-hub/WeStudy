@@ -2,19 +2,19 @@ package logic.model;
 
 public abstract class User {
 
-	private String id; //id OVVERO user name
+	private Integer id;
 	private String surname;
 	private String name;
 	private String password;
 	
-	public User(String id, String surname, String name, String password) {
+	public User(Integer id, String surname, String name, String password) {
 		this.id = id;
 		this.surname = surname;
 		this.name = name;
 		this.password = password;
 	}
 	
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 	public String getSurname() {
@@ -30,11 +30,9 @@ public abstract class User {
 		this.password = password;
 	}
 
-	/*
 	@Override
 	public String toString() {
-		return String.format("%s%nUserId: %s%nName: %s%nSurname: %s%nPassword: %s%n", super.toString(), id, name, surname, password);
+		return String.format("%s%nUserId: %d%nName: %s%nSurname: %s%nPassword: %s%n", super.toString(), id, name, surname, password);
 	}
-	*/
 	
 }
