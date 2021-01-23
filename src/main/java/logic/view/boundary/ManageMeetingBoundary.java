@@ -1,37 +1,31 @@
 package logic.view.boundary;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import logic.control.ManageMeetingControl;
-import logic.control.SimpleLogger;
-import logic.model.Meeting;
-import logic.model.Parent;
-import logic.model.Professor;
-import logic.model.User;
-import logic.model.UserType;
 import logic.model.bean.MeetingBean;
-import logic.model.dao.DaoFactory;
-import logic.model.exception.FormException;
+import logic.model.bean.UserBean;
 
-public abstract class ManageMeetingBoundary {
-	
-	private List<MeetingBean> meetingList;
-	
-	public ManageMeetingBoundary() {
-		this.meetingList = new ArrayList<>();
+public interface ManageMeetingBoundary {
+		
+	public default List<MeetingBean> getMeetings(UserBean userBean) {
+		return new ManageMeetingControl().getUserMeeting(userBean.getId(), userBean.getType());
 	}
-	
-	public List<MeetingBean> getMeetings() {
-		return null;
+	public default List<UserBean> getUserToMeet(UserBean bean) {
+		return new ManageMeetingControl().getUserToMeet(bean);
 	}
-	
-	public void bookMeeting(String parentId, String professorId, String date, String message) {
+	public default void bookMeeting(MeetingBean bean) {
+		ManageMeetingControl control = new ManageMeetingControl();
+		control.newMeeting(bean);
 	}
-	
-	public void deleteMeeting(Meeting bean) {
+	public default void deleteMeeting(MeetingBean bean) {
+		ManageMeetingControl control = new ManageMeetingControl();
+		control.deleteMeeting(bean);
 	}
-	
-	public void confirmMeeting(Meeting bean) {
+	public default void confirmMeeting(MeetingBean bean) {
+		bean.setConfirmed(true);
+	}
+	public default void abortMeeting(MeetingBean bean) {
+		bean.setConfirmed(false);
 	}
 }

@@ -14,7 +14,7 @@ public class ManageStudentCareerTest {
 	@Test
 	//Inizializza uno studente/studentessa e gli/le assegna una serie di voti
 	public void multipleGradeCreation() {
-		Student user1 = new Student("PaolinoPaperino","Paolino","Paperino","PP8Password",null);
+		Student user1 = new Student(1,"Paolino","Paperino","PP8Password", 12);
 		List<Grade> studentGrades = new ArrayList<Grade>();
 		ClassCourse tempCourse01 = new ClassCourse("Matematica");
 		ClassCourse tempCourse02 = new ClassCourse("Letteratura");

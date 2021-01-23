@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,10 +26,11 @@ public class MeetingDao implements Dao<Meeting> {
 	
 	// SQL statements
 	
-	private static final String SELECT = "SELECT * FROM meeting";
-	private static final String SELECT_BY_ID = "SELECT * FROM meeting WHERE parent_id = '%s' OR professor_id = '%s'";
-	private static final String INSERT = "INSERT INTO meeting VALUES (%s,'%s','%s', '%s')";
-	private static final String UPDATE = "UPDATE meeting SET parent_id = '%s', professor_id = '%s', message = '%s', date = '%s' WHERE parent_id = '%s' AND professor_id = '%s' AND date = '%s'";
+	private static final String SELECT_ALL = "SELECT * FROM meeting";
+	private static final String SELECT_BY_PARENT = "SELECT * FROM meeting WHERE parent_id = '%d'";
+	private static final String SELECT_BY_PROFESSOR = "SELECT * FROM meeting WHERE professor_id = '%d'";
+	private static final String INSERT = "INSERT INTO meeting VALUES ('%d','%d','%s','%s')";
+	private static final String UPDATE = "UPDATE meeting SET parent_id = '%d', professor_id = '%d', message = '%s', date = '%s' WHERE parent_id = '%s' AND professor_id = '%s' AND date = '%s'";
 	private static final String DELETE = "DELETE FROM meeting WHERE parent_id = '%s' AND professor_id = '%s' AND date = '%s'";
 
 	// Error message
@@ -41,39 +43,60 @@ public class MeetingDao implements Dao<Meeting> {
 		try (
 				Connection c = DaoConnector.getIstance().getConnection();
 				Statement stm = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-				ResultSet rs = stm.executeQuery(SELECT)
+				ResultSet rs = stm.executeQuery(SELECT_ALL)
 			)
 		{
 			if(!rs.first()) {
 				return listMeeting;
 			}
 			do {
-				Meeting m = new Meeting(rs.getString(PARENT), rs.getString(PROFESSOR), rs.getString(DATE), rs.getString(MESSAGE));
+				Meeting m = new Meeting(rs.getInt(PARENT), rs.getInt(PROFESSOR), LocalDate.parse(rs.getDate(DATE).toString()), rs.getString(MESSAGE));
 				listMeeting.add(m);
 			} while(rs.next());
 		} catch (SQLException e) {
-			SimpleLogger.severe(String.format(ERROR, SELECT, e.getMessage()));
+			SimpleLogger.severe(String.format(ERROR, SELECT_ALL, e.getMessage()));
 		}
 		return listMeeting;
 	}
-	public List<Meeting> getFromUser(String userName) {
-		String s = String.format(SELECT_BY_ID, userName, userName);
+	public List<Meeting> getFromParent(Integer userId) {
+		String query = String.format(SELECT_BY_PARENT, userId);
 		List<Meeting> listMeeting = new ArrayList<>();
 		try (
 				Connection c = DaoConnector.getIstance().getConnection();
 				Statement stm = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-				ResultSet rs = stm.executeQuery(s)
+				ResultSet rs = stm.executeQuery(query)
 			)
 		{
 			if(!rs.first()) {
 				return listMeeting;
 			}
 			do {
-				Meeting m = new Meeting(rs.getString(PARENT), rs.getString(PROFESSOR), rs.getString(DATE), rs.getString(MESSAGE));
+				Meeting m = new Meeting(rs.getInt(PARENT), rs.getInt(PROFESSOR), LocalDate.parse(rs.getDate(DATE).toString()), rs.getString(MESSAGE));
 				listMeeting.add(m);
 			} while(rs.next());
 		} catch (SQLException e) {
-			SimpleLogger.severe(String.format(ERROR, SELECT, e.getMessage()));
+			SimpleLogger.severe(String.format(ERROR, SELECT_ALL, e.getMessage()));
+		}
+		return listMeeting;
+	}
+	public List<Meeting> getFromProfessor(Integer userId) {
+		String query = String.format(SELECT_BY_PROFESSOR, userId);
+		List<Meeting> listMeeting = new ArrayList<>();
+		try (
+				Connection c = DaoConnector.getIstance().getConnection();
+				Statement stm = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+				ResultSet rs = stm.executeQuery(query)
+				)
+		{
+			if(!rs.first()) {
+				return listMeeting;
+			}
+			do {
+				Meeting m = new Meeting(rs.getInt(PARENT), rs.getInt(PROFESSOR), LocalDate.parse(rs.getDate(DATE).toString()), rs.getString(MESSAGE));
+				listMeeting.add(m);
+			} while(rs.next());
+		} catch (SQLException e) {
+			SimpleLogger.severe(String.format(ERROR, SELECT_ALL, e.getMessage()));
 		}
 		return listMeeting;
 	}
@@ -81,45 +104,42 @@ public class MeetingDao implements Dao<Meeting> {
 	// CRUD operation
 	@Override
 	public void save(Meeting t) {
-		String s = String.format(INSERT, t.getParentId(), t.getProfessorId(), t.getDate(), t.getMessage());
+		String query = String.format(INSERT, t.getParentId(), t.getProfessorId(), t.getDate().toString(), t.getMessage());
 		try (
 				Connection c = DaoConnector.getIstance().getConnection();
 				Statement stm = c.createStatement();
 			)
 		{
-			stm.executeUpdate(s);
+			stm.executeUpdate(query);
 		} catch (SQLException e) {
-			SimpleLogger.severe(String.format(ERROR, s, e.getMessage()));
-		}		
+			SimpleLogger.severe(String.format(ERROR, query, e.getMessage()));
+		}
 	}
 	@Override
 	public void update(Meeting t, String[] pkeys) {
-		if(pkeys.length != 3) throw new IllegalArgumentException("Number of params must be 3");
-		String s = String.format(UPDATE, t.getParentId(), t.getProfessorId(), t.getDate(), pkeys[0], pkeys[1], pkeys[2]);
+		String query = String.format(UPDATE, t.getParentId(), t.getProfessorId(), t.getDate().toString(), pkeys[0], pkeys[1], pkeys[2]);
 		try (
 				Connection c = DaoConnector.getIstance().getConnection();
 				Statement stm = c.createStatement();
 			)
 		{
-			stm.executeUpdate(s);
+			stm.executeUpdate(query);
 		}
 		catch (SQLException e) {
-			SimpleLogger.severe(String.format(ERROR, s, e.getMessage()));
-		} catch (IllegalArgumentException e2) {
-			SimpleLogger.severe(e2.getMessage());
+			SimpleLogger.severe(String.format(ERROR, query, e.getMessage()));
 		}
 	}
 	@Override
 	public void delete(Meeting t) {
-		String s = String.format(DELETE, t.getParentId(), t.getProfessorId(), t.getDate());
+		String query = String.format(DELETE, t.getParentId(), t.getProfessorId(), t.getDate().toString());
 		try (
 				Connection c = DaoConnector.getIstance().getConnection();
 				Statement stm = c.createStatement();
 			)
 		{
-			stm.executeUpdate(s);
+			stm.executeUpdate(query);
 		} catch (SQLException e) {
-			SimpleLogger.severe(String.format(ERROR, s, e.getMessage()));
+			SimpleLogger.severe(String.format(ERROR, query, e.getMessage()));
 		}
 	}
 }

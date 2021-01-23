@@ -33,6 +33,5 @@ public abstract class User {
 	@Override
 	public String toString() {
 		return String.format("%s%nUserId: %d%nName: %s%nSurname: %s%nPassword: %s%n", super.toString(), id, name, surname, password);
-	}
-	
+	}	
 }

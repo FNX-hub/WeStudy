@@ -1,6 +1,5 @@
 package logic.model;
 
-
 public interface Observer {
-	abstract void update();
+	public abstract void update();	
 }

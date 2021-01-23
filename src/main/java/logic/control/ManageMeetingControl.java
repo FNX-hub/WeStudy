@@ -7,46 +7,121 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import logic.model.Meeting;
 import logic.model.Observer;
-import logic.model.Parent;
-import logic.model.Professor;
+import logic.model.User;
+import logic.model.UserType;
 import logic.model.bean.MeetingBean;
+import logic.model.bean.UserBean;
 import logic.model.dao.DaoFactory;
 
 /**
  * @author Simone
  */
-public class ManageMeetingControl implements Runnable {
+public class ManageMeetingControl implements Runnable, Observer {
 
 	private Thread daemon;
 	private final AtomicBoolean running = new AtomicBoolean(false);
 	private final AtomicBoolean stopped = new AtomicBoolean(true);
 	private static final int INTERVAL = 600000;
+	private MeetingBean bean;
 	
-	public List<MeetingBean> getUserMeeting() {
-		return null;
+	/**
+	 * Query the DB to get a list of Meetings 
+	 * @param userId - {@link Integer}
+	 * @param type - {@link UserType}
+	 * @return {@code List<}{@link MeetingBean} {@code >}
+	 * @return {@code List<}{@link MeetingBean} {@code >}
+	 */
+	public List<MeetingBean> getUserMeeting(Integer userId, UserType type) {
+		List<Meeting> meetingList;
+		if(type.equals(UserType.PARENT)) {
+			meetingList = DaoFactory.getMeetingDao().getFromParent(userId);
+		}
+		else {
+			meetingList = DaoFactory.getMeetingDao().getFromProfessor(userId);
+		}
+		List<MeetingBean> beanList = new ArrayList<>();
+		meetingList.forEach(m -> 
+		{
+			String parent = DaoFactory.getParentDao().getFromId(m.getParentId()).getSurname();
+			String professor = DaoFactory.getProfessorDao().getFromId(m.getProfessorId()).getSurname();
+			beanList.add(new MeetingBean(m, parent, professor));
+		});
+		return beanList;
 	}
 	
+	/**
+	 * Query the DB to get a list of possible Users that can be meet
+	 * @param bean - {@link UserBean}
+	 * @return {@code List<}{@link UserBean} {@code >} 
+	 */
+	public List<UserBean> getUserToMeet(UserBean bean) {
+		List<User> userList = new ArrayList<>();
+		List<UserBean> beanList = new ArrayList<>();
+		if(bean.getType().equals(UserType.PARENT)) {
+			userList.addAll(DaoFactory.getProfessorDao().getAll());
+			userList.forEach(user -> beanList.add(new UserBean(UserType.PARENT, user.getId(), user.getSurname())));
+		} else {
+			userList.addAll(DaoFactory.getParentDao().getAll());
+			userList.forEach(user -> beanList.add(new UserBean(UserType.PROFESSOR, user.getId(), user.getSurname())));
+		}
+		return beanList;
+	}
+	
+	
+	
+	/**
+	 * Start the thread initializing the booking process
+	 * @param bean - {@link MeetingBean}
+	 */
 	public void newMeeting(MeetingBean bean) {
+		this.bean = bean;
+		this.bean.attach(this);
 		start();
 	}
 	
+	/**
+	 * Kill the thread and abort the booking  
+	 */
 	private void abortMeeting() {
 		stop();
+		this.bean = null;
 	}
 	
-	public Boolean confirmMeeting() {
+	/**
+	 * Kill the thread and confirm the booking
+	 */
+	private void confirmMeeting() {
 		if(isRunning()) {
 			stop();
-			//meetingDao.addMeeting(meeting);
-			SimpleLogger.info("Meeting confirmed");
-			return true;
+			Meeting m = new Meeting(bean.getParentId(), bean.getProfessorId(), bean.getDate(), bean.getMessage());
+			DaoFactory.getMeetingDao().save(m);
+			this.bean = null;
 		}
-		return false;
 	}
 	
+	/**
+	 * Save in persistence the Meeting
+	 * @param bean - {@link MeetingBean}
+	 */
 	public void deleteMeeting(MeetingBean bean) {
+		Meeting m = new Meeting(bean.getParentId(), bean.getProfessorId(), bean.getDate(), bean.getMessage());
+		DaoFactory.getMeetingDao().delete(m);
 	}
-
+	
+	@Override
+	public void update() {
+		try{
+			if(bean.getConfirmed().booleanValue()) {
+					confirmMeeting();
+			} else {
+				abortMeeting();
+			}
+		} catch (NullPointerException e) {
+			SimpleLogger.severe(e.getLocalizedMessage());
+		}
+	}
+	
+	
 //	Thread management
 	
 	/**
@@ -78,7 +153,7 @@ public class ManageMeetingControl implements Runnable {
 	
 	/**
 	 * Define the behavior of the {@link Thread}: it runs until it's killed by 
-	 * confirmation of a {@link Meeting} or the interval expires.
+	 * a {@link Meeting} confirmation or the interval expires.
 	 * @implSpec It's synchronized so that only one {@link Thread} can execute at a time 
 	 */
 	@Override
@@ -96,28 +171,5 @@ public class ManageMeetingControl implements Runnable {
 		}
 		stopped.set(true);
 	}
-	
-//	// TODO eliminare metodo statico serve solo da debud
-//	public static void main(String[] args) {
-//		ManageMeetingControl c = new ManageMeetingControl();
-//		Meeting m = c.newMeeting(null, null, null, null);		
-//		Thread t = new Thread() {
-//			@Override
-//			public void run() {
-//					try {
-//							
-//						while(true) {
-//							sleep(10);
-//							c.confirmMeeting(m);
-//							c.confirmMeeting(m);
-//							c.confirmMeeting(m);
-//							c.confirmMeeting(m);
-//							c.confirmMeeting(m);
-//							Thread.currentThread().interrupt();
-//						}
-//					} catch(Exception e) {}
-//			}	
-//		};
-//		t.start();
-//	}
+
 }

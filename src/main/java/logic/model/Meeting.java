@@ -1,24 +1,26 @@
 package logic.model;
 
+import java.time.LocalDate;
+
 public class Meeting {
 	
-	private String parentId;
-	private String professorId;
+	private Integer parentId;
+	private Integer professorId;
 	private String message;
-	private String date;
+	private LocalDate date;
 	
-	public Meeting(String parentId, String professorId, String date, String message) {
+	public Meeting(Integer parentId, Integer professorId, LocalDate date, String message) {
 		this.parentId = parentId;
 		this.professorId = professorId;
 		this.message = message;
 		this.date = date;
 	}
 	
-	public String getParentId() {
+	public Integer getParentId() {
 		return parentId;
 	}
 
-	public String getProfessorId() {
+	public Integer getProfessorId() {
 		return professorId;
 	}
 
@@ -26,14 +28,14 @@ public class Meeting {
 		return message;
 	}
 
-	public String getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
 	@Override
 	public String toString() {
-		return  String.format("Date: %s%n, Professor: %s%n Parent %s%nMessage: %s%n",
-				date,
+		return  String.format("Date: %s%n, Professor: %d%n Parent %d%nMessage: %s%n",
+				date.toString(),
 				professorId,
 				parentId,
 				message);	

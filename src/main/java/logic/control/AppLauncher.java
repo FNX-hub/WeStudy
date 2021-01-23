@@ -2,13 +2,18 @@ package logic.control;
 
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import logic.view.fx.View;
 
 public class AppLauncher extends Application {	
 	@Override
 	public void start(Stage primaryStage) {
-		SimpleLogger.method(this, "start");
-		new View("/Login.fxml", new Stage());
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
+			Stage root = loader.load();
+			root.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -20,11 +20,12 @@ public class StudentDao implements Dao<Student> {
 	
 	// SQL statements
 	
-	private static final String SELECT = "SELECT * FROM studnet";
-	private static final String SELECT_BY_ID = "SELECT * FROM student WHERE id = '%s'";
-	private static final String INSERT = "INSERT INTO student VALUES (%s,'%s','%s', '%s', '%s')";
-	private static final String UPDATE = "UPDATE studnet SET id = '%s', surname = '%s', name = '%s', password = '%s', parent_id = '%s' WHERE id = '%s'";
-	private static final String DELETE = "DELETE FROM student WHERE id = '%s'";
+	private static final String SELECT_ALL = "SELECT * FROM student";
+	private static final String SELECT_BY_PRIMARY_KEY = "SELECT * FROM student WHERE id = '%d'";
+	private static final String SELECT_BY_PARENT_ID = "SELECT * FROM student WHERE parent_id = '%d'";
+	private static final String INSERT = "INSERT INTO student VALUES ('%d','%s','%s', '%s', '%d')";
+	private static final String UPDATE = "UPDATE student SET id = '%d', surname = '%s', name = '%s', password = '%s' WHERE id = '%s'";
+	private static final String DELETE = "DELETE FROM student WHERE id = '%d'";
 	
 	// Error message
 	
@@ -36,85 +37,101 @@ public class StudentDao implements Dao<Student> {
 		try (
 				Connection c = DaoConnector.getIstance().getConnection();
 				Statement stm = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-				ResultSet rs = stm.executeQuery(SELECT)
+				ResultSet rs = stm.executeQuery(SELECT_ALL)
 			)
 		{
 			if(!rs.first()) {
 				return listStudent;
 			}
 			do {
-				Student s = new Student(rs.getString(ID), rs.getString(SURNAME), rs.getString(NAME), rs.getString(PASSWORD), rs.getString(PARENT_ID));
+				Student s = new Student(rs.getInt(ID), rs.getString(SURNAME), rs.getString(NAME), rs.getString(PASSWORD), rs.getInt(PARENT_ID));
 				listStudent.add(s);
 			} while(rs.next());
 		} catch (SQLException e) {
-			SimpleLogger.severe(String.format(ERROR, SELECT, e.getMessage()));
+			SimpleLogger.severe(String.format(ERROR, SELECT_ALL, e.getMessage()));
 		}
 		return listStudent;
 	}
-	public Student getFromId(String id) {
-		String s = String.format(SELECT_BY_ID, id);
-		Student st = null;
+	public Student getFromId(Integer id) {
+		String query = String.format(SELECT_BY_PRIMARY_KEY, id);
+		Student std = null;
 		try (
 				Connection c = DaoConnector.getIstance().getConnection();
 				Statement stm = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-				ResultSet rs = stm.executeQuery(s)
+				ResultSet rs = stm.executeQuery(query)
 			)
 		{
 			if(!rs.first()) {
-				return st;
+				return std;
 			}
-			 st = new Student(rs.getString(ID), rs.getString(SURNAME), rs.getString(NAME), rs.getString(PASSWORD), rs.getString(PARENT_ID));
+			 std = new Student(rs.getInt(ID), rs.getString(SURNAME), rs.getString(NAME), rs.getString(PASSWORD), rs.getInt(PARENT_ID));
 		} catch (SQLException e) {
-			SimpleLogger.severe(String.format(ERROR, s, e.getMessage()));
+			SimpleLogger.severe(String.format(ERROR, query, e.getMessage()));
 		}
-		return st;
+		return std;
+	}
+	public List<Student> getFromParentId(Integer id) {
+		String query = String.format(SELECT_BY_PARENT_ID, id);
+		List<Student> listStudent = new ArrayList<>();
+		try (
+				Connection c = DaoConnector.getIstance().getConnection();
+				Statement stm = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+				ResultSet rs = stm.executeQuery(query)
+				)
+		{
+			if(!rs.first()) {
+				return listStudent;
+			}
+			do {
+				Student std = new Student(rs.getInt(ID), rs.getString(SURNAME), rs.getString(NAME), rs.getString(PASSWORD), rs.getInt(PARENT_ID));
+				listStudent.add(std);
+			} while(rs.next());
+		} catch (SQLException e) {
+			SimpleLogger.severe(String.format(ERROR, query, e.getMessage()));
+		}
+		return listStudent;
 	}
 	
 	// CRUD operation
 	
 	@Override
 	public void save(Student t) {
-		String s = String.format(INSERT, t.getId(), t.getSurname(), t.getName(), t.getPassword(), t.getParentId());
+		String query = String.format(INSERT, t.getId(), t.getSurname(), t.getName(), t.getPassword(), t.getParentId());
 		try (
 				Connection c = DaoConnector.getIstance().getConnection();
 				Statement stm = c.createStatement();
 			)
 		{
-			stm.executeUpdate(s);
-			SimpleLogger.info(String.format("Insert: %s", t.toString()));
+			stm.executeUpdate(query);
 		} catch (SQLException e) {
-			SimpleLogger.severe(String.format(ERROR, s, e.getMessage()));
-		}		
+			SimpleLogger.severe(String.format(ERROR, query, e.getMessage()));
+		}
 	}
 	@Override
 	public void update(Student t, String[] params) {
-		String s = String.format(UPDATE, t.getId(), t.getSurname(), t.getName(), t.getPassword(), t.getParentId(), params[0]);
-		if(params.length != 1) throw new IllegalArgumentException("Number of params must be 1");
+		String query = String.format(UPDATE, t.getId(), t.getSurname(), t.getName(), t.getPassword(), params[0]);
 		try (
 				Connection c = DaoConnector.getIstance().getConnection();
 				Statement stm = c.createStatement();
 			)
 		{
-			stm.executeUpdate(s);
-			SimpleLogger.info(String.format("Update: %s", t.toString()));
+			stm.executeUpdate(query);
 		}
 		catch (SQLException e) {
-			SimpleLogger.severe(String.format(ERROR, s, e.getMessage()));
-		} catch (IllegalArgumentException e2) {
-			SimpleLogger.severe(e2.getMessage());
+			SimpleLogger.severe(String.format(ERROR, query, e.getMessage()));
 		}
 	}
 	@Override
 	public void delete(Student t) {
-		String s = String.format(DELETE, t.getId());
+		String query = String.format(DELETE, t.getId());
 		try (
 				Connection c = DaoConnector.getIstance().getConnection();
 				Statement stm = c.createStatement();
 			)
 		{
-			stm.executeUpdate(s);
+			stm.executeUpdate(query);
 		} catch (SQLException e) {
-			SimpleLogger.severe(String.format(ERROR, s, e.getMessage()));
+			SimpleLogger.severe(String.format(ERROR, query, e.getMessage()));
 		}
 	}
 

@@ -21,88 +21,83 @@ public class ProfessorDao implements Dao<Professor> {
 	
 	// SQL statements
 	
-	private static final String SELECT = "SELECT * FROM professor";
-	private static final String SELECT_BY_ID = "SELECT * FROM professor WHERE id = '%s'";
-	private static final String INSERT = "INSERT INTO professor VALUES (%s,'%s','%s', '%s')";
-	private static final String UPDATE = "UPDATE professor SET id = '%s', surname = '%s', name = '%s', password = '%s' WHERE id = %s";
-	private static final String DELETE = "DELETE FROM professor WHERE id = '%s'";
+	private static final String SELECT_ALL = "SELECT * FROM professor";
+	private static final String SELECT_BY_PRIMARY_KEY = "SELECT * FROM professor WHERE id = '%d'";
+	private static final String INSERT = "INSERT INTO professor VALUES ('%d','%s','%s', '%s')";
+	private static final String UPDATE = "UPDATE professor SET id = %d, surname = '%s', name = '%s', password = '%s' WHERE id = '%s'";
+	private static final String DELETE = "DELETE FROM professor WHERE id = %d";
 	
 	// Error message
 	
 	private static final String ERROR = "Unable to execute %s: %s";
 				
 	@Override
-	public List<Professor> getAll() {
+	public List<Professor> getAll(){
 		List<Professor> listProfessor = new ArrayList<>();
 		try (
 				Connection c = DaoConnector.getIstance().getConnection();
 				Statement stm = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY );
-				ResultSet rs = stm.executeQuery(SELECT)
+				ResultSet rs = stm.executeQuery(SELECT_ALL)
 			)
 		{
 			if(!rs.first()) {
 				return listProfessor;
 			}
 			do {
-				Professor p = new Professor(rs.getString(ID), rs.getString(SURNAME), rs.getString(NAME), rs.getString(PASSWORD));
+				Professor p = new Professor(rs.getInt(ID), rs.getString(SURNAME), rs.getString(NAME), rs.getString(PASSWORD));
 				listProfessor.add(p);
 			} while(rs.next());
 		} catch (SQLException e) {
-			SimpleLogger.severe(String.format(ERROR, SELECT, e.getMessage()));
+			SimpleLogger.severe(String.format(ERROR, SELECT_ALL, e.getMessage()));
 		}
 		return listProfessor;
 	}
-	public Professor getFromId(String id) {
-		String s = String.format(SELECT_BY_ID, id);
-		Professor p = null;
+	public Professor getFromId(Integer id) {
+		String query = String.format(SELECT_BY_PRIMARY_KEY, id);
+		Professor prof = null;
 		try (
 				Connection c = DaoConnector.getIstance().getConnection();
 				Statement stm = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-				ResultSet rs = stm.executeQuery(s)
+				ResultSet rs = stm.executeQuery(query)
 			)
 		{
 			if(!rs.first()) {
-				return p;
+				return prof;
 			}
-			 p = new Professor(rs.getString(ID), rs.getString(SURNAME), rs.getString(NAME), rs.getString(PASSWORD));
+			 prof = new Professor(rs.getInt(ID), rs.getString(SURNAME), rs.getString(NAME), rs.getString(PASSWORD));
 		} catch (SQLException e) {
-			SimpleLogger.severe(String.format(ERROR, s, e.getMessage()));
+			SimpleLogger.severe(String.format(ERROR, query, e.getMessage()));
 		}
-		return p;
+		return prof;
 	}
 	
 	// CRUD operation
 	
 	@Override
 	public void save(Professor t) {
-		String s = String.format(INSERT, t.getId(), t.getSurname(), t.getName(), t.getPassword());
+		String query = String.format(INSERT, t.getId(), t.getSurname(), t.getName(), t.getPassword());
 		try (
 				Connection c = DaoConnector.getIstance().getConnection();
 				Statement stm = c.createStatement();
 			)
 		{
-			stm.executeUpdate(s);
-			SimpleLogger.info(String.format("Insert: %s", t.toString()));
+			stm.executeUpdate(query);
 		} catch (SQLException e) {
-			SimpleLogger.severe(String.format(ERROR, s, e.getMessage()));
-		}		
+			SimpleLogger.severe(String.format(ERROR, query, e.getMessage()));
+		}
 	}
 	@Override
 	public void update(Professor t, String[] params) {
-		if(params.length != 1) throw new IllegalArgumentException("Number of params must be 1");
-		String s = String.format(UPDATE, t.getId(), t.getSurname(), t.getName(), t.getPassword(), params[0]);
+		String query = String.format(UPDATE, t.getId(), t.getSurname(), t.getName(), t.getPassword(), params[0]);
 		try (
 				Connection c = DaoConnector.getIstance().getConnection();
 				Statement stm = c.createStatement();
 			)
 		{
-			stm.executeUpdate(s);
-			SimpleLogger.info(String.format("Update: %s", t.toString()));
+			stm.executeUpdate(query);
 		}
 		catch (SQLException e) {
-			SimpleLogger.severe(String.format(ERROR, s, e.getMessage()));
-		} catch (IllegalArgumentException e2) {
-			SimpleLogger.severe(e2.getMessage());
+			SimpleLogger.severe(String.format(ERROR, query, e.getMessage()));
 		}
 	}
 	@Override
@@ -114,7 +109,6 @@ public class ProfessorDao implements Dao<Professor> {
 			)
 		{
 			stm.executeUpdate(s);
-			SimpleLogger.info(String.format("Delete: %s", t.toString()));
 		} catch (SQLException e) {
 			SimpleLogger.severe(String.format(ERROR, s, e.getMessage()));
 		}

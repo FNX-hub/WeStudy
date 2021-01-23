@@ -24,52 +24,40 @@ public class DaoConnector {
 	private static final DaoConnector istance = new DaoConnector();
 	
 	private DaoConnector() {
-		connect();
 	}
 	
-	public static DaoConnector getIstance() {
+	public static DaoConnector getIstance() { 
 		return istance;
 	}
 	
 	/**
 	 * Attempts to establish a connection to the application database.
-	 * The connection specks are in the configuration file {@code db_setting}.
-	 * <p>
-	 * If the file is missing or rise an {@link IOExeption}.
-	 * If the connection fail rise an {@link SQLExeption}
+	 * The connection specks are in the configuration file {@code db_setting}: 
+	 * <li> {@code db_url}
+	 * <li> {@code username}
+	 * <li> {@code password}   
+	 * @throws IOException if the configuration file {@code db_setting} is corrupted or missing.
+	 * @throws SQLException if a database access error occurs or {@code db_setting} is wrongly set
 	 */
-	private void connect() {
+	private void connect() throws SQLException {
 		Path path = Paths.get("db_setting");
 		String url = null;
 		String user = null;
 		String password = null;
-	    try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8))
-		    {
-	    		url = reader.readLine();
-	    		user = reader.readLine();
-	    		password = reader.readLine();
-		    }
-	    catch (IOException io)
-		    {
-	    		SimpleLogger.severe("Error in file \"db_seting\": is missing or corrupted");
-	    	}  
-	    try 
-		   { 
-    			this.connection = DriverManager.getConnection(url, user, password);
-    			SimpleLogger.info(String.format("Connected to %s", url));
-		   }
-	    catch (SQLException sql)
-		   {
-	    		SimpleLogger.severe("Unable to connect to DB");		   
-		   }
+		try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8))
+		{
+			url = reader.readLine();
+			user = reader.readLine();
+			password = reader.readLine();
+			this.connection = DriverManager.getConnection(url, user, password);
+		} catch (IOException io) {
+			// TODO abstract factory method for error handling
+			SimpleLogger.severe(io.getMessage());
+		}
 	}
 	
-	public Connection getConnection() {
-		try {
-			if(connection.isClosed()) connect();
-		} catch (SQLException e) {
-			SimpleLogger.severe("Unable to verify connection to DB");			
-		}
+	public Connection getConnection() throws SQLException {
+		if(connection == null || connection.isClosed()) connect();
 		return connection;
 	}
 }
