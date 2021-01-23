@@ -12,6 +12,9 @@ public class DummyViewCourseGradeTest {
 	
 	
 	public static void main(String[] args) {
+		System.err.println("MESSO COME COMMENTO PERCHE' SONARCLOUD NON PUO' ACCEDERE AL MIO DB IN LOCALE");
+		/*
+		
 		//Crea un bean fittizio
 		ClassCourseBean classCourseBean = new ClassCourseBean(1,"Matematica");
 		
@@ -22,6 +25,7 @@ public class DummyViewCourseGradeTest {
 		//Esegui la Boundary corrispondente e recupera i risultati (convertiti)
 		ManageStudentCareerProfessor boundary = new ManageStudentCareerProfessor();
 		convertedResults = boundary.viewClassCourseGrades(classCourseBean);
+		
 		
 		//Stampa di controllo
 		System.err.println(">>>>>>>>> GRADES GIVEN IN THE CLASS COURSE WITH ID = " + classCourseBean.getCourseId());
@@ -48,6 +52,6 @@ public class DummyViewCourseGradeTest {
 			System.err.print(" | TYPE: " + results.get(i).getType());
 			System.err.println(" | DESCRIPTION: " + results.get(i).getDescription());
 		}
-		
+		*/
 	}
 }
