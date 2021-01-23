@@ -20,11 +20,11 @@ public class StudentDaoTest {
 
 	private final StudentDao dao = DaoFactory.getStudentDao();
 	
-	@Test
-	public void testGetAll() {
-		List<Student> studentList = new ArrayList<>(); 
-		assertEquals(studentList.getClass(), dao.getAll().getClass());
-	}
+//	@Test
+//	public void testGetAll() {
+//		List<Student> studentList = new ArrayList<>(); 
+//		assertEquals(studentList.getClass(), dao.getAll().getClass());
+//	}
 
 //	@Test
 //	public void testGetFromId() {

@@ -21,11 +21,11 @@ public class ProfessorDaoTest {
 
 	private final ProfessorDao dao = DaoFactory.getProfessorDao();
 	
-	@Test
-	public void testGetAll() {
-		List<Professor> professorList = new ArrayList<>(); 
-		assertEquals(professorList.getClass(), dao.getAll().getClass());
-	}
+//	@Test
+//	public void testGetAll() {
+//		List<Professor> professorList = new ArrayList<>(); 
+//		assertEquals(professorList.getClass(), dao.getAll().getClass());
+//	}
 
 //	@Test
 //	public void testGetFromId() {
