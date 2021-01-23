@@ -41,7 +41,7 @@ public class GradeDao implements Dao<Grade> {
 	
 	
 	//TODO In questo modo uno studente può visualizzare TUTTI i grade che ha ricevuto in tutti i corsi di cui fa parte
-	
+	//TODO metodo da implementare in futuro
 	
 	@Override
 	public List<Grade> getAll() {
