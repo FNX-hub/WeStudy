@@ -1,20 +1,22 @@
 package logic.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Grade {
 	ClassCourse course;
 	Integer mark;
-	Date date;
+	LocalDate date;
 	String description;
+	String type;
 	
-	//Utilizzato dalla DAO
-	public Grade(Integer mark, String description) {
+	//Utilizzato per la DAO
+	public Grade(Integer mark, String description, String type) {
 		this.mark = mark;
 		this.description = description;
+		this.type = type;
 	}
 	
-	public Grade(ClassCourse course, Integer mark, Date date, String description) {
+	public Grade(ClassCourse course, Integer mark, LocalDate date, String description) {
 		this.course = course;
 		this.mark = mark;
 		this.date = date;
@@ -27,7 +29,7 @@ public class Grade {
 	public Integer getMark() {
 		return mark;
 	}
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 	public void setCourse(ClassCourse course) {
@@ -36,7 +38,7 @@ public class Grade {
 	public void setMark(Integer mark) {
 		this.mark = mark;
 	}
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 	public String getDescription() {
@@ -44,5 +46,13 @@ public class Grade {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 }

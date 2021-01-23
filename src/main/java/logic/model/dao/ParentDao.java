@@ -53,6 +53,8 @@ public class ParentDao implements Dao<Parent> {
 		}
 		return listParent;
 	}
+	
+	
 	public Parent getFromId(Integer id) {
 		String query = String.format(SELECT_BY_PRIMARY_KEY, id);
 		Parent par = null;
@@ -88,6 +90,8 @@ public class ParentDao implements Dao<Parent> {
 			SimpleLogger.severe(String.format(ERROR, query, e.getMessage()));
 		}
 	}
+	
+	
 	@Override
 	public void update(Parent t, String[] params) {
 		String query = String.format(UPDATE, t.getId(), t.getSurname(), t.getName(), t.getPassword(), t.getPhoneNumber(), params[0]);
@@ -102,6 +106,8 @@ public class ParentDao implements Dao<Parent> {
 			SimpleLogger.severe(String.format(ERROR, query, e.getMessage()));
 		}
 	}
+	
+	
 	@Override
 	public void delete(Parent t) {
 		String query = String.format(DELETE, t.getId());

@@ -1,24 +1,34 @@
 package logic.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Assignment {
-	//MEMO: Date tiene conto di giorno/mese/anno e ore/minuti
-	private Date creationDate;
-	private Date deadlineDate;
+	private LocalDate creationDate;
+	private LocalDate deadlineDate;
 	private String description;
 	
+	public Assignment() {
+		this.creationDate = LocalDate.now();
+	}
+	
+	public Assignment(String description) {
+		this.creationDate = LocalDate.now();
+		this.description = description;
+	}
+	
 	public Assignment(Integer deadlineDay, Integer deadlineMonth, Integer deadlineYear, Integer deadlineHour, Integer deadlineMinute, String description) {
-		//this.deadlineDate = new Date(); TODO
-		this.creationDate = new Date(); //Data attuale
+		
+		//TODO inserire la data corretta nella deadLineDate
+		this.deadlineDate = LocalDate.now();
+		this.creationDate = LocalDate.now();
 		this.description = description;
 	}
 
-	public Date getCreationDate() {
+	public LocalDate getCreationDate() {
 		return creationDate;
 	}
 
-	public Date getDeadlineDate() {
+	public LocalDate getDeadlineDate() {
 		return deadlineDate;
 	}
 
@@ -26,11 +36,11 @@ public class Assignment {
 		return description;
 	}
 
-	public void setCreationDate(Date creationDate) {
+	public void setCreationDate(LocalDate creationDate) {
 		this.creationDate = creationDate;
 	}
 
-	public void setDeadlineDate(Date deadlineDate) {
+	public void setDeadlineDate(LocalDate deadlineDate) {
 		this.deadlineDate = deadlineDate;
 	}
 

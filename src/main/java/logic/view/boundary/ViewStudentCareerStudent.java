@@ -1,26 +1,37 @@
 package logic.view.boundary;
 
-import logic.control.ViewStudentCareer;
+import java.util.ArrayList;
 
+import logic.control.ViewStudentCareer;
+import logic.model.Grade;
+import logic.model.bean.StudentBean;
+
+//TODO valutare se è sensato manetenere le due boundary separate
 public class ViewStudentCareerStudent implements ViewStudentCareerInterface{
 
 	@Override
-	public void viewCareer(String studentUsername) {
-		//Istanzia il controller applicativo corrispondente
-		ViewStudentCareer viewStudentCareerController = new ViewStudentCareer();
+	public ArrayList<String> viewCareer(StudentBean studentBean) {
+		//Risultato returnato dal Controller appllicativo
+		ArrayList<Grade> results = new ArrayList<Grade>();
 		
-		//TODO
-		//viewStudentCareerController
+		//Risultato in un formato adeguato alla view
+		ArrayList<String> convertedResults = new ArrayList<String>();
 		
-		//Inizializza un DAO
-		//ViewStudentCareerDummyDAO vscDAO = new ViewStudentCareerDummyDAO();
+		//Istanzia il controllore del caso d'uso
+		ViewStudentCareer controller = new ViewStudentCareer();
 		
-		//Chiama il DAO per eseguire la query & memorizza il risultato
-		//All'interno di un blocco try catch per catturare eventuali eccezioni lanciate dal DAO e dovute ad errori di interazione con il DB
-		// result = vscDAO.requestCareer(studentUsername);
+		//Esegui il caso d'uso e recupera i risultati
+		results = controller.getStudentCareer(studentBean);
+				
+		//Converti i dati ricevuti in un formalismo adeguato alla GUI
+		for(int i=0 ; i<results.size() ; i++) {
+			convertedResults.add(results.get(i).getMark().toString());
+			convertedResults.add(results.get(i).getType());
+			convertedResults.add(results.get(i).getDescription());
+		}
 		
-		
-		
+		//Restituisci i risultati alla GUI
+		return convertedResults;
 	}
 	
 }

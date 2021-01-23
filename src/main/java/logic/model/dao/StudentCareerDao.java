@@ -47,8 +47,9 @@ public class StudentCareerDao implements Dao<Grade> {
 				return grades;
 			}
 			do {
-				Grade tempGrade = new Grade(rs.getInt("value"),rs.getString("description"));
-				grades.add(tempGrade);
+				//TODO rimuovere questa classe SE SOLO SE è totalmente inutile ed è stata rimpiazzata da GradeDao
+				//Grade tempGrade = new Grade(rs.getInt("value"),rs.getString("description"));
+				//grades.add(tempGrade);
 			}while(rs.next()); //finchè estrae una tupla, continua ad iterare
 			
 		}

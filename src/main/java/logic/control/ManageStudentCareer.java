@@ -1,21 +1,54 @@
 package logic.control;
 
 
+import java.util.ArrayList;
 
-//TODO controllare la logica del caso d'uso
-//TODO realizzare le boundary corrispondenti
+import logic.model.Grade;
+import logic.model.GradeFactory;
+import logic.model.bean.ClassCourseBean;
+import logic.model.bean.GradeBean;
+import logic.model.bean.StudentBean;
+import logic.model.dao.DaoFactory;
+
+
 public class ManageStudentCareer{
 	
-	public void addGrade(Integer courseId,Integer mark,String description,String selectedStudentName, String selectedStudentSurname){
-		//TODO Controlla se il courseId ricevuto corrisponde ad un ClassCourse effettivamente esistente
+	
+	public void addGrade(GradeBean gradeBean, ClassCourseBean classCourseBean, StudentBean studentBean) {
+		//Inizializza una factory per Grade
+		GradeFactory factory = new GradeFactory();
 		
+		//Inizializza i parametri per la creazione del Grade
+		Integer value = gradeBean.getGrade();
+		String description = gradeBean.getDescription();
+		String type = gradeBean.getType();
 		
-		//TODO Crea un Grade utilizzando GradeFactory
+		//Inizializza i parametri non correlati all' entità Grade ma necessari per riempire il DB
+		Integer studentId = studentBean.getId();
+		Integer courseId = classCourseBean.getCourseId();
 		
-		//TODO Controlla se name e surname ricevuti corrispondano ad uno studente di quel corso
-		
-		//TODO Associa tale grade allo studente corrispondente
-		
-		//TODO Salva il nuovo Grade nella persistenza
+		//Chiedi di istanziare un Grade con i parametri ricevuti
+		Grade grade = factory.createGrade(value, description, type);
+			
+		//Istanzia una DAO e memorizza lì il Grade appena creato
+		DaoFactory.getGradeDao().save(grade,studentId,courseId);
 	}
+	
+	public ArrayList<Grade> viewClassCourseGrades(ClassCourseBean classCourseBean){
+		//Risultato sottoforma di Lista di Entity
+		ArrayList<Grade> courseGrades = new ArrayList<Grade>();
+		
+		
+		//Parametri necessari da passare al DAO
+		Integer courseId = classCourseBean.getCourseId();
+		
+		//Inizializza un DAO per effettuare la query e prenderne i risultati
+		courseGrades = DaoFactory.getGradeDao().getCourseGrades(courseId);
+		
+		
+		//Returna al chiamante il risultato ottenuto
+		//NB la Boundary avrà la responsabilità di riceverlo e convertirlo in un formato adeguato alla GUI
+		return courseGrades;
+	}
+
 }

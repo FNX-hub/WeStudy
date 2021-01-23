@@ -9,6 +9,14 @@ public class ClassCourse {
 	private List<Assignment> assignments;
 	private List<Student> students;
 	
+	public ClassCourse(Integer id) {
+		this.id = id;
+	}
+	
+	public ClassCourse(String subject, Integer id) {
+		this.subject = subject;
+		this.id = id;
+	}
 	
 	public ClassCourse(String subject) {
 		this.subject = subject;

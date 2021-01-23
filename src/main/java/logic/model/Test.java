@@ -2,6 +2,8 @@ package logic.model;
 
 import java.util.Date;
 
+//TODO da eliminare
+
 public abstract class Test {
 	protected Date creationDate;
 	protected Date date;

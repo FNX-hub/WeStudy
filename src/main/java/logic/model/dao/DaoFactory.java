@@ -21,4 +21,12 @@ public class DaoFactory {
 	public static StudentDao getStudentDao() {
 		return new StudentDao();
 	}
+	
+	public static GradeDao getGradeDao() {
+		return new GradeDao();
+	}
+	
+	public static ClassCourseDao getClassCourseDao() {
+		return new ClassCourseDao();
+	}
 }
