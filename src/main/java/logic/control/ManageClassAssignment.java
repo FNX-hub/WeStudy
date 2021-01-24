@@ -17,15 +17,18 @@ public class ManageClassAssignment {
 	//Restituisci tutti gli assignment di un determinato classCourse
 	public List<ExtendedAssignment> viewClassAssignment(ClassCourse classcourseBean){
 		//Inizializza lista per i risultati
-		List<ExtendedAssignment> results = new ArrayList<ExtendedAssignment>();
+		ArrayList<ExtendedAssignment> results;
 		
 		//Istanzia DAO e memorizza i risultati della query
-		results = DaoFactory.getAssignmentDao().getCourseAssignment(classcourseBean.getId());
+		//Mi prendo la responsabilità di effettuare il casting
+		//Sono costretto a returnare List a causa di un codesmell
+		results = (ArrayList<ExtendedAssignment>) DaoFactory.getAssignmentDao().getCourseAssignment(classcourseBean.getId());
 		
 		//Restituisci i risultati ottenuti
 		return results;
 	}
 	
+	//Crea un nuovo assignment associato ad un certo classCourse
 	public void createAssignment(Integer assignmentType, AssignmentBean assignmentBean, ClassCourseBean classCourseBean) {
 		
 		//Crea assignment con i parametri passati
@@ -39,7 +42,7 @@ public class ManageClassAssignment {
 		//Associa il nuovo assignment al suo classCourse corrispondente
 		course.addAssignment(assignment);
 		
-		//TODO propagazione agli studenti interessati e notifica
+		//TODO propagazione agli studenti interessati (notifica)
 		
 		
 		//Chiama il DAO per mettere in persistenza l'assignment creato

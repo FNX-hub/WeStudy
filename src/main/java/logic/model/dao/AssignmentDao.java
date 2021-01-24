@@ -16,8 +16,8 @@ public class AssignmentDao implements Dao<Assignment> {
 
 	// Name columns table
 	
-	private static final String ID = "id";
-	private static final String COURSE = "course_id";
+	//private static final String ID = "id";
+	//private static final String COURSE = "course_id";
 	private static final String DELIVERYDATE = "delivery_date";
 	private static final String CREATIONDATE = "creation_date";
 	private static final String TYPE = "type";
@@ -100,13 +100,12 @@ public class AssignmentDao implements Dao<Assignment> {
 
 	@Override
 	public void update(Assignment t, String[] pkeys) {
-		// TODO Auto-generated method stub
-		
+		//Ereditato ma non utilizzato
 	}
 
 	@Override
 	public void delete(Assignment t) {
-		// TODO Auto-generated method stub
+		//Ereditato ma non utilizzato
 	}
 	
 	

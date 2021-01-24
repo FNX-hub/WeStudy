@@ -1,7 +1,6 @@
 package logic.control;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import logic.model.Grade;
@@ -14,7 +13,7 @@ import logic.model.dao.DaoFactory;
 
 public class ManageStudentCareer{
 	
-	
+	//Aggiungi un certo voto ad uno studente in un certo course
 	public void addGrade(GradeBean gradeBean, ClassCourseBean classCourseBean, StudentBean studentBean) {
 		//Inizializza una factory per Grade
 		GradeFactory factory = new GradeFactory();
@@ -35,10 +34,10 @@ public class ManageStudentCareer{
 		DaoFactory.getGradeDao().save(grade,studentId,courseId);
 	}
 	
+	//restituisci tutti i voti assegnati all'nterno del course
 	public List<Grade> viewClassCourseGrades(ClassCourseBean classCourseBean){
 		//Risultato sottoforma di Lista di Entity
-		List<Grade> courseGrades = new ArrayList<Grade>();
-		
+		List<Grade> courseGrades;
 		
 		//Parametri necessari da passare al DAO
 		Integer courseId = classCourseBean.getCourseId();
