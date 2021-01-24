@@ -11,7 +11,7 @@ public class ClassCourseCollector {
 	
 	//synchronized serve per evitare anomalie dovute alla concorrenza dei thread
 	//serve per evitare che due thread entrino contemporaneamente dentro questo metodo e finiscano con il creare 2 istanze della classe
-	public synchronized static ClassCourseCollector getSingletonInstance() {
+	public static synchronized ClassCourseCollector getSingletonInstance() {
 		if(instance == null){
 			instance = new ClassCourseCollector();
 		}
@@ -19,8 +19,7 @@ public class ClassCourseCollector {
 	}
 	
 	public ClassCourseCollector() {
-		System.err.println("[DEBUG]: ClassCourseCollector creato con successo");
-		this.classCourses = new ArrayList<ClassCourse>();
+		this.classCourses = new ArrayList<>();
 	}
 
 	public List<ClassCourse> getClassCourses() {

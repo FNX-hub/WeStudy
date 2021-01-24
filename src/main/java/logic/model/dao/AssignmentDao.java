@@ -112,7 +112,7 @@ public class AssignmentDao implements Dao<Assignment> {
 	//Dato id di un corso, restituisci TUTTI i suoi assignment
 	public List<ExtendedAssignment> getCourseAssignment(Integer idClassCourse){
 		String query = String.format(SELECT_CLASSCOURSE, idClassCourse);
-		List<ExtendedAssignment> results = new ArrayList<ExtendedAssignment>();
+		List<ExtendedAssignment> results = new ArrayList<>();
 		
 		try (
 				Connection c = DaoConnector.getIstance().getConnection();
@@ -145,7 +145,7 @@ public class AssignmentDao implements Dao<Assignment> {
 	//Dato id di uno studente, restituisci TUTTI gli assignment che lo riguardano
 	public List<ExtendedAssignment> getStudentAssignment(Integer studentId){
 		String query = String.format(SELECT_STUDENT, studentId);
-		List<ExtendedAssignment> results = new ArrayList<ExtendedAssignment>();
+		List<ExtendedAssignment> results = new ArrayList<>();
 		
 		try (
 				Connection c = DaoConnector.getIstance().getConnection();

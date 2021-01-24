@@ -18,20 +18,20 @@ public class ClassCourseDao implements Dao<ClassCourse>{
 	// Name columns table
 	
 	private static final String ID = "id";
-	private static final String PROFESSOR = "professor_id";
+	//private static final String PROFESSOR = "professor_id";
 	private static final String COURSENAME = "course_name";
 		
 	private static final String COURSEID = "course.id";
-	private static final String PROFNAME = "professor.name";
-	private static final String PROFSURNAME = "professor.surname";
+	//private static final String PROFNAME = "professor.name";
+	//private static final String PROFSURNAME = "professor.surname";
 	
 	// SQL statements
 	
-	private static final String SELECT_ALL = "SELECT * FROM course";
+	//private static final String SELECT_ALL = "SELECT * FROM course";
 	private static final String SELECT_BY_PRIMARY_KEY = "SELECT * FROM course WHERE course.id = '%d'";
-	private static final String EXTENDED_SELECT_BY_PRIMARY_KEY = "SELECT * FROM course JOIN professor WHERE course.id = '%d'";
-	private static final String INSERT = "INSERT INTO course VALUES ('%d','%s','%s', '%s', '%s')";
-	private static final String UPDATE = "UPDATE course SET id = '%d', surname = '%s', name = '%s', password = '%s', phone_number = '%s' WHERE id = '%s'";
+	//private static final String EXTENDED_SELECT_BY_PRIMARY_KEY = "SELECT * FROM course JOIN professor WHERE course.id = '%d'";
+	//private static final String INSERT = "INSERT INTO course VALUES ('%d','%s','%s', '%s', '%s')";
+	//private static final String UPDATE = "UPDATE course SET id = '%d', surname = '%s', name = '%s', password = '%s', phone_number = '%s' WHERE id = '%s'";
 	private static final String DELETE = "DELETE FROM course WHERE id = '%d'";
 	
 	
