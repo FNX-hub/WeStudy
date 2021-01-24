@@ -3,6 +3,7 @@ package logic.control;
 
 import java.util.List;
 
+import logic.model.ExtendedGrade;
 import logic.model.Grade;
 import logic.model.GradeFactory;
 import logic.model.bean.ClassCourseBean;
@@ -34,7 +35,7 @@ public class ManageStudentCareer{
 		DaoFactory.getGradeDao().save(grade,studentId,courseId);
 	}
 	
-	//restituisci tutti i voti assegnati all'nterno del course
+	//restituisci tutti i voti assegnati all'interno del course
 	public List<Grade> viewClassCourseGrades(ClassCourseBean classCourseBean){
 		//Risultato sottoforma di Lista di Entity
 		List<Grade> courseGrades;
@@ -48,6 +49,22 @@ public class ManageStudentCareer{
 		//Returna al chiamante il risultato ottenuto
 		//NB la Boundary avrà la responsabilità di riceverlo e convertirlo in un formato adeguato alla GUI
 		return courseGrades;
+	}
+
+	//restituisci tutti i voti assegnati all'interno del course - versione estesa
+	public List<ExtendedGrade> viewExtendedClassCourseGrades(ClassCourseBean classCourseBean) {
+		//Risultato sottoforma di Lista di Entity
+				List<ExtendedGrade> courseGrades;
+				
+				//Parametri necessari da passare al DAO
+				Integer courseId = classCourseBean.getCourseId();
+				
+				//Inizializza un DAO per effettuare la query e prenderne i risultati
+				courseGrades = DaoFactory.getGradeDao().getExtendedCourseGrades(courseId);
+				
+				//Returna al chiamante il risultato ottenuto
+				//NB la Boundary avrà la responsabilità di riceverlo e convertirlo in un formato adeguato alla GUI
+				return courseGrades;
 	}
 
 }

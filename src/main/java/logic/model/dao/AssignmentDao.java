@@ -30,7 +30,7 @@ public class AssignmentDao implements Dao<Assignment> {
 	//private static final String SELECT_BY_PRIMARY_KEY = "SELECT * FROM assignment WHERE id = '%d'";
 	private static final String INSERT = "INSERT INTO assignment (course_id,delivery_date,creation_date,type,description) VALUES ('%d','%s','%s','%s','%s')";	
 	private static final String SELECT_CLASSCOURSE = "SELECT * FROM assignment WHERE course_id = '%d'";
-	private static final String SELECT_STUDENT = "SELECT * FROM student_course JOIN course WHERE student_course.student_id = '%d'";
+	private static final String SELECT_EXTENDED_STUDENT = "SELECT * FROM student_course JOIN course JOIN assignment WHERE student_course.student_id = '%d'";
 	//private static final String UPDATE = "UPDATE assignment SET id = '%d', surname = '%s', name = '%s', password = '%s', phone_number = '%s' WHERE id = '%s'";
 	//private static final String DELETE = "DELETE FROM assignment WHERE id = '%d'";
 		
@@ -143,8 +143,9 @@ public class AssignmentDao implements Dao<Assignment> {
 	}
 	
 	//Dato id di uno studente, restituisci TUTTI gli assignment che lo riguardano
-	public List<ExtendedAssignment> getStudentAssignment(Integer studentId){
-		String query = String.format(SELECT_STUDENT, studentId);
+	//questa è la versione estesa
+	public List<ExtendedAssignment> getExtendedStudentAssignment(Integer studentId){
+		String query = String.format(SELECT_EXTENDED_STUDENT, studentId);
 		List<ExtendedAssignment> results = new ArrayList<>();
 		
 		try (
@@ -154,15 +155,16 @@ public class AssignmentDao implements Dao<Assignment> {
 			)
 		{
 			if(!rs.first()) {
+				SimpleLogger.info("Query gave no result");
 				results = null;
 				return results;
 			}
 			do {
+				String courseName = rs.getString(COURSENAME);
 				String type = rs.getString(TYPE);
 				String description = rs.getString(DESCRIPTION);
 				Date creationDate = rs.getDate(CREATIONDATE);
 				Date deadlineDate = rs.getDate(DELIVERYDATE);
-				String courseName = rs.getString(COURSENAME);
 				
 				ExtendedAssignment assignment = new ExtendedAssignment(type,description,creationDate,deadlineDate,courseName);
 				

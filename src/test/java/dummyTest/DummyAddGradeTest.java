@@ -12,7 +12,7 @@ import logic.model.dao.GradeDao;
 public class DummyAddGradeTest {
 	
 	public static void main(String[] args) {
-		
+		/*
 		ManageStudentCareer controller = new ManageStudentCareer();
 		
 		GradeBean gradeBean = new GradeBean();
@@ -30,7 +30,7 @@ public class DummyAddGradeTest {
 		tempDao.save(grade1, 1, 1);
 		tempDao.save(grade2, 1, 1);
 		tempDao.save(grade3, 1, 1);
-		
+		*/
 	}
 	
 }

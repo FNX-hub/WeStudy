@@ -7,6 +7,13 @@ public class GradeBean {
 	Integer classCourse;
 	String type; //ORAL, WRITTEN, PROJECT
 	
+	public GradeBean(Integer grade, String description, Integer classCourse, String type) {
+		this.grade = grade;
+		this.description = description;
+		this.type = type;
+		this.classCourse = classCourse;
+	}
+	
 	public Integer getGrade() {
 		return grade;
 	}

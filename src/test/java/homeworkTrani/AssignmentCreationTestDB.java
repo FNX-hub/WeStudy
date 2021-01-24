@@ -16,10 +16,10 @@ import logic.model.Homework;
 import logic.model.dao.DaoFactory;
 
 //@author Adriano
-public class AssignmentCreationTestDB {
+public class AssignmentCreationTestDb {
 	
 	
-	public AssignmentCreationTestDB(){
+	public AssignmentCreationTestDb(){
 		SimpleLogger.info("<<<TEST-JUNIT>>>");
 	}
 	

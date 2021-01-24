@@ -5,6 +5,14 @@ public class AssignmentBean {
 	private String type;
 	private String description;
 	
+	
+	//Utilizzato per crearne uno nuovo
+	public AssignmentBean(String type, String description) {
+		this.type = type;
+		this.description = description;
+	}
+	
+	//Utilizzato dalla DAO
 	public AssignmentBean(Integer id, String type, String description) {
 		this.id = id;
 		this.type = type;

@@ -2,6 +2,7 @@ package logic.control;
 
 import java.util.List;
 
+import logic.model.ExtendedGrade;
 import logic.model.Grade;
 import logic.model.bean.StudentBean;
 import logic.model.bean.UserBean;
@@ -36,6 +37,17 @@ public class ViewStudentCareer {
 		//Inizializza il DAO e raccogli i risultati della query
 		yourGrades = DaoFactory.getGradeDao().getStudentGrades(bean.getId());
 		
+		return yourGrades;
+	}
+
+	public List<ExtendedGrade> getExtendedStudentCareer(StudentBean studentBean) {
+		//Inizializza una lista per contenere i dati (formato adeguato alle entity)
+		List<ExtendedGrade> yourGrades;
+						
+		//Inizializza il DAO e raccogli i risultati della query
+		yourGrades = DaoFactory.getGradeDao().getExtendedStudentGrades(studentBean.getId());
+		
+		//Restituisci i dati ottenuti
 		return yourGrades;
 	}
 	
