@@ -1,18 +1,22 @@
 package dummyTest;
 
-import java.util.ArrayList;
+import logic.control.SimpleLogger;
 
+/*
+import java.util.ArrayList;
 import logic.model.Grade;
 import logic.model.bean.ClassCourseBean;
 import logic.model.dao.DaoFactory;
 import logic.view.boundary.ManageStudentCareerProfessor;
+*/
 
 //@author Adriano
 public class DummyViewCourseGradeTest {
 	
 	
 	public static void main(String[] args) {
-		System.err.println("MESSO COME COMMENTO PERCHE' SONARCLOUD NON PUO' ACCEDERE AL MIO DB IN LOCALE");
+		
+		SimpleLogger.info("MESSO COME COMMENTO PERCHE' SONARCLOUD NON PUO' ACCEDERE AL MIO DB IN LOCALE");
 		/*
 		
 		//Crea un bean fittizio
@@ -31,11 +35,11 @@ public class DummyViewCourseGradeTest {
 		System.err.println(">>>>>>>>> GRADES GIVEN IN THE CLASS COURSE WITH ID = " + classCourseBean.getCourseId());
 		for(int i=0 ; i<convertedResults.size() ; i++) {
 			
-			System.err.print(" | MARK: " + convertedResults.get(i));
+			SimpleLogger.info(" | MARK: " + convertedResults.get(i));
 			i++;
-			System.err.print(" | TYPE: " + convertedResults.get(i));
+			SimpleLogger.info(" | TYPE: " + convertedResults.get(i));
 			i++;
-			System.err.println(" | DESCRIPTION: " + convertedResults.get(i));
+			SimpleLogger.info(" | DESCRIPTION: " + convertedResults.get(i));
 		}
 		
 		//---------------------------------------------------------------------------------------------

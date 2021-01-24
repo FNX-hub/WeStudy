@@ -45,7 +45,6 @@ public class ManageStudentCareer{
 		//Inizializza un DAO per effettuare la query e prenderne i risultati
 		courseGrades = DaoFactory.getGradeDao().getCourseGrades(courseId);
 		
-		
 		//Returna al chiamante il risultato ottenuto
 		//NB la Boundary avrà la responsabilità di riceverlo e convertirlo in un formato adeguato alla GUI
 		return courseGrades;

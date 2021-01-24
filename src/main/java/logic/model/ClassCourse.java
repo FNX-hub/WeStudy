@@ -9,9 +9,6 @@ public class ClassCourse {
 	private List<Assignment> assignments;
 	private List<Student> students;
 	
-	public ClassCourse(Integer id) {
-		this.id = id;
-	}
 	
 	public ClassCourse(String subject, Integer id) {
 		this.subject = subject;
@@ -20,11 +17,6 @@ public class ClassCourse {
 	
 	public ClassCourse(String subject) {
 		this.subject = subject;
-		//this.assignments = new ArrayList<Assignment>();
-		//TODO
-		//this.assignments = ChiamaLaDao (SELECT * FROM ASSIGNMENT WHERE COURSE_ID = this.id)
-		//TODO
-		//this.students = ChiamaLaDao (SELECT * FROM student_course WHERE COURSE_ID = this.id)
 	}
 	
 	public String getSubject() {
@@ -41,9 +33,8 @@ public class ClassCourse {
 	}
 	
 	public void addAssignment(Assignment newAssignment) {
-		
+		//Aggiungi alla lista
 		this.assignments.add(newAssignment);
-		
 	}
 
 	public Integer getId() {

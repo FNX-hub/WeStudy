@@ -29,4 +29,8 @@ public class DaoFactory {
 	public static ClassCourseDao getClassCourseDao() {
 		return new ClassCourseDao();
 	}
+	
+	public static AssignmentDao getAssignmentDao() {
+		return new AssignmentDao();
+	}
 }

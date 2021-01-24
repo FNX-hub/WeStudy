@@ -13,13 +13,9 @@ import logic.model.dao.DaoFactory;
 public class ViewStudentCareer {
 	
 	public ViewStudentCareer() {
-		System.err.println("[DEBUG]: ViewStudentCareer creato con successo");
 	}
 	
 	public ArrayList<Grade> getStudentCareer(StudentBean studentBean){
-		//Inizializza una lista per contenere i dati (formato adeguato alla GUI)
-		ArrayList<String> convertedGrades = new ArrayList<String>();
-		
 		//Inizializza una lista per contenere i dati (formato adeguato alle entity)
 		ArrayList<Grade> yourGrades = new ArrayList<Grade>();
 				

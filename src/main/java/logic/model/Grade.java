@@ -2,12 +2,13 @@ package logic.model;
 
 import java.time.LocalDate;
 
+//author Adriano
 public class Grade {
-	ClassCourse course;
-	Integer mark;
-	LocalDate date;
-	String description;
-	String type;
+	protected ClassCourse course;
+	protected Integer mark;
+	protected LocalDate date;
+	protected String description;
+	protected String type;
 	
 	//Utilizzato per la DAO
 	public Grade(Integer mark, String description, String type) {

@@ -1,11 +1,20 @@
 package logic.view.boundary;
 
+import logic.control.ManageClassAssignment;
+import logic.model.bean.AssignmentBean;
+import logic.model.bean.ClassCourseBean;
+
 public class ManageClassAssignmentProfessor {
 	
-	//TODO
-	public void createAssignment() {
+	public void createAssignment(Integer assignmentSubClass,AssignmentBean assignmentBean, ClassCourseBean classCourseBean) {
+		//Inizializza il controller corrispondente
+		ManageClassAssignment controller = new ManageClassAssignment();
 		
+		//Esegui il caso d'uso
+		controller.createAssignment(assignmentSubClass, assignmentBean, classCourseBean);
 	}
+	
+	
 	//TODO
 	public void modifyAssignment() {
 		
