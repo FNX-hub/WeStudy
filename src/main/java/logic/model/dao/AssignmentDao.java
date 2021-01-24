@@ -31,7 +31,10 @@ public class AssignmentDao implements Dao<Assignment> {
 		
 	private static final String SELECT_ALL = "SELECT * FROM assignment";
 	//private static final String SELECT_BY_PRIMARY_KEY = "SELECT * FROM assignment WHERE id = '%d'";
-	private static final String INSERT = "INSERT INTO assignment VALUES ('%d','%s','%s', '%s', '%s')";
+	
+	//String query = String.format(INSERT, classCourseId, deliveryDate, creationDate, type, description);
+	private static final String INSERT = "INSERT INTO assignment (course_id,delivery_date,creation_date,type,description) VALUES ('%d','%s','%s','%s','%s')";
+	
 	private static final String SELECT_CLASSCOURSE = "SELECT * FROM assignment WHERE course_id = '%d'";
 	private static final String SELECT_STUDENT = "SELECT * FROM student_course JOIN course WHERE student_course.student_id = '%d'";
 	//private static final String UPDATE = "UPDATE assignment SET id = '%d', surname = '%s', name = '%s', password = '%s', phone_number = '%s' WHERE id = '%s'";
@@ -71,10 +74,34 @@ public class AssignmentDao implements Dao<Assignment> {
 		return listAssignment;
 	}
 
+	
+	public void save(Assignment t, Integer classCourseId) {
+
+		//Valori da inserire
+		Date deliveryDate = t.getDeadlineDate();
+		Date creationDate = t.getCreationDate();
+		String type = t.getType();
+		String description = t.getDescription();
+		
+		//Creazione query
+		String query = String.format(INSERT, classCourseId, deliveryDate, creationDate, type, description);
+		
+		
+		try (
+				Connection c = DaoConnector.getIstance().getConnection();
+				Statement stm = c.createStatement();
+			)
+		{
+			stm.executeUpdate(query);
+		} catch (SQLException e) {
+			SimpleLogger.severe(String.format(ERROR, query, e.getMessage()));
+		}
+		
+	}
+	
 	@Override
 	public void save(Assignment t) {
-		
-		
+		//Non utilizzabile - applicato overloading
 	}
 
 	@Override

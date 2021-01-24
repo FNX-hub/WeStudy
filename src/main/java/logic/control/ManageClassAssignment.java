@@ -22,11 +22,12 @@ public class ManageClassAssignment {
 		Integer courseId = classCourseBean.getCourseId();
 		ClassCourse course = DaoFactory.getClassCourseDao().getFromId(classCourseBean.getCourseId());
 		
-		
 		//Associa il nuovo assignment al suo classCourse corrispondente
+		//TODO propagazione agli studenti interessati e notifica
 		course.addAssignment(assignment);
 		
-		//Chiama il DAO per mettere in persistenza assignment creato
 		
+		//Chiama il DAO per mettere in persistenza l'assignment creato
+		DaoFactory.getAssignmentDao().save(assignment);
 	}
 }
