@@ -2,6 +2,7 @@ package logic.control;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import logic.model.Grade;
 import logic.model.GradeFactory;
@@ -34,9 +35,9 @@ public class ManageStudentCareer{
 		DaoFactory.getGradeDao().save(grade,studentId,courseId);
 	}
 	
-	public ArrayList<Grade> viewClassCourseGrades(ClassCourseBean classCourseBean){
+	public List<Grade> viewClassCourseGrades(ClassCourseBean classCourseBean){
 		//Risultato sottoforma di Lista di Entity
-		ArrayList<Grade> courseGrades = new ArrayList<Grade>();
+		List<Grade> courseGrades;
 		
 		
 		//Parametri necessari da passare al DAO

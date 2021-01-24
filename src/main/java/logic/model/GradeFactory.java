@@ -1,6 +1,5 @@
 package logic.model;
 
-import java.util.Date;
 
 import logic.control.SimpleLogger;
 
@@ -8,9 +7,11 @@ import logic.control.SimpleLogger;
 //Classe la cui unica responsabilità è essere un Creator per Grade
 public class GradeFactory {
 	
+	public GradeFactory() {
+		SimpleLogger.info("GradeFactory costruttore");
+	}
 	
 	public Grade createGrade(Integer mark, String description, String type) {
-		Grade grade = new Grade(mark,description,type);
-		return grade;
+		return new Grade(mark,description,type);
 	}
 }

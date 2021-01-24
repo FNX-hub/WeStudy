@@ -4,15 +4,13 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import logic.control.SimpleLogger;
 import logic.model.ExtendedGrade;
 import logic.model.Grade;
-import logic.model.Meeting;
-import logic.model.Parent;
+
 
 //@author Adriano
 
@@ -43,9 +41,6 @@ public class GradeDao implements Dao<Grade> {
 	// Error
 	private static final String ERROR = "Unable to execute %s: %s";
 	
-	
-	//TODO In questo modo uno studente può visualizzare TUTTI i grade che ha ricevuto in tutti i corsi di cui fa parte
-	//TODO metodo da implementare in futuro
 	
 	@Override
 	public List<Grade> getAll() {
@@ -232,7 +227,6 @@ public class GradeDao implements Dao<Grade> {
 					
 					//Aggiungi il Grade alla lista di Grade ottenuti dalla query
 					results.add(grade);
-					
 					
 				} while(rs.next()); //Ripeti finchè il resultSet rs contiene tuple
 				

@@ -15,7 +15,7 @@ public abstract class Assignment {
 	
 	
 	//Per recuperarlo dalla persistenza
-	public Assignment(String type, String description, Date creation, Date deadline) {
+	protected Assignment(String type, String description, Date creation, Date deadline) {
 		this.type = type;
 		this.description = description;
 		this.creationDate = creation;
@@ -24,20 +24,12 @@ public abstract class Assignment {
 	
 	//Per crearlo
 	//TODO impostare la deadline
-	public Assignment(String type, String description) {
+	protected Assignment(String type, String description) {
 		this.type = type;
 		this.description = description;
 		this.creationDate = Date.valueOf(LocalDate.now());
 	}
 	
-	
-	//TODO valutare se eliminarlo
-	public Assignment(Integer deadlineDay, Integer deadlineMonth, Integer deadlineYear, Integer deadlineHour, Integer deadlineMinute, String description) {
-		
-		//this.deadlineDate = LocalDate.now();
-		this.creationDate = Date.valueOf(LocalDate.now());
-		this.description = description;
-	}
 
 	public Date getCreationDate() {
 		return creationDate;

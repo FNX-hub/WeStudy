@@ -5,14 +5,11 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 import logic.control.SimpleLogger;
 import logic.model.Assignment;
 import logic.model.ExtendedAssignment;
-import logic.model.Meeting;
 
 //@author Adriano
 public class AssignmentDao implements Dao<Assignment> {
@@ -31,10 +28,7 @@ public class AssignmentDao implements Dao<Assignment> {
 		
 	private static final String SELECT_ALL = "SELECT * FROM assignment";
 	//private static final String SELECT_BY_PRIMARY_KEY = "SELECT * FROM assignment WHERE id = '%d'";
-	
-	//String query = String.format(INSERT, classCourseId, deliveryDate, creationDate, type, description);
-	private static final String INSERT = "INSERT INTO assignment (course_id,delivery_date,creation_date,type,description) VALUES ('%d','%s','%s','%s','%s')";
-	
+	private static final String INSERT = "INSERT INTO assignment (course_id,delivery_date,creation_date,type,description) VALUES ('%d','%s','%s','%s','%s')";	
 	private static final String SELECT_CLASSCOURSE = "SELECT * FROM assignment WHERE course_id = '%d'";
 	private static final String SELECT_STUDENT = "SELECT * FROM student_course JOIN course WHERE student_course.student_id = '%d'";
 	//private static final String UPDATE = "UPDATE assignment SET id = '%d', surname = '%s', name = '%s', password = '%s', phone_number = '%s' WHERE id = '%s'";

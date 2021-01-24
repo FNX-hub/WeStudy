@@ -20,7 +20,7 @@ public class ManageClassAssignment {
 		
 		//Recupera dalla persistenza i dati per inizializzare il ClassCourse a cui correlare l'assignment
 		Integer courseId = classCourseBean.getCourseId();
-		ClassCourse course = DaoFactory.getClassCourseDao().getFromId(classCourseBean.getCourseId());
+		ClassCourse course = DaoFactory.getClassCourseDao().getFromId(courseId);
 		
 		//Associa il nuovo assignment al suo classCourse corrispondente
 		//TODO propagazione agli studenti interessati e notifica

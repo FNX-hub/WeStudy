@@ -13,11 +13,12 @@ import logic.model.dao.DaoFactory;
 public class ViewStudentCareer {
 	
 	public ViewStudentCareer() {
+		SimpleLogger.info("ViewStudentCareer costruttore");
 	}
 	
-	public ArrayList<Grade> getStudentCareer(StudentBean studentBean){
+	public List<Grade> getStudentCareer(StudentBean studentBean){
 		//Inizializza una lista per contenere i dati (formato adeguato alle entity)
-		ArrayList<Grade> yourGrades = new ArrayList<Grade>();
+		List<Grade> yourGrades;
 				
 		//Inizializza il DAO e raccogli i risultati della query
 		yourGrades = DaoFactory.getGradeDao().getStudentGrades(studentBean.getId());
@@ -31,10 +32,10 @@ public class ViewStudentCareer {
 	public List<Grade> getCareer(UserBean bean) {
 		
 		//Inizializza una lista vuota
-		ArrayList<Grade> yourGrades = new ArrayList<Grade>();
+		ArrayList<Grade> yourGrades;
 		
 		//Inizializza il DAO e raccogli i risultati della query
-		DaoFactory.getGradeDao().getStudentGrades(bean.getId());
+		yourGrades = DaoFactory.getGradeDao().getStudentGrades(bean.getId());
 		
 		return yourGrades;
 	}

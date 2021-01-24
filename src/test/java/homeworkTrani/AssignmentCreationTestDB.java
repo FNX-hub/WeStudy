@@ -55,7 +55,7 @@ public class AssignmentCreationTestDB {
 			Date extractedDate = results.get(i).getCreationDate();
 			
 			SimpleLogger.info("__________________________________________");
-			SimpleLogger.info(i + "DESCRIPTION: (" + extractedDescription +") --- TYPE: (" + extractedType +")");
+			SimpleLogger.info(i + ") DESCRIPTION: (" + extractedDescription +") --- TYPE: (" + extractedType +")");
 			SimpleLogger.info("__________________________________________");
 			if ( (extractedDescription.equals(expectedDescription)) & (extractedType.equals(expectedType) ) & (extractedDate.equals(expectedDate))){
 				numOfMatchings++;
