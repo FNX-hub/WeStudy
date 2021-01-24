@@ -19,7 +19,7 @@ public class Assignment {
 	public Assignment(Integer deadlineDay, Integer deadlineMonth, Integer deadlineYear, Integer deadlineHour, Integer deadlineMinute, String description) {
 		
 		//TODO inserire la data corretta nella deadLineDate
-		this.deadlineDate = LocalDate.now();
+		//this.deadlineDate = LocalDate.now();
 		this.creationDate = LocalDate.now();
 		this.description = description;
 	}

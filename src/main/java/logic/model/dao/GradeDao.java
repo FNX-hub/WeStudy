@@ -118,21 +118,18 @@ public class GradeDao implements Dao<Grade> {
 
 	@Override
 	public void save(Grade t) {
-		// TODO Auto-generated method stub
-		// Ereditato ma non utilizzabile 
+		// Ereditato ma non utilizzato
 		
 	}
-
+	
 	@Override
 	public void update(Grade t, String[] pkeys) {
-		// TODO Auto-generated method stub
-		
+		// Ereditato ma non utilizzato
 	}
 
 	@Override
 	public void delete(Grade t) {
-		// TODO Auto-generated method stub
-		
+		// Ereditato ma non utilizzato
 	}
 
 	
