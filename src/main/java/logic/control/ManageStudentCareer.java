@@ -37,7 +37,7 @@ public class ManageStudentCareer{
 	
 	public List<Grade> viewClassCourseGrades(ClassCourseBean classCourseBean){
 		//Risultato sottoforma di Lista di Entity
-		List<Grade> courseGrades;
+		List<Grade> courseGrades = new ArrayList<Grade>();
 		
 		
 		//Parametri necessari da passare al DAO

@@ -1,21 +1,23 @@
 package logic.view.boundary;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import logic.control.ViewStudentCareer;
 import logic.model.Grade;
 import logic.model.bean.StudentBean;
 
-//TODO valutare se è sensato manetenere le due boundary separate
-public class ViewStudentCareerStudent implements ViewStudentCareerInterface{
+//TODO valutare se è sensato mantenere le due boundary separate
 
-	@Override
-	public ArrayList<String> viewCareer(StudentBean studentBean) {
+//@author Adriano
+public class ViewStudentCareerStudent{
+
+	public List<String> viewCareer(StudentBean studentBean) {
 		//Risultato returnato dal Controller appllicativo
-		ArrayList<Grade> results = new ArrayList<Grade>();
+		List<Grade> results = new ArrayList<Grade>();
 		
 		//Risultato in un formato adeguato alla view
-		ArrayList<String> convertedResults = new ArrayList<String>();
+		List<String> convertedResults = new ArrayList<String>();
 		
 		//Istanzia il controllore del caso d'uso
 		ViewStudentCareer controller = new ViewStudentCareer();

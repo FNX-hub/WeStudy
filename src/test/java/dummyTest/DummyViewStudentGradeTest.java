@@ -1,6 +1,7 @@
 package dummyTest;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import logic.model.Grade;
 import logic.model.bean.StudentBean;
@@ -15,8 +16,8 @@ public class DummyViewStudentGradeTest {
 		StudentBean studentBean = new StudentBean(2);
 		
 		//Risultati ottenuti
-		ArrayList<String> convertedResults;
-		ArrayList<Grade> results = new ArrayList<Grade>();
+		List<String> convertedResults;
+		List<Grade> results = new ArrayList<Grade>();
 		
 		//Esegui la Boundary corrispondente e recupera i risultati (convertiti)
 		ViewStudentCareerStudent boundary = new ViewStudentCareerStudent();

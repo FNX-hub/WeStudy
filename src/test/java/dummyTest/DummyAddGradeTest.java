@@ -5,7 +5,6 @@ import logic.model.Grade;
 import logic.model.bean.ClassCourseBean;
 import logic.model.bean.GradeBean;
 import logic.model.bean.StudentBean;
-import logic.model.bean.UserBean;
 import logic.model.dao.DaoFactory;
 import logic.model.dao.GradeDao;
 

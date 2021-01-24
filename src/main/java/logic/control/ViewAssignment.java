@@ -6,8 +6,10 @@ import logic.model.ExtendedAssignment;
 import logic.model.bean.StudentBean;
 import logic.model.dao.DaoFactory;
 
+// @author Adriano
 public class ViewAssignment {
 
+	//Visualizza TUTTI gli assignment visibili dallo studente indicato
 	public List<ExtendedAssignment> viewAssignmentStudent(StudentBean studentBean) {
 		//Inizializza Lista per contenere i risultati
 		List<ExtendedAssignment> results;
