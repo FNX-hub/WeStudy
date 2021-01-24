@@ -121,8 +121,8 @@ public class GradeDao implements Dao<Grade> {
 
 	
 	//Dato un ClassCourse - restituisci TUTTI i voti assegnati a TUTTI gli studenti
-	public ArrayList<Grade> getCourseGrades(Integer courseId) {
-		ArrayList<Grade> courseGrades = new ArrayList<Grade>();
+	public List<Grade> getCourseGrades(Integer courseId) {
+		List<Grade> courseGrades = new ArrayList<Grade>();
 		String query = String.format(SELECT_COURSE, courseId);
 
 		try (
@@ -158,8 +158,8 @@ public class GradeDao implements Dao<Grade> {
 	}
 
 	//Restituisci TUTTI i voti assegnati a uno studente - vista dello studente o del genitore
-	public ArrayList<Grade> getStudentGrades(Integer studentId) {
-		ArrayList<Grade> courseGrades = new ArrayList<Grade>();
+	public List<Grade> getStudentGrades(Integer studentId) {
+		List<Grade> courseGrades = new ArrayList<Grade>();
 		String query = String.format(SELECT_STUDENT, studentId);
 
 		try (

@@ -32,7 +32,7 @@ public class ViewStudentCareer {
 	public List<Grade> getCareer(UserBean bean) {
 		
 		//Inizializza una lista vuota
-		ArrayList<Grade> yourGrades;
+		List<Grade> yourGrades;
 		
 		//Inizializza il DAO e raccogli i risultati della query
 		yourGrades = DaoFactory.getGradeDao().getStudentGrades(bean.getId());
