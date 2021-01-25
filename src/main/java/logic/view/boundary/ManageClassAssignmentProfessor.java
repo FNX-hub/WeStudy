@@ -9,7 +9,7 @@ import logic.model.ClassCourse;
 import logic.model.ExtendedAssignment;
 import logic.model.bean.AssignmentBean;
 import logic.model.bean.ClassCourseBean;
-import logic.model.bean.UserBeanWeb;
+import logic.model.bean.UserBean;
 import logic.model.dao.DaoFactory;
 
 //@author Adriano
@@ -17,9 +17,9 @@ public class ManageClassAssignmentProfessor {
 	
 	//TODO eventualmente utilizza UserBean fatto da Simone
 	//Visualizza le informazioni sui classCourse di cui si occupa questo docente
-	public List<String> getClassCourses(UserBeanWeb bean){
+	public List<String> getClassCourses(UserBean bean){
 
-		//TODO una boundary che chiama la DAO? Non è un caso d'uso coplesso, è solo una semplice operazione
+		//TODO una boundary che chiama la DAO? Non Ã¨ un caso d'uso coplesso, Ã¨ solo una semplice operazione
 		//per motivi di efficienza ho scelto questa implementazione
 		//Istanzia direttamente la DAO
 		List<ClassCourse> courses = DaoFactory.getClassCourseDao().getFromProfessorId(bean.getId());
