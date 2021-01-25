@@ -17,13 +17,8 @@ public class ViewAssignment {
 		//Richiedi le informazioni al DAO
 		results = DaoFactory.getAssignmentDao().getExtendedStudentAssignment(studentBean.getId());
 		
-		//Restituisci le informazioni ottenute
-		if(results == null) {
-			return null;
-		}
-		else {
-			return results;
-		}
+		return results;
+
 		
 	}
 	
