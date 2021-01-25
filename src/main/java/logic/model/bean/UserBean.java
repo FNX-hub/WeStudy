@@ -7,7 +7,14 @@ public class UserBean {
 	private UserType type;
 	private Integer id;
 	private String surname;
+	private String name;
 	
+	public UserBean(UserType type, Integer id, String surname, String name) {
+		this.id = id;
+		this.name = name;
+		this.surname = surname;
+		this.type = type;
+	}
 	
 	public UserBean(UserType type, Integer id, String surname) {
 		this.type = type;
@@ -27,5 +34,25 @@ public class UserBean {
 	public String toString() {
 		return surname;
 		//return super.toString();
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setType(UserType type) {
+		this.type = type;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }
