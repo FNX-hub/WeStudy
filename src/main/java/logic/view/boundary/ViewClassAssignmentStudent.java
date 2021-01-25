@@ -19,7 +19,7 @@ public class ViewClassAssignmentStudent {
 	public List<String> viewAssignment(StudentBean studentBean){
 		//Liste utilizzate
 		List<String> convertedResults = new ArrayList<>();
-		List<ExtendedAssignment> results = new ArrayList<>();
+		List<ExtendedAssignment> results;
 		
 		//Istanzia il controller applicativo
 		ViewAssignment controller = new ViewAssignment();
