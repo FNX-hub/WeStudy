@@ -30,12 +30,16 @@ public class AssignmentDao implements Dao<Assignment> {
 	//private static final String SELECT_BY_PRIMARY_KEY = "SELECT * FROM assignment WHERE id = '%d'";
 	private static final String INSERT = "INSERT INTO assignment (course_id,delivery_date,creation_date,type,description) VALUES ('%d','%s','%s','%s','%s')";	
 	private static final String SELECT_CLASSCOURSE = "SELECT * FROM assignment WHERE course_id = '%d'";
-	private static final String SELECT_EXTENDED_STUDENT = "SELECT * FROM student_course JOIN course JOIN assignment WHERE student_course.student_id = '%d'";
+	private static final String SELECT_EXTENDED_STUDENT = "SELECT course.course_name, type, description, assignment.creation_date, assignment.delivery_date  FROM student_course JOIN course JOIN assignment WHERE student_course.student_id = '%d' GROUP BY assignment.id";
+	
+	//SELECT course.course_name, type, description, assignment.delivery_date, assignment.delivery_date  FROM student_course JOIN course JOIN assignment WHERE student_course.student_id = '%d' GROUP BY assignment.id;
+	
 	//private static final String UPDATE = "UPDATE assignment SET id = '%d', surname = '%s', name = '%s', password = '%s', phone_number = '%s' WHERE id = '%s'";
 	//private static final String DELETE = "DELETE FROM assignment WHERE id = '%d'";
-		
+	
+	//
+	
 	// Error message
-		
 	private static final String ERROR = "Unable to execute %s: %s";
 	
 	@Override

@@ -1,6 +1,5 @@
 package logic.control;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import logic.model.ExtendedAssignment;
@@ -14,14 +13,18 @@ public class ViewAssignment {
 	public List<ExtendedAssignment> viewAssignmentStudent(StudentBean studentBean) {
 		//Inizializza Lista per contenere i risultati
 		List<ExtendedAssignment> results;
-		results = new ArrayList<ExtendedAssignment>();
 		
 		//Richiedi le informazioni al DAO
 		results = DaoFactory.getAssignmentDao().getExtendedStudentAssignment(studentBean.getId());
 		
-		
 		//Restituisci le informazioni ottenute
-		return results;
+		if(results == null) {
+			return null;
+		}
+		else {
+			return results;
+		}
+		
 	}
 	
 }

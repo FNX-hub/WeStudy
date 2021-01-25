@@ -20,8 +20,6 @@ public class ManageClassAssignment {
 		List<ExtendedAssignment> results;
 		
 		//Istanzia DAO e memorizza i risultati della query
-		//Mi prendo la responsabilità di effettuare il casting
-		//Sono costretto a returnare List a causa di un codesmell
 		results = DaoFactory.getAssignmentDao().getCourseAssignment(classcourseBean.getCourseId());
 		
 		
