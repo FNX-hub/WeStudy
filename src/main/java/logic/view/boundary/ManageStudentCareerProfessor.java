@@ -10,12 +10,12 @@ import logic.model.ExtendedGrade;
 import logic.model.Grade;
 import logic.model.bean.ClassCourseBean;
 import logic.model.bean.GradeBean;
-import logic.model.bean.StudentBean;
+import logic.model.bean.UserBean;
 
 public class ManageStudentCareerProfessor {
 	
 	
-	public void addGrade(GradeBean gradeBean, ClassCourseBean classCourseBean, StudentBean studentBean) {
+	public void addGrade(GradeBean gradeBean, ClassCourseBean classCourseBean, UserBean studentBean) {
 		//Inizializza il controller per l'esecuzione del caso d'uso
 		ManageStudentCareer controller = new ManageStudentCareer();
 		
