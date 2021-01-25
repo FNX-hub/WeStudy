@@ -15,7 +15,7 @@ public class ViewClassAssignmentStudent {
 	}
 	
 	
-	//Dato uno studente, restituisci TUTTI gli assignment di tutti i classCourse di cui fa parte
+	//Dato uno studente, restituisci TUTTI gli assignment di tutti i classCourse di cui fa parte - versione estesa
 	public List<String> viewAssignment(UserBean studentBean){
 		//Liste utilizzate
 		List<String> convertedResults = new ArrayList<>();

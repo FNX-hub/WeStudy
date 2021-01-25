@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import logic.model.Grade;
-import logic.model.bean.UserBeanWeb;
+import logic.model.bean.UserBean;
 import logic.model.dao.DaoFactory;
 import logic.view.boundary.ViewStudentCareerStudent;
 
@@ -13,7 +13,7 @@ public class DummyViewStudentGradeTest {
 	
 	public static void main(String[] args) {
 		//Crea un bean fittizio
-		UserBeanWeb studentBean = new UserBeanWeb(2);
+		UserBean studentBean = new UserBean(2);
 		
 		//Risultati ottenuti
 		List<String> convertedResults;

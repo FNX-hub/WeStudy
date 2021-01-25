@@ -4,7 +4,6 @@ import logic.control.ManageStudentCareer;
 import logic.model.Grade;
 import logic.model.bean.ClassCourseBean;
 import logic.model.bean.GradeBean;
-import logic.model.bean.UserBeanWeb;
 import logic.model.dao.DaoFactory;
 import logic.model.dao.GradeDao;
 
