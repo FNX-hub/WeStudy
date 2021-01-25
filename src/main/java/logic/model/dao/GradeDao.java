@@ -19,7 +19,7 @@ public class GradeDao implements Dao<Grade> {
 
 	// Name columns table
 	private static final String ID = "id" ;
-	private static final String STUDENT = "student_id";
+	private static final String STUDENT = "student.id";
 	private static final String COURSE = "course_id";
 	private static final String COURSENAME = "course.course_name";
 	private static final String VALUE = "value";
@@ -34,7 +34,8 @@ public class GradeDao implements Dao<Grade> {
 	private static final String SELECT_COURSE = "SELECT * FROM grade WHERE course_id = %d";
 	private static final String SELECT_STUDENT = "SELECT * FROM grade WHERE student_id = %d";
 	private static final String EXTENDED_SELECT_STUDENT = "SELECT course.course_name, value, type, description, date FROM course JOIN grade JOIN student WHERE student_id = %d";
-	private static final String EXTENDED_SELECT_COURSE = "SELECT student.name, student.surname, value, type, description, date FROM student JOIN grade WHERE course_id = %d";
+	private static final String EXTENDED_SELECT_COURSE = "SELECT student.id, student.name, student.surname, value, type, description, date FROM student JOIN grade WHERE course_id = '%d' AND student.id = grade.student_id ORDER BY student.name, value";
+	//SELECT student.id, student.name, student.surname, value, type, description, date FROM student JOIN grade WHERE course_id = 1 AND student.id = grade.student_id ORDER BY student.name, value;
 	private static final String INSERT = "INSERT INTO grade VALUES (NULL,'%d','%d','%d','%s','%s','%s')";
 	private static final String DUMMY_INSERT = "INSERT INTO grade VALUES (NULL,'%d','%d','%d','%s','%s',NULL)";
 	private static final String UPDATE = "UPDATE grade SET student_id = '%d', course_id = '%d', value = '%d' , type = '%s' , description = '%s' , date = '%s' WHERE id = '%d'";
@@ -189,7 +190,7 @@ public class GradeDao implements Dao<Grade> {
 					
 					
 					//Estrai i valori dal DB
-					//Integer studentId = rs.getInt(STUDENT);
+					Integer studentId = rs.getInt(STUDENT);
 					//Integer courseId = rs.getInt(COURSE);
 					Integer mark = rs.getInt(VALUE);
 					String type = rs.getString(TYPE);
@@ -198,7 +199,7 @@ public class GradeDao implements Dao<Grade> {
 					String surname = rs.getString(STUDENTSURNAME);
 					Date date = rs.getDate(DATE);
 					//Inizializza un Grade
-					ExtendedGrade grade = new ExtendedGrade(mark,description,type,name,surname,date);
+					ExtendedGrade grade = new ExtendedGrade(mark,description,type,name,surname,date,studentId);
 					
 					//Aggiungi il Grade alla lista di Grade ottenuti dalla query
 					courseGrades.add(grade);

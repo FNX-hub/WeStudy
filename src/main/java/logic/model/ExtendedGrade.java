@@ -6,6 +6,7 @@ import java.sql.Date;
 //Una classe in grado di contenere maggiori informazioni rispetto ad un comune Grade
 //Utilizzata per accoppiare informazioni ottenute dalla DAO a seguito di una query su più tabelle
 public class ExtendedGrade extends Grade{
+	private Integer studentId;
 	private String coursename;
 	private String studentName;
 	private String studentSurname;
@@ -15,12 +16,13 @@ public class ExtendedGrade extends Grade{
 		super(mark, description, type);
 	}
 	
-	
-	public ExtendedGrade(Integer mark, String description, String type, String studentName, String studentSurname, Date databaseDate) {
+	//Utilizzato
+	public ExtendedGrade(Integer mark, String description, String type, String studentName, String studentSurname, Date databaseDate, Integer studentId) {
 		super(mark, description, type);
 		this.studentName = studentName;
 		this.studentSurname = studentSurname;
 		this.databaseDate = databaseDate;
+		this.studentId = studentId;
 	}
 	
 	public ExtendedGrade(Integer mark, String description, String type, String studentName, String studentSurname, String courseName, Date databaseDate) {
@@ -72,6 +74,16 @@ public class ExtendedGrade extends Grade{
 
 	public void setDatabaseDate(Date databaseDate) {
 		this.databaseDate = databaseDate;
+	}
+
+
+	public Integer getStudentId() {
+		return studentId;
+	}
+
+
+	public void setStudentId(Integer studentId) {
+		this.studentId = studentId;
 	}
 	
 }

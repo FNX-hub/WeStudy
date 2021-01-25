@@ -20,7 +20,7 @@ function apri(url) {
     <!-- Float links to the right. Hide them on small screens -->
     <div class="w3-right w3-hide-small">
   
-      <a href="homepage.php" class="w3-bar-item w3-button"> <b> <font color="gold"> Home </font> </b> </a>
+      <a href="mainPageProfessor.jsp" class="w3-bar-item w3-button"> <b> <font color="gold"> Home </font> </b> </a>
       <a href="professorMaterial.html" class="w3-bar-item w3-button"> <b> Material </b> </a>
       <a href="questions.html" class="w3-bar-item w3-button"> <b> Question </b> </a>
       <a href="events.html" class="w3-bar-item w3-button"> <b> Events </b> </a>
@@ -45,67 +45,32 @@ function apri(url) {
 <hr>
 	
 <div class="w3-container w3-padding-32" id="projects">
-    <!-- <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Materie</h3> -->
     <img class="w3-image" src="RESOURCES/images/classes_logo.png" alt="Your Classes" width="30%" height="100%">
 </div>
 
   <div class="w3-row-padding">
   
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <a href="classes.html"> <img class="trani-image" src="RESOURCES/images/background_index_books.jpg" alt="scale" width="300" height="300" max-width: 20%> </a>
-	<h3 align="center"> Classe IA Matematica </h3>
+  <jsp:useBean id="ClassCourseConverter" scope="request" class="logic.model.bean.ClassCourseConverter" />
+  
+  <form action="classes.jsp" class="form-signin" id="login" role="form" method="post">
+				<input type="username" class="form-control" name="insertedClassCourseId" id="insertedClassCourseId" placeholder="ClassCourseId" style="-webkit-border-radius: 50px;-moz-border-radius: 50px; border-radius: 50px;" required autofocus>
+				<button type="submit"  style="border-radius: 250px; class="btn btn-outline-dark"> Show Selected Class </button>
+			</form>
+ 
+	</h3>
       </div>
     </div>
     
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <a href="classes.html"> <img class="trani-image" src="RESOURCES/images/background_index_books.jpg" alt="sito" width="300" height="300"  max-width: 20%>  </a>
-	<h3 align="center"> Classe IIB Matematica </h3>
-      </div>
-    </div>
-    
-    
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <a href="classes.html"> <img class="trani-image" src="RESOURCES/images/background_index_books.jpg" alt="firma digitale" width="300" height="300"  max-width: 20%>  </a>
-	<h3 align="center"> Classe IA Matematica </h3>
-      </div>
-    </div>
-    
-<div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <a href="classes.html"> <img class="trani-image" src="RESOURCES/images/background_index_books.jpg" alt="project manager" width="300" height="300"  max-width: 20%>  </a>
-	<h3 align="center"> Classe IG Musica </h3>
-      </div>
 
   </div>
   
-  <div class="w3-row-padding">
-  
+
     
-    </div>
+	
     
-	<div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <a href="classes.html"> <img class="trani-image" src="RESOURCES/images/background_index_books.jpg" alt="censura mediatica" width="300" height="300"  max-width: 20%>  </a>
-	<h3 align="center"> Classe IIIA Matematica </h3>
-      </div>
-    </div>
     
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <a href="classes.html"> <img class="trani-image" src="RESOURCES/images/background_index_books.jpg" alt="maschere" width="300" height="300"  max-width: 20%>  </a>
-	<h3 align="center"> Classe IA Storia </h3>
-      </div>
-    </div>
+
     
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <a href="classes.html"> <img class="trani-image" src="RESOURCES/images/background_index_books.jpg" alt="dualismo" width="300" height="300"  max-width: 20%>  </a>
-	<h3 align="center"> Classe IA Italiano </h3>
-      </div>
-    </div>
     
   </div>
 <!-- End page content -->
@@ -114,9 +79,5 @@ function apri(url) {
 <footer class="w3-center w3-black w3-padding-16">
   <p> Created by Adriano Trani & Simone Grillo</p>
 </footer>
-<!--
-To use this code on your website, get a free API key from Google.
-Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
--->
 </body>
 </html>

@@ -21,7 +21,6 @@ public class ManageClassAssignment {
 		//Istanzia DAO e memorizza i risultati della query
 		results = DaoFactory.getAssignmentDao().getCourseAssignment(classcourseBean.getCourseId());
 		
-		
 		//Restituisci i risultati ottenuti
 		return results;
 	}

@@ -4,9 +4,6 @@ import logic.model.UserType;
 
 public class UserBean {
 	
-	
-	
-	
 	private UserType type;
 	private Integer id;
 	private String surname;

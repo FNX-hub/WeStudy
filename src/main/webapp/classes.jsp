@@ -1,13 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-   
+    pageEncoding="ISO-8859-1"
+%>
+
+<%@ page import = "logic.model.bean.*" %>
+<%@ page import = "logic.view.boundary.*" %>
+<%@ page import = "logic.control.SimpleLogger" %>
+<%@ page import = "java.util.List" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>WeStudy - Dynamic Classes Professor</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="RESOURCES/css/stile.css">
+<link rel="stylesheet" href="css/stile.css">
 <style>
 
 </style>
@@ -53,64 +60,93 @@ function apri(url) {
 <hr>
 <hr>
 	
-	<!--
-	<div class="w3-container w3-padding-32" id="projects">
-    		<img class="w3-image" src="RESOURCES/images/classManager_logo.png" alt="Class Manager" width="50%" height="100%">
-	</div>
-	-->
+
 
 	<div class="w3-row-padding">  <!-- RIGA 0-->
 	<img class="w3-image" src="RESOURCES/images/register_logo.png" alt="CLASS REGISTER" width="60%" height="100%">
 	</div> <!-- FINE RIGA 0-->
 				
-	<div class="w3-row-padding">  <!-- RIGA 1-->
-
-		<div class="w3-col l3 m6 w3-margin-bottom">
-			<div class="w3-display-container">
-				<img class="w3-image" src="RESOURCES/images/classRegisterAbsences_logo.png" alt="Absences" width="60%" height="100%">
-				<form> <table border="2" >
-				<tr>
-					<td bgcolor="Gold"> <b> #Num </b> </td>
-					<td bgcolor="Gold"> <b> Name </b> </td>
-					<td bgcolor="Gold"> <b> Surname </b> </td>
-					<td bgcolor="Gold"> <b> Absence </b> </td>
-				</tr>
-				
-				<tr>
-					<td> SONO </td>
-					<td> RIGA </td>
-					<td> CREATA </td>
-					<td> <input name="CheckboxC" type="checkbox"> (creato dinamicamente)</td>
-				</tr>
-
-				<tr>
-					<td> SONO </td>
-					<td> RIGA </td>
-					<td> CREATA </td>
-					<td> <input name="CheckboxC" type="checkbox"> (creato dinamicamente)</td>
-				</tr>
-				<tr>
-					<td> SONO </td>
-					<td> RIGA </td>
-					<td> CREATA </td>
-					<td> <input name="CheckboxC" type="checkbox"> (creato dinamicamente)</td>
-				</tr>
-				
-				</table>
-				<button> Send </button> 
-				</form>
-			</div>
-		</div>
-
-	</div> <!-- FINE RIGA 1 -->
-
 
 
 	<div class="w3-row-padding">  <!-- RIGA 2-->
 
 		<div class="w3-col l3 m6 w3-margin-bottom">
-			<div class="w3-display-container">
+			 <div class="w3-display-container">
 				<img class="w3-image" src="RESOURCES/images/classRegisterGrades_logo.png" alt="Grades" width="60%" height="100%">
+				<%
+					ClassCourseBean courseBean = new ClassCourseBean(Integer.parseInt(request.getParameter("insertedClassCourseId")));
+					ManageStudentCareerProfessor boundary = new ManageStudentCareerProfessor();
+					List<String> courseGrades = boundary.viewExtendedClassCourseGrades(courseBean);
+					
+				%>
+				<table border="2" >
+				<tr>
+				<td bgcolor="Gold"> <b> Student Id </b> </td>
+				<td bgcolor="Gold"> <b> Name </b> </td>
+				<td bgcolor="Gold"> <b> Surname </b> </td>
+				<td bgcolor="Gold"> <b> Grade </b> </td>
+				<td bgcolor="Gold"> <b> Type of assignment</b> </td>
+				<td bgcolor="Gold"> <b> Short description </b> </td>
+				<td bgcolor="Gold"> <b> Received in</b> </td>
+				</tr>
+				
+				<%
+					
+					for(int i=0 ; i<courseGrades.size() ; i++) {
+				%>
+					<tr>
+					<td>
+				<%
+						out.print(courseGrades.get(i));
+						i++;
+				%>
+					</td>
+					<td>
+				<%
+						out.print(courseGrades.get(i));
+						i++;
+				%>
+					</td>
+					<td>
+				<%
+						out.print(courseGrades.get(i));
+						i++;
+				%>
+					</td>
+					<td>
+				<%
+						out.print(courseGrades.get(i));
+						i++;
+				%>
+					</td>
+					<td>
+				<%
+						out.print(courseGrades.get(i));
+						i++;
+				%>
+					</td>
+					<td>
+				<%
+						out.print(courseGrades.get(i));
+						i++;
+				%>
+					</td>
+					<td>
+				<%
+						out.print(courseGrades.get(i));
+				%>
+					</td>
+					</tr>	
+				<%
+					}
+				%>
+				
+				</table>
+				
+				<hr>
+				<hr>
+				<hr>
+				
 				<form> <table border="2" >
 				<tr>
 					<td bgcolor="Gold"> <b> Student </b> </td>
@@ -175,7 +211,8 @@ function apri(url) {
 				</table>
 				<button> Send </button> 
 				</form>
-			</div>
+				
+			 </div> 
 		</div>
 
 	</div> <!-- FINE RIGA 2 -->  

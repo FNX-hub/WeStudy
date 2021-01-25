@@ -4,6 +4,7 @@ public class ClassCourseBean {
 	private Integer courseId;
 	private String subject;
 
+	
 	public ClassCourseBean(Integer id) {
 		this.courseId = id;
 	}

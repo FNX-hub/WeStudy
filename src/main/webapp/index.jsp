@@ -15,7 +15,7 @@
 <body background="RESOURCES/images/background_index_books.jpg" style="opacity:1.5" >
 	<div class="w3-display-middle w3-margin-top w3-center"> 
 		<div class="trani-container">
-			<form action="resumeLogin.jsp" class="form-signin" id="login" role="form" method="post">
+			<form action="mainPageProfessor.jsp" class="form-signin" id="login" role="form" method="post">
 				<h3 class="form-signin-heading"> 
 					<img class="w3-image" src="RESOURCES/images/app_logo.png" alt="Immagine Header" width="60%" height="60%">  
 				</h3>
