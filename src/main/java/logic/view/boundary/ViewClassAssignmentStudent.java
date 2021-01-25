@@ -6,7 +6,7 @@ import java.util.List;
 import logic.control.SimpleLogger;
 import logic.control.ViewAssignment;
 import logic.model.ExtendedAssignment;
-import logic.model.bean.UserBeanWeb;
+import logic.model.bean.UserBean;
 
 public class ViewClassAssignmentStudent {
 	
@@ -16,7 +16,7 @@ public class ViewClassAssignmentStudent {
 	
 	
 	//Dato uno studente, restituisci TUTTI gli assignment di tutti i classCourse di cui fa parte
-	public List<String> viewAssignment(UserBeanWeb studentBean){
+	public List<String> viewAssignment(UserBean studentBean){
 		//Liste utilizzate
 		List<String> convertedResults = new ArrayList<>();
 		List<ExtendedAssignment> results;

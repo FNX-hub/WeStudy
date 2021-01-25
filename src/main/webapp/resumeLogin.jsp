@@ -33,7 +33,6 @@
 					out.println("Role: ");
 				%>
 				
-				<jsp:useBean id="LoginBean" scope="request" class="logic.control.LoginControl" />
 				
 				<% 
 					String loginResult = logic.control.LoginControl.tryLogin(request.getParameter("insertedUsername") , request.getParameter("insertedPassword") );				 

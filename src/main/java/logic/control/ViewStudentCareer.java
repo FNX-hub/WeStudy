@@ -4,7 +4,6 @@ import java.util.List;
 
 import logic.model.ExtendedGrade;
 import logic.model.Grade;
-import logic.model.bean.UserBeanWeb;
 import logic.model.bean.UserBean;
 import logic.model.dao.DaoFactory;
 
@@ -16,7 +15,7 @@ public class ViewStudentCareer {
 		SimpleLogger.info("ViewStudentCareer costruttore");
 	}
 	
-	public List<Grade> getStudentCareer(UserBeanWeb studentBean){
+	public List<Grade> getStudentCareer(UserBean studentBean){
 		//Inizializza una lista per contenere i dati (formato adeguato alle entity)
 		List<Grade> yourGrades;
 				
@@ -40,7 +39,7 @@ public class ViewStudentCareer {
 		return yourGrades;
 	}
 
-	public List<ExtendedGrade> getExtendedStudentCareer(UserBeanWeb studentBean) {
+	public List<ExtendedGrade> getExtendedStudentCareer(UserBean studentBean) {
 		//Inizializza una lista per contenere i dati (formato adeguato alle entity)
 		List<ExtendedGrade> yourGrades;
 						
