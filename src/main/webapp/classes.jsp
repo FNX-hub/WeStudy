@@ -72,13 +72,35 @@ function apri(url) {
 
 		<div class="w3-col l3 m6 w3-margin-bottom">
 			 <div class="w3-display-container">
+				
+				
+				
+				
+				<table padding = "10" > <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				
+				<tr> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				<td> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
 				<img class="w3-image" src="RESOURCES/images/classRegisterGrades_logo.png" alt="Grades" width="60%" height="100%">
+				</td> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				<td> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				<img class="w3-image" src="RESOURCES/images/classRegisterAssignment_logo.png" alt="Assignment" width="100%" height="100%">
+				</td> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				</tr> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				
+				<tr> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				<td> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				
 				<%
 					ClassCourseBean courseBean = new ClassCourseBean(Integer.parseInt(request.getParameter("insertedClassCourseId")));
 					ManageStudentCareerProfessor boundary = new ManageStudentCareerProfessor();
 					List<String> courseGrades = boundary.viewExtendedClassCourseGrades(courseBean);
 					
 				%>
+				
+				
+				
+				
+				
 				<table border="2" >
 				<tr>
 				<td bgcolor="Gold"> <b> Student Id </b> </td>
@@ -143,15 +165,82 @@ function apri(url) {
 				
 				</table>
 				
+				
+				
+				</td> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				
+				<td> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				
+				<%
+					ManageClassAssignmentProfessor boundaryAssignment = new ManageClassAssignmentProfessor();
+					List<String> courseAssignment = boundaryAssignment.viewAssignments(courseBean);
+				%>
+				
+				
+				<table border="2" >
+				<tr>
+				<td bgcolor="Gold"> <b> Type </b> </td>
+				<td bgcolor="Gold"> <b> Short Description </b> </td>
+				<td bgcolor="Gold"> <b> Creation Date </b> </td>
+				<td bgcolor="Gold"> <b> Event Date </b> </td>
+				</tr>
+				
+				<%
+					
+					for(int i=0 ; i<courseAssignment.size() ; i++) {
+				%>
+					<tr>
+					<td>
+				<%
+						out.print(courseAssignment.get(i));
+						i++;
+				%>
+					</td>
+					<td>
+				<%
+						out.print(courseAssignment.get(i));
+						i++;
+				%>
+					</td>
+					<td>
+				<%
+						out.print(courseAssignment.get(i));
+						i++;
+				%>
+					</td>
+					<td>
+				<%
+						out.print(courseAssignment.get(i));
+				%>
+					</td>
+					</tr>	
+				<%
+					}
+				%>
+				
+				</table>
+				
+				
+				
+				
+				</td> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				</tr> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				<tr> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				<td> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				
+				</td> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				
+				<td> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				
+				</td> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				</tr> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				</table> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				
+				
 				<hr>
 				<hr>
 				<hr>
 				
-				
-				
-				<form action="mainPageProfessor.jsp" class="form-signin" id="addGrade" role="form" method="post">
-				
-				<button name="AddGradeButton"> TEST </button>
 				</form>
 				
 			 </div> 

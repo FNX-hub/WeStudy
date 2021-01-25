@@ -6,6 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/stile.css">
 
+
+<%@ page import = "logic.model.bean.*" %>
+<%@ page import = "logic.view.boundary.*" %>
+<%@ page import = "java.util.List" %>
+
 <script>
 function ShowHide(id){
  if(document.getElementById){
@@ -23,8 +28,7 @@ function ShowHide(id){
   
     <div class="w3-right w3-hide-small">
   
-      <a href="studentGrades.html" class="w3-bar-item w3-button"> <b> Grades </b> </a>
-      <a href="studentHomeworks.html" class="w3-bar-item w3-button"> <b> <b> <font color="gold">Homeworks </font></b> </a>
+      <a href="mainPageStudent.jsp" class="w3-bar-item w3-button"> <b> <b> <font color="gold"> Home </font></b> </a>
       <a href="studentMaterial.html" class="w3-bar-item w3-button"> <b> Material </b> </a>
       <a href="questions.html" class="w3-bar-item w3-button"> <b> Question </b> </a>
       <a href="events.html" class="w3-bar-item w3-button"> <b> Events </b> </a>
@@ -50,7 +54,69 @@ function ShowHide(id){
 	
 <div class="w3-container w3-padding-32" id="projects">
     <!-- <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Materie</h3> -->
-    <img class="w3-image" src="RESOURCES/images/homework_logo.png" alt="Homeworks" width="30%" height="100%">
+    <img class="w3-image" src="RESOURCES/images/grades_logo.png" alt="Your Grades" width="30%" height="100%">
+    
+    
+    
+    <table border="2">
+				<tr>
+					<td bgcolor="Gold"> <b> placeholder </b> </td>
+					<td bgcolor="Gold"> <b> placeholder </b> </td>
+					<td bgcolor="Gold"> <b> placeholder </b> </td>
+					<td bgcolor="Gold"> <b> placeholder </b> </td>
+					<td bgcolor="Gold"> <b> placeholder </b> </td>		
+				</tr>
+				
+				
+				<%
+				
+				
+					ViewStudentCareerStudent gradesBoundary = new ViewStudentCareerStudent();
+					UserBean student = new UserBean(1);
+					List<String> yourGrades = gradesBoundary.viewExtendedCareer(student);
+				
+					out.println("ID DELLO STUDENT HARDCODED PER ADESSO");				
+					
+					for(int i=0 ; i<yourGrades.size() ; i++){
+						
+				%>
+						<tr>
+						<td>
+				<%
+						out.println(yourGrades.get(i));
+						i++;
+				%>
+						</td>
+						<td>
+				<%
+						out.println(yourGrades.get(i));
+						i++;
+				%>
+						</td>
+						<td>
+				<%
+						out.println(yourGrades.get(i));
+						i++;
+				%>
+						</td>
+						<td>
+				<%
+						out.println(yourGrades.get(i));
+						i++;
+				%>
+						</td>
+						<td>
+				<%
+						out.println(yourGrades.get(i));
+				%>
+						</td>
+						</tr>						
+				<%
+					}
+				%>
+				
+			</table>
+    
 </div>
 
   <div class="w3-row-padding">

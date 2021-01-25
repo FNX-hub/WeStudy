@@ -15,7 +15,7 @@ import logic.model.bean.UserBean;
 public class ViewStudentCareerStudent{
 
 	public List<String> viewExtendedCareer(UserBean studentBean){
-		//Risultato returnato dal Controller appllicativo
+		//Risultato returnato dal Controller applicativo
 		List<ExtendedGrade> results;
 				
 		//Risultato in un formato adeguato alla view

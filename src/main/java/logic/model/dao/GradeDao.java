@@ -33,7 +33,7 @@ public class GradeDao implements Dao<Grade> {
 	private static final String SELECT_ALL = "SELECT * FROM grade";
 	private static final String SELECT_COURSE = "SELECT * FROM grade WHERE course_id = %d";
 	private static final String SELECT_STUDENT = "SELECT * FROM grade WHERE student_id = %d";
-	private static final String EXTENDED_SELECT_STUDENT = "SELECT course.course_name, value, type, description, date FROM course JOIN grade JOIN student WHERE student_id = %d";
+	private static final String EXTENDED_SELECT_STUDENT = "SELECT course.course_name, value, type, description, date FROM course JOIN grade JOIN student WHERE student_id = '%d' AND course.id = grade.course_id AND grade.student_id = student.id";
 	private static final String EXTENDED_SELECT_COURSE = "SELECT student.id, student.name, student.surname, value, type, description, date FROM student JOIN grade WHERE course_id = '%d' AND student.id = grade.student_id ORDER BY student.name, value";
 	//SELECT student.id, student.name, student.surname, value, type, description, date FROM student JOIN grade WHERE course_id = 1 AND student.id = grade.student_id ORDER BY student.name, value;
 	private static final String INSERT = "INSERT INTO grade VALUES (NULL,'%d','%d','%d','%s','%s','%s')";

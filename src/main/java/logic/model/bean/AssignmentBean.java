@@ -6,6 +6,7 @@ public class AssignmentBean {
 	private String description;
 	
 	
+	
 	//Utilizzato per crearne uno nuovo
 	public AssignmentBean(String type, String description) {
 		this.type = type;
