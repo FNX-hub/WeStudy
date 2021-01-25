@@ -13,18 +13,17 @@ import logic.model.dao.DaoFactory;
 
 //@author Adriano
 public class ManageClassAssignment {
-	//Inizializza lista per i risultati
-	private List<ExtendedAssignment> results;
 	
 	//Restituisci tutti gli assignment di un determinato classCourse
 	public List<ExtendedAssignment> viewClassAssignment(ClassCourseBean classcourseBean){
-		
-		results  = new ArrayList<>();
+		//Inizializza lista per i risultati
+		List<ExtendedAssignment> results;
 		
 		//Istanzia DAO e memorizza i risultati della query
 		//Mi prendo la responsabilità di effettuare il casting
 		//Sono costretto a returnare List a causa di un codesmell
 		results = DaoFactory.getAssignmentDao().getCourseAssignment(classcourseBean.getCourseId());
+		
 		
 		//Restituisci i risultati ottenuti
 		return results;
