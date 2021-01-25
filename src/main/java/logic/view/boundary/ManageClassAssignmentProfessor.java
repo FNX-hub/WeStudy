@@ -19,7 +19,7 @@ public class ManageClassAssignmentProfessor {
 	//Visualizza le informazioni sui classCourse di cui si occupa questo docente
 	public List<String> getClassCourses(UserBean bean){
 
-		//TODO una boundary che chiama la DAO? Non è un caso d'uso coplesso, è solo una semplice operazione
+		//TODO una boundary che chiama la DAO? per un caso d'uso complesso
 		//per motivi di efficienza ho scelto questa implementazione
 		//Istanzia direttamente la DAO
 		List<ClassCourse> courses = DaoFactory.getClassCourseDao().getFromProfessorId(bean.getId());

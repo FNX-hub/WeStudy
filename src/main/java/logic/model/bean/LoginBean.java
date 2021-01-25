@@ -1,7 +1,7 @@
 package logic.model.bean;
 
 public class LoginBean {
-	private Integer id;
+	private Integer id; //idUtente
 	private String password;
 	
 	public LoginBean() {

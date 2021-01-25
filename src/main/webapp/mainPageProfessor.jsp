@@ -54,39 +54,68 @@ function apri(url) {
     	<!-- <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Materie</h3> -->
     	<img class="w3-image" src="RESOURCES/images/classes_logo.png" alt="Your Classes" width="30%" height="100%">
     	
-    	<table>
-    	<tr>
-    	<td> TEST </td>
-    	<td> TEST </td>
-    	<td> TEST </td>
-    	</tr>
-    	<tr>
-    	<td> TEST </td>
-    	<td> TEST </td>
-    	<td> TEST </td>
-    	</tr>
-    	<tr>
-    	<td> TEST </td>
-    	<td> TEST </td>
-    	<td> TEST </td>
-    	</tr>
-    	<tr>
-    	<td> TEST </td>
-    	<td> TEST </td>
-    	<td> TEST </td>
-    	</tr>
-    	</table>
     	
-    	<form action="classes.jsp" class="form-signin" id="login" role="form" method="post">
+    	
 			 <table border="2">
 				<tr>
 					<td bgcolor="Gold"> <b> Id </b> </td>
 					<td bgcolor="Gold"> <b> CourseName </b> </td>				
 				</tr>
 				
+				<%
+					ManageClassAssignmentProfessor boundary = new ManageClassAssignmentProfessor();
+					
+					out.println("ID DEL PROF HARDCODED PER ADESSO");
+					UserBean professor = new UserBean(1);
+					
+					List<String> results = boundary.getClassCourses(professor);
+					
+					for(int i=0 ; i<results.size() ; i++){
+						
+				%>
+						<tr>
+						<td>
+				<%
+						out.println(results.get(i));
+						i++;
+				%>
+						</td>
+						<td>
+				<%
+						out.println(results.get(i));
+				%>
+						</td>
+						</tr>						
+				<%
+					}
+				%>
 				
+			</table>
+			
+			<hr>
+			
+			
+			<form action="classes.jsp" class="form-signin" id="login" role="form" method="post">
+			
+				<select name="insertedClassCourseId" size="1">
+						
+			<%
+				for(int i=0 ; i<results.size() ; i=i+2){
+			%>
+					
+						<option>
+							<%
+								out.println(results.get(i));
+							%>
+						</option>
+
+						
+			<%
+				}
+			%>
+				</select> 
+			
 				
-				<input type="username" class="form-control" name="insertedClassCourseId" id="insertedClassCourseId" placeholder="ClassCourseId" style="-webkit-border-radius: 50px;-moz-border-radius: 50px; border-radius: 50px;" required autofocus>
 				<button type="submit"  style="border-radius: 250px; class="btn btn-outline-dark"> Show Selected Class </button>
 			</form> 
     	

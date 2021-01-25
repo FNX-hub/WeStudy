@@ -41,6 +41,7 @@ public class ManageStudentCareerProfessor {
 		try {
 			//Converti le informazioni in un formato  adeguato alla grafica
 			ExtendedGrade extractedGrade;
+			Integer extractedStudentId;
 			Integer extractedMark;
 			String extractedType;
 			String extractedDescription;
@@ -52,6 +53,7 @@ public class ManageStudentCareerProfessor {
 				extractedGrade = results.get(i);
 				
 				//Estrai le informazioni
+				extractedStudentId = extractedGrade.getStudentId();
 				extractedStudentName = extractedGrade.getStudentName();
 				extractedStudentSurname = extractedGrade.getStudentSurname();
 				extractedMark = extractedGrade.getMark();
@@ -60,6 +62,7 @@ public class ManageStudentCareerProfessor {
 				extractedDate = extractedGrade.getDatabaseDate();
 				
 				//Inseriscile all'interno della lista - tutte nella forma di stringhe
+				convertedResults.add(extractedStudentId.toString());
 				convertedResults.add(extractedStudentName);
 				convertedResults.add(extractedStudentSurname);
 				convertedResults.add(extractedMark.toString());

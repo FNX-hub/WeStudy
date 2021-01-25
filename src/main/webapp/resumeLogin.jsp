@@ -14,6 +14,7 @@
 <%@ page import = "logic.model.bean.*" %>
 <%@ page import = "logic.view.boundary.*" %>
 <%@ page import = "java.util.List" %>
+<%@ page import = "logic.control.LoginControl" %>
 
 
 </head>
@@ -35,43 +36,37 @@
 				
 				
 				<% 
-					String loginResult = logic.control.LoginControl.tryLogin(request.getParameter("insertedUsername") , request.getParameter("insertedPassword") );				 
+					LoginControl controller = new LoginControl();
+					LoginBean bean = new LoginBean(Integer.parseInt(request.getParameter("insertedUsername")),request.getParameter("insertedPassword"));
+					String loginResult = controller.verifyUserWeb(bean);
+					
 					if(loginResult == "Professor")
 					{
-						out.println("Professor");
+						out.println(loginResult);
 				%>
 						<a href="mainPageProfessor.jsp" class="w3-bar-item w3-button"> <b> Click Here to Start </b> </a>
 				<%
 					}
 					if( loginResult == "Student") 
 					{
-						out.println("Student");
+						out.println(loginResult);
 				%>
 						<a href="mainPageStudent.jsp" class="w3-bar-item w3-button"> <b> Click Here to Start </b> </a>
 				<%
 					}
 					if( loginResult == "Parent") 
 					{
-						out.println("Parent");
+						out.println(loginResult);
 				%>						
 						<a href="mainPageParent.jsp" class="w3-bar-item w3-button"> <b> Click Here to Start </b> </a>
 				<%
 					}
-					if( loginResult == "NoUser")
+					if( loginResult == "ERROR")
 					{
-						out.println("ERROR: User not found");
-				%>
-					<a href="index.jsp" class="w3-bar-item w3-button"> <b> Click Here to retry to Login </b> </a>
-				<%
-					}
-					if( loginResult == "WrongPassword")
-					{
-						out.println("ERROR: Incorrect password");
-				%>
-					<a href="index.jsp" class="w3-bar-item w3-button"> <b> Click Here to retry to Login </b> </a>
-				<%
+						out.println("ERROR: uncorrected id/password");
 					}
 				%>
+					<a href="index.jsp" class="w3-bar-item w3-button"> <b> Click Here to retry to Login </b> </a>
 		</div>
 	</div>
 </body>
