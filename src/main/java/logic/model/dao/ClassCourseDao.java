@@ -67,8 +67,6 @@ public class ClassCourseDao implements Dao<ClassCourse>{
 				
 				//Aggiungilo agli altri ottenuti dalla query
 				courses.add(course);
-				
-				
 			} while(rs.next()); //Ripeti finchè il resultSet rs contiene tuple
 			
 		}catch(SQLException e) {

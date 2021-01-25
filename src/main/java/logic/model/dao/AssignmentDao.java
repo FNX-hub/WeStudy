@@ -30,7 +30,7 @@ public class AssignmentDao implements Dao<Assignment> {
 	//private static final String SELECT_BY_PRIMARY_KEY = "SELECT * FROM assignment WHERE id = '%d'";
 	private static final String INSERT = "INSERT INTO assignment (course_id,delivery_date,creation_date,type,description) VALUES ('%d','%s','%s','%s','%s')";	
 	private static final String SELECT_CLASSCOURSE = "SELECT * FROM assignment WHERE course_id = '%d'";
-	private static final String SELECT_EXTENDED_STUDENT = "SELECT course.course_name, type, description, assignment.creation_date, assignment.delivery_date  FROM student_course JOIN course JOIN assignment WHERE student_course.student_id = '%d' GROUP BY assignment.id";
+	private static final String SELECT_EXTENDED_STUDENT = "SELECT assignment.id, course.course_name, type, description, assignment.creation_date, assignment.delivery_date FROM student_course JOIN course JOIN assignment WHERE student_course.student_id = '%d' AND student_course.course_id = course.id AND course.id = assignment.course_id";
 	
 	//SELECT course.course_name, type, description, assignment.delivery_date, assignment.delivery_date  FROM student_course JOIN course JOIN assignment WHERE student_course.student_id = '%d' GROUP BY assignment.id;
 	

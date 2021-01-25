@@ -1,5 +1,6 @@
 package logic.control;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import logic.model.Assignment;
@@ -8,10 +9,13 @@ import logic.model.ClassCourse;
 import logic.model.ExtendedAssignment;
 import logic.model.bean.AssignmentBean;
 import logic.model.bean.ClassCourseBean;
+import logic.model.bean.UserBean;
 import logic.model.dao.DaoFactory;
 
 //@author Adriano
 public class ManageClassAssignment {
+	
+	
 	
 	//Restituisci tutti gli assignment di un determinato classCourse
 	public List<ExtendedAssignment> viewClassAssignment(ClassCourseBean classcourseBean){

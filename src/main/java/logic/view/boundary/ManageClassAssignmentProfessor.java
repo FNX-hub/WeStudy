@@ -5,12 +5,47 @@ import java.util.List;
 
 import logic.control.ManageClassAssignment;
 import logic.control.SimpleLogger;
+import logic.model.ClassCourse;
 import logic.model.ExtendedAssignment;
 import logic.model.bean.AssignmentBean;
 import logic.model.bean.ClassCourseBean;
+import logic.model.bean.UserBeanWeb;
+import logic.model.dao.DaoFactory;
 
 //@author Adriano
 public class ManageClassAssignmentProfessor {
+	
+	//TODO eventualmente utilizza UserBean fatto da Simone
+	//Visualizza le informazioni sui classCourse di cui si occupa questo docente
+	public List<String> getClassCourses(UserBeanWeb bean){
+
+		//TODO una boundary che chiama la DAO? Non è un caso d'uso coplesso, è solo una semplice operazione
+		//per motivi di efficienza ho scelto questa implementazione
+		//Istanzia direttamente la DAO
+		List<ClassCourse> courses = DaoFactory.getClassCourseDao().getFromProfessorId(bean.getId());
+		
+		//Prepara una lista con i risultati convertiti
+		List<String> convertedCourses = new ArrayList<>();
+		try {
+				//Converti i risultati ricevuti
+				for(int i=0 ; i<courses.size() ; i++) {
+					String courseId = courses.get(i).getId().toString();
+					String courseName = courses.get(i).getSubject();
+					convertedCourses.add(courseId);
+					convertedCourses.add(courseName);
+				}
+		}
+		//SE la query NON ha restituito nulla
+		//	entra in logica di errore
+		catch(NullPointerException e)
+    	{
+			//Crea un'unica tupla contenente una frase esplicativa
+			SimpleLogger.info("NullPointerException caught");
+			convertedCourses.add("0");
+			convertedCourses.add("No courses");
+    	}
+		return convertedCourses;
+	}
 	
 	public void createAssignment(Integer assignmentSubClass,AssignmentBean assignmentBean, ClassCourseBean classCourseBean) {
 		//Inizializza il controller corrispondente

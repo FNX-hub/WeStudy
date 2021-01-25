@@ -34,7 +34,7 @@ function apri(url) {
     <!-- Float links to the right. Hide them on small screens -->
     <div class="w3-right w3-hide-small">
   
-      <a href="mainPageProfessor.html" class="w3-bar-item w3-button"> <b> Home </b> </a>
+      <a href="mainPageProfessor.jsp" class="w3-bar-item w3-button"> <b> Home </b> </a>
       <a href="professorMaterial.html" class="w3-bar-item w3-button"> <b> Material </b> </a>
       <a href="questions.html" class="w3-bar-item w3-button"> <b> Question </b> </a>
       <a href="events.html" class="w3-bar-item w3-button"> <b> Events </b> </a>
@@ -85,7 +85,7 @@ function apri(url) {
 				<td bgcolor="Gold"> <b> Name </b> </td>
 				<td bgcolor="Gold"> <b> Surname </b> </td>
 				<td bgcolor="Gold"> <b> Grade </b> </td>
-				<td bgcolor="Gold"> <b> Type of assignment</b> </td>
+				<td bgcolor="Gold"> <b> Type </b> </td>
 				<td bgcolor="Gold"> <b> Short description </b> </td>
 				<td bgcolor="Gold"> <b> Received in</b> </td>
 				</tr>
@@ -147,69 +147,11 @@ function apri(url) {
 				<hr>
 				<hr>
 				
-				<form> <table border="2" >
-				<tr>
-					<td bgcolor="Gold"> <b> Student </b> </td>
-					<td bgcolor="Gold"> <b> Subject </b> </td>
-					<td bgcolor="Gold"> <b> Grade </b> </td>
-					<td bgcolor="Gold"> <b> Type </b> </td>
-					<td bgcolor="Gold"> <b> Date </b> </td>
-				</tr>
 				
-				<tr>
-					<td> 
-						<select name="SelectStudent" size="1">
-						<option>DINAMICAMENTE</option>
-						<option>dinamicamente</option>
-						<option>DINAmicamente</option>
-						<option>DINAmicamente</option>
-						<option>DINAmicamente</option>
-						<option>DINAmicamente</option>
-						<option>DINAmicamente</option>
-						<option>DINAmicamente</option>
-						<option>DINAmicamente</option>
-						</select> 
-					</td>
-
-					<td> 
-						<select name="SelectSubject" size="1">
-						<option>DINAMICAMENTE</option>
-						<option>dinamicamente</option>
-						<option>DINAmicamente</option>
-						</select> 
-					</td>
-
-					<td> 
-						<select name="SelectGrade" size="1">
-						<option>0</option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-						<option>6</option>
-						<option>7</option>
-						<option>8</option>
-						<option>9</option>
-						<option>10</option>
-						</select> 
-					</td>
-
-					<td> 
-						<select name="SelectTestType" size="1">
-						<option>Written Test</option>
-						<option>Oral Test</option>
-						<option>Project</option>
-						</select> 
-					</td>
-					<td>
-						<input type="date" id="start" name="trip-start" value="2020-09-30" min="2000-01-01" max="2030-12-31">
-					</td>
-					
-				</tr>
 				
-				</table>
-				<button> Send </button> 
+				<form action="mainPageProfessor.jsp" class="form-signin" id="addGrade" role="form" method="post">
+				
+				<button name="AddGradeButton"> TEST </button>
 				</form>
 				
 			 </div> 

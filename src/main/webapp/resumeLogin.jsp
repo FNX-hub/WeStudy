@@ -10,6 +10,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/stile.css">
+
+<%@ page import = "logic.model.bean.*" %>
+<%@ page import = "logic.view.boundary.*" %>
+<%@ page import = "java.util.List" %>
+
+
 </head>
 
 <body background="RESOURCES/images/background_index_books.jpg" style="opacity:1.5" >

@@ -2,9 +2,14 @@
 <html>
 <head>
 <title>WeStudy - MainPage Professor</title>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/stile.css">
+
+<%@ page import = "logic.model.bean.*" %>
+<%@ page import = "logic.view.boundary.*" %>
+<%@ page import = "java.util.List" %>
 
 <script> 
 function apri(url) { 
@@ -36,6 +41,7 @@ function apri(url) {
 <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
   </div>
 </header>
+
 <!-- Page content -->
 <div class="w3-content w3-padding" style="max-width:1564px">
   <!-- Project Section -->
@@ -44,35 +50,56 @@ function apri(url) {
 <hr>
 <hr>
 	
-<div class="w3-container w3-padding-32" id="projects">
-    <img class="w3-image" src="RESOURCES/images/classes_logo.png" alt="Your Classes" width="30%" height="100%">
-</div>
+	<div class="w3-container w3-padding-32" id="projects">
+    	<!-- <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Materie</h3> -->
+    	<img class="w3-image" src="RESOURCES/images/classes_logo.png" alt="Your Classes" width="30%" height="100%">
+    	
+    	<table>
+    	<tr>
+    	<td> TEST </td>
+    	<td> TEST </td>
+    	<td> TEST </td>
+    	</tr>
+    	<tr>
+    	<td> TEST </td>
+    	<td> TEST </td>
+    	<td> TEST </td>
+    	</tr>
+    	<tr>
+    	<td> TEST </td>
+    	<td> TEST </td>
+    	<td> TEST </td>
+    	</tr>
+    	<tr>
+    	<td> TEST </td>
+    	<td> TEST </td>
+    	<td> TEST </td>
+    	</tr>
+    	</table>
+    	
+    	<form action="classes.jsp" class="form-signin" id="login" role="form" method="post">
+			 <table border="2">
+				<tr>
+					<td bgcolor="Gold"> <b> Id </b> </td>
+					<td bgcolor="Gold"> <b> CourseName </b> </td>				
+				</tr>
+				
+				
+				
+				<input type="username" class="form-control" name="insertedClassCourseId" id="insertedClassCourseId" placeholder="ClassCourseId" style="-webkit-border-radius: 50px;-moz-border-radius: 50px; border-radius: 50px;" required autofocus>
+				<button type="submit"  style="border-radius: 250px; class="btn btn-outline-dark"> Show Selected Class </button>
+			</form> 
+    	
+	</div>
 
   <div class="w3-row-padding">
   
-  <jsp:useBean id="ClassCourseConverter" scope="request" class="logic.model.bean.ClassCourseConverter" />
+  <div class="w3-row-padding">
   
-  <form action="classes.jsp" class="form-signin" id="login" role="form" method="post">
-				<input type="username" class="form-control" name="insertedClassCourseId" id="insertedClassCourseId" placeholder="ClassCourseId" style="-webkit-border-radius: 50px;-moz-border-radius: 50px; border-radius: 50px;" required autofocus>
-				<button type="submit"  style="border-radius: 250px; class="btn btn-outline-dark"> Show Selected Class </button>
-			</form>
- 
-	</h3>
-      </div>
     </div>
-    
 
   </div>
-  
 
-    
-	
-    
-    
-
-    
-    
-  </div>
 <!-- End page content -->
 </div>
 <!-- Footer -->

@@ -30,6 +30,7 @@ public abstract class Assignment {
 		this.creationDate = Date.valueOf(LocalDate.now());
 	}
 	
+	
 
 	public Date getCreationDate() {
 		return creationDate;

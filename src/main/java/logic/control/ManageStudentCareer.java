@@ -8,14 +8,14 @@ import logic.model.Grade;
 import logic.model.GradeFactory;
 import logic.model.bean.ClassCourseBean;
 import logic.model.bean.GradeBean;
-import logic.model.bean.StudentBean;
+import logic.model.bean.UserBeanWeb;
 import logic.model.dao.DaoFactory;
 
 
 public class ManageStudentCareer{
 	
 	//Aggiungi un certo voto ad uno studente in un certo course
-	public void addGrade(GradeBean gradeBean, ClassCourseBean classCourseBean, StudentBean studentBean) {
+	public void addGrade(GradeBean gradeBean, ClassCourseBean classCourseBean, UserBeanWeb studentBean) {
 		//Inizializza una factory per Grade
 		GradeFactory factory = new GradeFactory();
 		

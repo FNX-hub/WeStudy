@@ -2,9 +2,9 @@ package logic.view.boundary;
 
 import java.util.List;
 
-import logic.model.bean.StudentBean;
+import logic.model.bean.UserBeanWeb;
 
 public interface ViewStudentCareerInterface {
 	
-	public List<String> viewCareer(StudentBean studentBean);
+	public List<String> viewCareer(UserBeanWeb studentBean);
 }

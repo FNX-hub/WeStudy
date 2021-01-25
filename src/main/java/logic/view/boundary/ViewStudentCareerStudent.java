@@ -7,14 +7,14 @@ import logic.control.SimpleLogger;
 import logic.control.ViewStudentCareer;
 import logic.model.ExtendedGrade;
 import logic.model.Grade;
-import logic.model.bean.StudentBean;
+import logic.model.bean.UserBeanWeb;
 
 //TODO valutare se è sensato mantenere le due boundary separate
 
 //@author Adriano
 public class ViewStudentCareerStudent{
 
-	public List<String> viewExtendedCareer(StudentBean studentBean){
+	public List<String> viewExtendedCareer(UserBeanWeb studentBean){
 		//Risultato returnato dal Controller appllicativo
 		List<ExtendedGrade> results;
 				
@@ -54,7 +54,7 @@ public class ViewStudentCareerStudent{
 		return convertedResults;
 	}
 	
-	public List<String> viewCareer(StudentBean studentBean) {
+	public List<String> viewCareer(UserBeanWeb studentBean) {
 		//Risultato returnato dal Controller appllicativo
 		List<Grade> results;
 		
