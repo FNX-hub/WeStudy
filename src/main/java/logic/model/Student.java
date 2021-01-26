@@ -2,6 +2,7 @@ package logic.model;
 
 import java.util.List;
 
+
 public class Student extends User {
 	private List<Grade> gradeList;
 	private Integer parentId;
@@ -16,6 +17,7 @@ public class Student extends User {
 	public List<Grade> getGrades() {
 		if(gradeList.isEmpty()) {
 			//TODO controllare la correttezza
+			//TODO controlla
 			// add --> this.grades = DaoFactory.getGradeDao().getGradeByStudentId(getId());			
 		}
 		return gradeList;
