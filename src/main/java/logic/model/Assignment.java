@@ -8,10 +8,10 @@ import java.time.LocalDate;
 //non voglio che venga istanziata
 //Solo le sue classi figlie sono istanziabili
 public abstract class Assignment {
-	private Date creationDate;
-	private Date deadlineDate;
-	private String description;
-	private String type; //ORAL, PROJECT, WRITTEN
+	protected Date creationDate;
+	protected Date deadlineDate;
+	protected String description;
+	protected String type; //ORAL, PROJECT, WRITTEN
 	
 	
 	//Per recuperarlo dalla persistenza
@@ -23,11 +23,11 @@ public abstract class Assignment {
 	}
 	
 	//Per crearlo da GUI
-	//TODO impostare la deadline
-	public Assignment(String type, String description) {
+	public Assignment(String type, String description, Date deadline) {
 		this.type = type;
 		this.description = description;
 		this.creationDate = Date.valueOf(LocalDate.now());
+		this.deadlineDate = deadline;
 	}
 	
 	
