@@ -34,19 +34,12 @@
 					out.println(request.getParameter("insertedUsername"));
 				%>
 					</td>
+					</tr>
+					<tr>
 					<td>
-				<%
-					out.println("Password: ");
-					out.println(request.getParameter("insertedPassword"));
-				%>
-					</td>
-					</tr>
-					</tr>
-					</td>
 				<%
 					out.println("Role: ");
 				%>
-				
 				
 				<% 
 					LoginControl controller = new LoginControl();
@@ -54,12 +47,12 @@
 					String loginResult = controller.verifyUserWeb(bean);
 					
 					session.setAttribute("userId", request.getParameter("insertedUsername"));
-      				String sessionId = (String)session.getAttribute("userId");    
-					out.println("SESSION: " + sessionId);
 					
 					if(loginResult.equals("Professor"))
 					{
 						out.println(loginResult);
+						String sessionId = (String)session.getAttribute("userId");  
+						out.println("SESSION: " + sessionId);
 				%>
 						<a href="mainPageProfessor.jsp" class="w3-bar-item w3-button"> <b> Click Here to Start </b> </a>
 				<%
@@ -83,7 +76,14 @@
 						out.println("ERROR: uncorrected id/password");
 					}
 				%>
+					</td>
+					</tr>
+					<tr>
+					<td>
 					<a href="index.jsp" class="w3-bar-item w3-button"> <b> Click Here to retry to Login </b> </a>
+					</td>
+					</tr>
+					</table>
 		</div>
 	</div>
 </body>

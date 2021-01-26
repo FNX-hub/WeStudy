@@ -116,7 +116,7 @@ public class GradeDao implements Dao<Grade> {
 	//Dato uno Student e un ClassCourse - restituisci i voti di quello Student in quel ClassCourse
 	public List<Grade> getStudentCourseGrades(Integer courseId, Integer studentId){
 		List<Grade> courseGrades = new ArrayList<Grade>();
-		String query = String.format(SELECT_STUDENT_COURSE, courseId, studentId);
+		String query = String.format(SELECT_STUDENT_COURSE, studentId, courseId);
 
 		try (
 				Connection c = DaoConnector.getIstance().getConnection();
