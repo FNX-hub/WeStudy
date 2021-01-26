@@ -8,8 +8,9 @@ public class ProjectAssignment extends Assignment{
 		super(type,description,creation,deadline);
 	}
 	
-	public ProjectAssignment(String type, String description) {
-		super(type, description);
+	public ProjectAssignment(String type, String description, Date deadline) {
+		super(type,description,deadline);
 	}
-
+	
 }
+
