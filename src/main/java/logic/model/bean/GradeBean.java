@@ -2,26 +2,27 @@ package logic.model.bean;
 
 public class GradeBean {
 	Integer studentId;
-	Integer grade;
-	String description;
 	Integer classCourse;
+	
+	Integer value;
+	String description;
 	String type; //ORAL, WRITTEN, PROJECT
 	
 	public GradeBean(Integer grade, String description, Integer classCourse, String type) {
-		this.grade = grade;
+		this.value = grade;
 		this.description = description;
 		this.type = type;
 		this.classCourse = classCourse;
 	}
 	
-	public Integer getGrade() {
-		return grade;
+	public Integer getValue() {
+		return value;
 	}
 	public String getDescription() {
 		return description;
 	}
-	public void setGrade(Integer grade) {
-		this.grade = grade;
+	public void setValue(Integer grade) {
+		this.value = grade;
 	}
 	public void setDescription(String description) {
 		this.description = description;

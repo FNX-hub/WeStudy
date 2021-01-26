@@ -1,16 +1,17 @@
 package logic.model.bean;
+import java.sql.Date;
 
 public class AssignmentBean {
 	private Integer id;
 	private String type;
 	private String description;
-	
-	
+	private Date deadline;
 	
 	//Utilizzato per crearne uno nuovo
 	public AssignmentBean(String type, String description) {
 		this.type = type;
 		this.description = description;
+		
 	}
 	
 	//Utilizzato dalla DAO
@@ -37,5 +38,13 @@ public class AssignmentBean {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Date getDeadline() {
+		return deadline;
+	}
+
+	public void setDeadline(Date deadline) {
+		this.deadline = deadline;
 	}
 }
