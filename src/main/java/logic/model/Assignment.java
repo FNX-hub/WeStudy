@@ -5,26 +5,26 @@ import java.time.LocalDate;
 
 //@author Adriano
 
-//L'unico motivo per cui è astratta è che non voglio che venga istanziata
+//non voglio che venga istanziata
 //Solo le sue classi figlie sono istanziabili
 public abstract class Assignment {
-	protected Date creationDate;
-	protected Date deadlineDate;
-	protected String description;
-	protected String type;
+	private Date creationDate;
+	private Date deadlineDate;
+	private String description;
+	private String type; //ORAL, PROJECT, WRITTEN
 	
 	
 	//Per recuperarlo dalla persistenza
-	protected Assignment(String type, String description, Date creation, Date deadline) {
+	public Assignment(String type, String description, Date creation, Date deadline) {
 		this.type = type;
 		this.description = description;
 		this.creationDate = creation;
 		this.deadlineDate = deadline;
 	}
 	
-	//Per crearlo
+	//Per crearlo da GUI
 	//TODO impostare la deadline
-	protected Assignment(String type, String description) {
+	public Assignment(String type, String description) {
 		this.type = type;
 		this.description = description;
 		this.creationDate = Date.valueOf(LocalDate.now());

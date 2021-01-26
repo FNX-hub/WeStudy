@@ -15,7 +15,6 @@ import logic.model.dao.DaoFactory;
 //@author Adriano
 public class ManageClassAssignmentProfessor {
 	
-	//TODO eventualmente utilizza UserBean fatto da Simone
 	//Visualizza le informazioni sui classCourse di cui si occupa questo docente
 	public List<String> getClassCourses(UserBean bean){
 

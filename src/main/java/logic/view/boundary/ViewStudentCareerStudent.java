@@ -9,8 +9,6 @@ import logic.model.ExtendedGrade;
 import logic.model.Grade;
 import logic.model.bean.UserBean;
 
-//TODO valutare se è sensato mantenere le due boundary separate
-
 //@author Adriano
 public class ViewStudentCareerStudent{
 

@@ -16,7 +16,6 @@ public class ExtendedGrade extends Grade{
 		super(mark, description, type);
 	}
 	
-	//Utilizzato
 	public ExtendedGrade(Integer mark, String description, String type, String studentName, String studentSurname, Date databaseDate, Integer studentId) {
 		super(mark, description, type);
 		this.studentName = studentName;

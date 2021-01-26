@@ -15,6 +15,7 @@ public class Student extends User {
 	}
 	public List<Grade> getGrades() {
 		if(gradeList.isEmpty()) {
+			//TODO controllare la correttezza
 			// add --> this.grades = DaoFactory.getGradeDao().getGradeByStudentId(getId());			
 		}
 		return gradeList;

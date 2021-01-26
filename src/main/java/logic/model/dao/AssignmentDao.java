@@ -10,6 +10,9 @@ import java.util.List;
 import logic.control.SimpleLogger;
 import logic.model.Assignment;
 import logic.model.ExtendedAssignment;
+import logic.model.OralAssignment;
+import logic.model.ProjectAssignment;
+import logic.model.WrittenAssignment;
 
 //@author Adriano
 public class AssignmentDao implements Dao<Assignment> {
@@ -30,7 +33,9 @@ public class AssignmentDao implements Dao<Assignment> {
 	//private static final String SELECT_BY_PRIMARY_KEY = "SELECT * FROM assignment WHERE id = '%d'";
 	private static final String INSERT = "INSERT INTO assignment (course_id,delivery_date,creation_date,type,description) VALUES ('%d','%s','%s','%s','%s')";	
 	private static final String SELECT_CLASSCOURSE = "SELECT * FROM assignment WHERE course_id = '%d'";
-	private static final String SELECT_EXTENDED_STUDENT = "SELECT assignment.id, course.course_name, type, description, assignment.creation_date, assignment.delivery_date FROM student_course JOIN course JOIN assignment WHERE student_course.student_id = '%d' AND student_course.course_id = course.id AND course.id = assignment.course_id";
+	
+	private static final String SELECT_STUDENT = "SELECT assignment.id, assignment.course_id, assignment.type, assignment.description, assignment.creation_date, assignment.delivery_date FROM student_course JOIN course JOIN assignment WHERE student_course.student_id = '%d' AND student_course.course_id = course.id AND course.id = assignment.course_id";
+	private static final String SELECT_EXTENDED_STUDENT = "SELECT assignment.id, course.id, assignment.type, assignment.description, assignment.creation_date, assignment.delivery_date FROM student_course JOIN course JOIN assignment WHERE student_course.student_id = '%d' AND student_course.course_id = course.id AND course.id = assignment.course_id";
 	
 	//SELECT course.course_name, type, description, assignment.delivery_date, assignment.delivery_date  FROM student_course JOIN course JOIN assignment WHERE student_course.student_id = '%d' GROUP BY assignment.id;
 	
@@ -42,6 +47,7 @@ public class AssignmentDao implements Dao<Assignment> {
 	// Error message
 	private static final String ERROR = "Unable to execute %s: %s";
 	
+	//Restituisci TUTTI gli Assignment memorizzati nel database
 	@Override
 	public List<Assignment> getAll() {
 		List<Assignment> listAssignment = new ArrayList<>();
@@ -61,10 +67,26 @@ public class AssignmentDao implements Dao<Assignment> {
 				Date creationDate = rs.getDate(CREATIONDATE);
 				Date deliveryDate = rs.getDate(DELIVERYDATE);
 
+				Assignment assignment;
 				
-				Assignment assignment = new ExtendedAssignment(type, description, creationDate, deliveryDate);
+				switch(type) {
+					case "ORAL":
+						assignment = new OralAssignment(type, description, creationDate, deliveryDate);
+						break;
+					case "WRITTEN":
+						assignment = new WrittenAssignment(type, description, creationDate, deliveryDate);
+						break;
+					case "PROJECT":
+						assignment = new ProjectAssignment(type, description, creationDate, deliveryDate);
+						break;
+					default:
+						assignment = null;
+						break;
+				}
 				
 				listAssignment.add(assignment);
+				
+				
 			} while(rs.next());
 		} catch (SQLException e) {
 			SimpleLogger.severe(String.format(ERROR, SELECT_ALL, e.getMessage()));
@@ -72,7 +94,8 @@ public class AssignmentDao implements Dao<Assignment> {
 		return listAssignment;
 	}
 
-	
+
+	//memorizza un assignment nel database, richiede di conoscere la PK del course in cui è stato inserito
 	public void save(Assignment t, Integer classCourseId) {
 
 		//Valori da inserire
@@ -99,24 +122,26 @@ public class AssignmentDao implements Dao<Assignment> {
 	
 	@Override
 	public void save(Assignment t) {
-		//Non utilizzabile - applicato overloading
+		SimpleLogger.info("Utilizzata una versione con diversa segnatura");
 	}
 
 	@Override
 	public void update(Assignment t, String[] pkeys) {
 		//Ereditato ma non utilizzato
+		SimpleLogger.info("Ereditato ma non utilizzato");
 	}
 
 	@Override
 	public void delete(Assignment t) {
 		//Ereditato ma non utilizzato
+		SimpleLogger.info("Ereditato ma non utilizzato");
 	}
 	
 	
 	//Dato id di un corso, restituisci TUTTI i suoi assignment
-	public List<ExtendedAssignment> getCourseAssignment(Integer idClassCourse){
+	public List<Assignment> getCourseAssignment(Integer idClassCourse){
 		String query = String.format(SELECT_CLASSCOURSE, idClassCourse);
-		List<ExtendedAssignment> results = new ArrayList<>();
+		List<Assignment> results = new ArrayList<>();
 		
 		try (
 				Connection c = DaoConnector.getIstance().getConnection();
@@ -134,11 +159,27 @@ public class AssignmentDao implements Dao<Assignment> {
 				Date creationDate = rs.getDate(CREATIONDATE);
 				Date deadlineDate = rs.getDate(DELIVERYDATE);
 				
-				ExtendedAssignment assignment = new ExtendedAssignment(type,description,creationDate,deadlineDate);
+				Assignment assignment;
+				
+				switch(type) {
+				case "ORAL":
+					assignment = new OralAssignment(type, description, creationDate, deadlineDate);
+					break;
+				case "WRITTEN":
+					assignment = new WrittenAssignment(type, description, creationDate, deadlineDate);
+					break;
+				case "PROJECT":
+					assignment = new ProjectAssignment(type, description, creationDate, deadlineDate);
+					break;
+				default:
+					assignment = null;
+					break;
+			}
 				
 				results.add(assignment);
+				
 			}while(rs.next());
-			
+			 
 		} catch (SQLException e) {
 			SimpleLogger.severe(String.format(ERROR, query, e.getMessage()));
 			results = null;
@@ -146,8 +187,9 @@ public class AssignmentDao implements Dao<Assignment> {
 		return results;
 	}
 	
+	
 	//Dato id di uno studente, restituisci TUTTI gli assignment che lo riguardano
-	//questa è la versione estesa
+	//Versione estesa che restituisce maggiori informazioni ma prese da diverse tabelle
 	public List<ExtendedAssignment> getExtendedStudentAssignment(Integer studentId){
 		String query = String.format(SELECT_EXTENDED_STUDENT, studentId);
 		List<ExtendedAssignment> results = new ArrayList<>();

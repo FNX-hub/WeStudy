@@ -182,16 +182,8 @@ public class GradeDao implements Dao<Grade> {
 				}
 				do {				
 					
-					/*
-					 * private static final String EXTENDED_SELECT_COURSE = 
-					 * "SELECT student.name, student.surname, value, type, description, 
-					 * date FROM student JOIN grade WHERE course = %d";
-					*/
-					
-					
 					//Estrai i valori dal DB
 					Integer studentId = rs.getInt(STUDENT);
-					//Integer courseId = rs.getInt(COURSE);
 					Integer mark = rs.getInt(VALUE);
 					String type = rs.getString(TYPE);
 					String description = rs.getString(DESCRIPTION);
@@ -230,8 +222,6 @@ public class GradeDao implements Dao<Grade> {
 			}
 			do {				
 				//Estrai i valori dal DB
-				//Integer studentId = rs.getInt(STUDENT);
-				//Integer courseId = rs.getInt(COURSE);
 				Integer mark = rs.getInt(VALUE);
 				String type = rs.getString(TYPE);
 				String description = rs.getString(DESCRIPTION);
@@ -243,7 +233,7 @@ public class GradeDao implements Dao<Grade> {
 				courseGrades.add(grade);
 				
 				
-			} while(rs.next()); //Ripeti finchè il resultSet rs contiene tuple
+			} while(rs.next()); //Ripeti fino a che il resultSet rs contiene tuple
 			
 		}catch(SQLException e) {
 			SimpleLogger.severe(String.format(ERROR, SELECT_STUDENT, e.getMessage()));
@@ -272,9 +262,6 @@ public class GradeDao implements Dao<Grade> {
 				}
 				do {				
 					//Estrai i valori dal DB
-					//Integer studentId = rs.getInt(STUDENT);
-					//Integer courseId = rs.getInt(COURSE);
-					
 					//course.course_name, value, type, description, date 
 					String coursename = rs.getString(COURSENAME);
 					Integer mark = rs.getInt(VALUE);
