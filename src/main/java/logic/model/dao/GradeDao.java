@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import logic.control.SimpleLogger;
-import logic.model.ExtendedGrade;
 import logic.model.Grade;
 
 
@@ -18,35 +17,25 @@ import logic.model.Grade;
 public class GradeDao implements Dao<Grade> {
 
 	// Name columns table
-	private static final String ID = "id" ;
-	private static final String STUDENT = "student.id";
-	private static final String COURSE = "course_id";
-	private static final String COURSENAME = "course.course_name";
 	private static final String VALUE = "value";
 	private static final String TYPE = "type";
 	private static final String DESCRIPTION = "description";
 	private static final String DATE = "date";
-	private static final String STUDENTNAME = "student.name";
-	private static final String STUDENTSURNAME = "student.surname";
 	
 	// SQL statements
 	private static final String SELECT_ALL = "SELECT * FROM grade";
 	private static final String SELECT_COURSE = "SELECT * FROM grade WHERE course_id = %d";
 	private static final String SELECT_STUDENT = "SELECT * FROM grade WHERE student_id = %d";
-	private static final String EXTENDED_SELECT_STUDENT = "SELECT course.course_name, value, type, description, date FROM course JOIN grade JOIN student WHERE student_id = '%d' AND course.id = grade.course_id AND grade.student_id = student.id";
-	private static final String EXTENDED_SELECT_COURSE = "SELECT student.id, student.name, student.surname, value, type, description, date FROM student JOIN grade WHERE course_id = '%d' AND student.id = grade.student_id ORDER BY student.name, value";
-	//SELECT student.id, student.name, student.surname, value, type, description, date FROM student JOIN grade WHERE course_id = 1 AND student.id = grade.student_id ORDER BY student.name, value;
-	private static final String INSERT = "INSERT INTO grade VALUES (NULL,'%d','%d','%d','%s','%s','%s')";
+	private static final String SELECT_STUDENT_COURSE = "SELECT * FROM grade WHERE student_id = %d AND course_id = %d";
 	private static final String DUMMY_INSERT = "INSERT INTO grade VALUES (NULL,'%d','%d','%d','%s','%s',NULL)";
-	private static final String UPDATE = "UPDATE grade SET student_id = '%d', course_id = '%d', value = '%d' , type = '%s' , description = '%s' , date = '%s' WHERE id = '%d'";
-	private static final String DELETE = "DELETE FROM grade WHERE id = '%d'";
+	
 	
 	
 	// Error
 	private static final String ERROR = "Unable to execute %s: %s";
 	
 	
-	
+	//Restituisci TUTTI i Grade presenti nel database
 	@Override
 	public List<Grade> getAll() {
 		List<Grade> listGrade = new ArrayList<Grade>();
@@ -62,20 +51,19 @@ public class GradeDao implements Dao<Grade> {
 			}
 			do { 
 				//Estrai i valori dal DB
-				//Integer studentId = rs.getInt(STUDENT);
-				//Integer courseId = rs.getInt(COURSE);
 				Integer mark = rs.getInt(VALUE);
 				String type = rs.getString(TYPE);
 				String description = rs.getString(DESCRIPTION);
+				Date databaseDate = rs.getDate(DATE);
 				
-				//Inizializza un Grade
-				Grade grade = new Grade(mark,description,type);
+				//Inizializza un Grade - NB la responsabilita' di associarlo al corretto ClassCourse NON appartiene a questa DAO
+				Grade grade = new Grade(mark, databaseDate,description,type);
 				
 				//Aggiungi il Grade alla lista di Grade ottenuti dalla query
 				listGrade.add(grade);
 				
 				
-			} while(rs.next()); //Ripeti finchè il resultSet rs contiene tuple
+			} while(rs.next()); //Ripeti finchÃ¨ il resultSet rs contiene tuple
 			
 		}catch(SQLException e) {
 			SimpleLogger.severe(String.format(ERROR, SELECT_ALL, e.getMessage()));
@@ -110,20 +98,57 @@ public class GradeDao implements Dao<Grade> {
 
 	@Override
 	public void save(Grade t) {
-		// Ereditato ma non utilizzato
-		
+		SimpleLogger.info("utilizzato un metodo con differente segnatura");
 	}
 	
 	@Override
 	public void update(Grade t, String[] pkeys) {
-		// Ereditato ma non utilizzato
+		SimpleLogger.info("operazione non prevista");
 	}
 
 	@Override
 	public void delete(Grade t) {
-		// Ereditato ma non utilizzato
+		SimpleLogger.info("operazione non prevista");
 	}
 
+	
+	
+	//Dato uno Student e un ClassCourse - restituisci i voti di quello Student in quel ClassCourse
+	public List<Grade> getStudentCourseGrades(Integer courseId, Integer studentId){
+		List<Grade> courseGrades = new ArrayList<Grade>();
+		String query = String.format(SELECT_STUDENT_COURSE, courseId, studentId);
+
+		try (
+				Connection c = DaoConnector.getIstance().getConnection();
+				Statement stm = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+				ResultSet rs = stm.executeQuery(query)
+			)
+		{
+			if(!rs.first()) {
+				return courseGrades;
+			}
+			do {				
+				//Estrai i valori dal DB
+				Integer mark = rs.getInt(VALUE);
+				String type = rs.getString(TYPE);
+				String description = rs.getString(DESCRIPTION);
+				Date databaseDate = rs.getDate(DATE);
+				
+				//Inizializza un Grade - NB la responsabilita' di associarlo al corretto ClassCourse NON appartiene a questa DAO
+				Grade grade = new Grade(mark, databaseDate,description,type);
+				
+				//Aggiungi il Grade alla lista di Grade ottenuti dalla query
+				courseGrades.add(grade);
+				
+				
+			} while(rs.next()); //Ripeti finchÃ¨ il resultSet rs contiene tuple
+			
+		}catch(SQLException e) {
+			SimpleLogger.severe(String.format(ERROR, SELECT_COURSE, e.getMessage()));
+		}
+		return courseGrades;
+	}
+	
 	
 	//Dato un ClassCourse - restituisci TUTTI i voti assegnati a TUTTI gli studenti
 	public List<Grade> getCourseGrades(Integer courseId) {
@@ -141,20 +166,19 @@ public class GradeDao implements Dao<Grade> {
 			}
 			do {				
 				//Estrai i valori dal DB
-				//Integer studentId = rs.getInt(STUDENT);
-				//Integer courseId = rs.getInt(COURSE);
 				Integer mark = rs.getInt(VALUE);
 				String type = rs.getString(TYPE);
 				String description = rs.getString(DESCRIPTION);
+				Date databaseDate = rs.getDate(DATE);
 				
-				//Inizializza un Grade
-				Grade grade = new Grade(mark,description,type);
+				//Inizializza un Grade - NB la responsabilita' di associarlo al corretto ClassCourse NON appartiene a questa DAO
+				Grade grade = new Grade(mark, databaseDate,description,type);
 				
 				//Aggiungi il Grade alla lista di Grade ottenuti dalla query
 				courseGrades.add(grade);
 				
 				
-			} while(rs.next()); //Ripeti finchè il resultSet rs contiene tuple
+			} while(rs.next()); //Ripeti finchÃ¨ il resultSet rs contiene tuple
 			
 		}catch(SQLException e) {
 			SimpleLogger.severe(String.format(ERROR, SELECT_COURSE, e.getMessage()));
@@ -164,46 +188,7 @@ public class GradeDao implements Dao<Grade> {
 	
 	
 	
-	//Dato un ClassCourse - restituisci TUTTI i voti assegnati a TUTTI gli studenti - versione estesa
-		public List<ExtendedGrade> getExtendedCourseGrades(Integer courseId) {
-			List<ExtendedGrade> courseGrades = new ArrayList<ExtendedGrade>();
-			
-			
-			String query = String.format(EXTENDED_SELECT_COURSE, courseId);
-
-			try (
-					Connection c = DaoConnector.getIstance().getConnection();
-					Statement stm = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-					ResultSet rs = stm.executeQuery(query)
-				)
-			{
-				if(!rs.first()) {
-					return courseGrades;
-				}
-				do {				
-					
-					//Estrai i valori dal DB
-					Integer studentId = rs.getInt(STUDENT);
-					Integer mark = rs.getInt(VALUE);
-					String type = rs.getString(TYPE);
-					String description = rs.getString(DESCRIPTION);
-					String name = rs.getString(STUDENTNAME);
-					String surname = rs.getString(STUDENTSURNAME);
-					Date date = rs.getDate(DATE);
-					//Inizializza un Grade
-					ExtendedGrade grade = new ExtendedGrade(mark,description,type,name,surname,date,studentId);
-					
-					//Aggiungi il Grade alla lista di Grade ottenuti dalla query
-					courseGrades.add(grade);
-					
-					
-				} while(rs.next()); //Ripeti finchè il resultSet rs contiene tuple
-				
-			}catch(SQLException e) {
-				SimpleLogger.severe(String.format(ERROR, SELECT_COURSE, e.getMessage()));
-			}
-			return courseGrades;
-		}
+	
 	
 
 	//Restituisci TUTTI i voti assegnati a uno studente - vista dello studente o del genitore
@@ -225,9 +210,10 @@ public class GradeDao implements Dao<Grade> {
 				Integer mark = rs.getInt(VALUE);
 				String type = rs.getString(TYPE);
 				String description = rs.getString(DESCRIPTION);
+				Date databaseDate = rs.getDate(DATE);
 				
-				//Inizializza un Grade
-				Grade grade = new Grade(mark,description,type);
+				//Inizializza un Grade - NB la responsabilita' di associarlo al corretto ClassCourse NON appartiene a questa DAO
+				Grade grade = new Grade(mark, databaseDate,description,type);
 				
 				//Aggiungi il Grade alla lista di Grade ottenuti dalla query
 				courseGrades.add(grade);
@@ -240,49 +226,6 @@ public class GradeDao implements Dao<Grade> {
 		}
 		return courseGrades;
 	}
-
-	
-	//Restituisci TUTTI i voti assegnati a uno studente - versione estesa - vista dello studente o del genitore
-		public ArrayList<ExtendedGrade> getExtendedStudentGrades(Integer studentId) {
-			//Inizializza la lista da returnare
-			ArrayList<ExtendedGrade> results = new ArrayList<ExtendedGrade>();
-			
-			//Prepara la query
-			String query = String.format(EXTENDED_SELECT_STUDENT, studentId);
-			
-			
-			try (
-					Connection c = DaoConnector.getIstance().getConnection();
-					Statement stm = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-					ResultSet rs = stm.executeQuery(query)
-				)
-			{
-				if(!rs.first()) {
-					return results;
-				}
-				do {				
-					//Estrai i valori dal DB
-					//course.course_name, value, type, description, date 
-					String coursename = rs.getString(COURSENAME);
-					Integer mark = rs.getInt(VALUE);
-					String type = rs.getString(TYPE);
-					String description = rs.getString(DESCRIPTION);
-					Date date = rs.getDate(DATE);
-					
-					//Inizializza un Grade	
-					ExtendedGrade grade = new ExtendedGrade(mark,description,type,coursename, date);
-					
-					//Aggiungi il Grade alla lista di Grade ottenuti dalla query
-					results.add(grade);
-					
-				} while(rs.next()); //Ripeti finchè il resultSet rs contiene tuple
-				
-			}catch(SQLException e) {
-				SimpleLogger.severe(String.format(ERROR, EXTENDED_SELECT_STUDENT, e.getMessage()));
-			}
-			return results;
-		}
-
 
 
 }
