@@ -40,7 +40,13 @@ function apri(url) {
       <a href="events.html" class="w3-bar-item w3-button"> <b> Events </b> </a>
       <a href="meeting.html" class="w3-bar-item w3-button"> <b> Meeting </b> </a>
       <a href="yourPage.html" class="w3-bar-item w3-button"> <b> Profile </b> </a>
-      <a href="logout.php" class="w3-bar-item w3-button"> <b> Logout</b> </a>
+      <a href="logout.jsp" class="w3-bar-item w3-button"> <b> Logout</b> </a>
+      <% 
+      		String sessionId = (String)session.getAttribute("userId");
+			out.println("USER ID: " + sessionId);
+	  %>
+      
+      
     </div>
   </div>
 </div>

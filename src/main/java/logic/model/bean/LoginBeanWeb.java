@@ -1,5 +1,6 @@
 package logic.model.bean;
 
+//TODO cancellare
 public class LoginBeanWeb{
 	private String insertedUsername;
 	private String insertedPassword;

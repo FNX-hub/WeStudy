@@ -33,7 +33,11 @@ function ShowHide(id){
       <a href="questions.html" class="w3-bar-item w3-button"> <b> Question </b> </a>
       <a href="events.html" class="w3-bar-item w3-button"> <b> Events </b> </a>
       <a href="yourPage.html" class="w3-bar-item w3-button"> <b> Profile </b> </a>
-      <a href="logout.php" class="w3-bar-item w3-button"> <b> Logout</b> </a>
+      <a href="logout.jsp" class="w3-bar-item w3-button"> <b> Logout</b> </a>
+      <%
+      		String sessionId = (String)session.getAttribute("userId");    
+			out.println("USER ID: " + sessionId);
+	  %>
       
     </div>
   </div>
@@ -67,54 +71,6 @@ function ShowHide(id){
 					<td bgcolor="Gold"> <b> Date </b> </td>		
 				</tr>
 				
-				
-				<%
-				
-				
-					ViewStudentCareerStudent gradesBoundary = new ViewStudentCareerStudent();
-					UserBean student = new UserBean(11);
-					List<String> yourGrades = gradesBoundary.viewExtendedCareer(student);
-				
-					out.println("ID DELLO STUDENT HARDCODED PER ADESSO");				
-					
-					for(int i=0 ; i<yourGrades.size() ; i++){
-						
-				%>
-						<tr>
-						<td>
-				<%
-						out.println(yourGrades.get(i));
-						i++;
-				%>
-						</td>
-						<td>
-				<%
-						out.println(yourGrades.get(i));
-						i++;
-				%>
-						</td>
-						<td>
-				<%
-						out.println(yourGrades.get(i));
-						i++;
-				%>
-						</td>
-						<td>
-				<%
-						out.println(yourGrades.get(i));
-						i++;
-				%>
-						</td>
-						<td>
-				<%
-						out.println(yourGrades.get(i));
-				%>
-						</td>
-						</tr>						
-				<%
-					}
-				%>
-				
 			</table>
     
 </div>
@@ -142,48 +98,6 @@ function ShowHide(id){
 					<td bgcolor="Gold"> <b> Creation Date </b> </td>
 					<td bgcolor="Gold"> <b> Deadline Date </b> </td>		
 				</tr>
-  
-  <%
-  		ViewClassAssignmentStudent assignmentBoundary = new ViewClassAssignmentStudent();
-  		List<String> yourAssignment = assignmentBoundary.viewAssignment(student);
-  		
-  		for(int i=0 ; i<yourAssignment.size() ; i++){
-						
-				%>
-						<tr>
-						<td>
-				<%
-						out.println(yourAssignment.get(i));
-						i++;
-				%>
-						</td>
-						<td>
-				<%
-						out.println(yourAssignment.get(i));
-						i++;
-				%>
-						</td>
-						<td>
-				<%
-						out.println(yourAssignment.get(i));
-						i++;
-				%>
-						</td>
-						<td>
-				<%
-						out.println(yourAssignment.get(i));
-						i++;
-				%>
-						</td>
-						<td>
-				<%
-						out.println(yourAssignment.get(i));
-				%>
-						</td>
-						</tr>						
-				<%
-					}
-				%>
 				
 			</table>
   

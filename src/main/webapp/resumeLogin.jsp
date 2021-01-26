@@ -26,11 +26,24 @@
 					<img class="w3-image" src="RESOURCES/images/app_logo.png" alt="Immagine Header" width="60%" height="60%">  
 				</h3>
 				
+					<table border = "2" >
+					<tr>
+					<td>
 				<% 
 					out.println("Username: ");
 					out.println(request.getParameter("insertedUsername"));
+				%>
+					</td>
+					<td>
+				<%
 					out.println("Password: ");
 					out.println(request.getParameter("insertedPassword"));
+				%>
+					</td>
+					</tr>
+					</tr>
+					</td>
+				<%
 					out.println("Role: ");
 				%>
 				
@@ -40,28 +53,32 @@
 					LoginBean bean = new LoginBean(Integer.parseInt(request.getParameter("insertedUsername")),request.getParameter("insertedPassword"));
 					String loginResult = controller.verifyUserWeb(bean);
 					
-					if(loginResult == "Professor")
+					session.setAttribute("userId", request.getParameter("insertedUsername"));
+      				String sessionId = (String)session.getAttribute("userId");    
+					out.println("SESSION: " + sessionId);
+					
+					if(loginResult.equals("Professor"))
 					{
 						out.println(loginResult);
 				%>
 						<a href="mainPageProfessor.jsp" class="w3-bar-item w3-button"> <b> Click Here to Start </b> </a>
 				<%
 					}
-					if( loginResult == "Student") 
+					if( loginResult.equals("Student")) 
 					{
 						out.println(loginResult);
 				%>
 						<a href="mainPageStudent.jsp" class="w3-bar-item w3-button"> <b> Click Here to Start </b> </a>
 				<%
 					}
-					if( loginResult == "Parent") 
+					if( loginResult.equals("Parent")) 
 					{
 						out.println(loginResult);
 				%>						
 						<a href="mainPageParent.jsp" class="w3-bar-item w3-button"> <b> Click Here to Start </b> </a>
 				<%
 					}
-					if( loginResult == "ERROR")
+					if( loginResult.equals("ERROR"))
 					{
 						out.println("ERROR: uncorrected id/password");
 					}

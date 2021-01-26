@@ -30,8 +30,7 @@ public class ViewStudentCareer {
 		//Recupera dalla persistenza nome e cognome dello studente
 		Student extractedStudent = DaoFactory.getStudentDao().getFromId(studentId);
 		String studentName = extractedStudent.getName();
-		String studentSurname =  extractedStudent.getName();
-		
+		String studentSurname =  extractedStudent.getSurname();
 		
 		//Lista di bean da resituire
 		List<ExtendedGrade> convertedGrades = new ArrayList<>();
@@ -53,7 +52,6 @@ public class ViewStudentCareer {
 				Integer mark = grades.get(k).getMark();
 				String type = grades.get(k).getType();
 				Date date = grades.get(k).getDate();
-				
 				
 				ExtendedGrade grade = new ExtendedGrade(studentId, courseName, studentName, studentSurname, date, mark, description, type);
 				convertedGrades.add(grade);
