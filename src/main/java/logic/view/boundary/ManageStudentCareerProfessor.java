@@ -6,22 +6,21 @@ import logic.control.ManageStudentCareer;
 import logic.model.bean.ClassCourseBean;
 import logic.model.bean.ExtendedGrade;
 import logic.model.bean.GradeBean;
-import logic.model.bean.UserBean;
-
 public interface ManageStudentCareerProfessor extends RecoverCourseInformation {
 	
 	
-	//Dato un Grade, un ClassCourse e uno Student -> Aggiungi a quello Student quel Grade
-	public default void addGrade(GradeBean gradeBean, ClassCourseBean classCourseBean, UserBean studentBean) {
+	//Dato un Grade, un id del ClassCourse e un id di uno Student ()-> Aggiungi a quello Student quel Grade
+	//NB questo metodo NON controlla se tale studente fa parte di quel corso, la responsabilita' e' assegnata al chiamante
+	public default void addGrade(GradeBean gradeBean) {
 		//Inizializza il controller per l'esecuzione del caso d'uso
 		ManageStudentCareer controller = new ManageStudentCareer();
 		
 		//esegui il caso d'uso
-		controller.addGrade(gradeBean, classCourseBean, studentBean);
+		controller.addGrade(gradeBean);
 	}
 	
 	
-	//Restituisci tutti i voti di questo corso
+	//Restituisci TUTTI i voti di questo corso
 	public default List<ExtendedGrade> viewExtendedClassCourseGrades(ClassCourseBean classCourseBean){
 		ManageStudentCareer controller = new ManageStudentCareer();
 		return controller.viewClassCourseGrades(classCourseBean);

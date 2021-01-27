@@ -1,6 +1,6 @@
 package logic.control;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,8 +31,8 @@ public class ViewAssignment{
 		for(int i=0 ; i<results.size() ; i++) {
 			String type = results.get(i).getType();
 			String description = results.get(i).getDescription();
-			Date creationDate = results.get(i).getCreationDate();
-			Date deadlineDate = results.get(i).getDeadlineDate();
+			LocalDate creationDate = results.get(i).getCreationDate();
+			LocalDate deadlineDate = results.get(i).getDeadlineDate();
 			
 			//istanzia il bean ed aggiungilo alla lista
 			ExtendedAssignment extendedAssignment = new ExtendedAssignment(type,description,creationDate, deadlineDate,courseName);
@@ -73,8 +73,8 @@ public class ViewAssignment{
 				for(int j=0 ; j<results.size() ; j++) {
 					String type = results.get(j).getType();
 					String description = results.get(j).getDescription();
-					Date creationDate = results.get(j).getCreationDate();
-					Date deadlineDate = results.get(j).getDeadlineDate();
+					LocalDate creationDate = results.get(j).getCreationDate();
+					LocalDate deadlineDate = results.get(j).getDeadlineDate();
 					
 					//istanzia il bean ed aggiungilo alla lista
 					ExtendedAssignment extendedAssignment = new ExtendedAssignment(type,description,creationDate, deadlineDate,courseName);

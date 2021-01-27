@@ -1,10 +1,10 @@
 package logic.model.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import logic.control.SimpleLogger;
@@ -17,9 +17,6 @@ import logic.model.WrittenAssignment;
 public class AssignmentDao implements Dao<Assignment> {
 
 	// Name columns table
-	
-	//private static final String ID = "id";
-	//private static final String COURSE = "course_id";
 	private static final String DELIVERYDATE = "delivery_date";
 	private static final String CREATIONDATE = "creation_date";
 	private static final String TYPE = "type";
@@ -55,8 +52,8 @@ public class AssignmentDao implements Dao<Assignment> {
 				
 				String type = rs.getString(TYPE);
 				String description = rs.getString(DESCRIPTION);
-				Date creationDate = rs.getDate(CREATIONDATE);
-				Date deliveryDate = rs.getDate(DELIVERYDATE);
+				LocalDate creationDate = rs.getDate(CREATIONDATE).toLocalDate();
+				LocalDate deliveryDate = rs.getDate(DELIVERYDATE).toLocalDate();
 
 				Assignment assignment;
 				
@@ -86,11 +83,11 @@ public class AssignmentDao implements Dao<Assignment> {
 	}
 
 
-	//memorizza un assignment nel database, richiede di conoscere la PK del course in cui è stato inserito
+	//memorizza un assignment nel database, richiede di conoscere la PK del ClassCourse
 	public void save(Assignment t, Integer classCourseId) {
 		//Valori da inserire
-		Date deliveryDate = t.getDeadlineDate();
-		Date creationDate = t.getCreationDate();
+		LocalDate deliveryDate = t.getDeadlineDate();
+		LocalDate creationDate = t.getCreationDate();
 		String type = t.getType();
 		String description = t.getDescription();
 		
@@ -145,8 +142,8 @@ public class AssignmentDao implements Dao<Assignment> {
 			do {
 				String type = rs.getString(TYPE);
 				String description = rs.getString(DESCRIPTION);
-				Date creationDate = rs.getDate(CREATIONDATE);
-				Date deadlineDate = rs.getDate(DELIVERYDATE);
+				LocalDate creationDate = rs.getDate(CREATIONDATE).toLocalDate();
+				LocalDate deadlineDate = rs.getDate(DELIVERYDATE).toLocalDate();
 				
 				Assignment assignment;
 				

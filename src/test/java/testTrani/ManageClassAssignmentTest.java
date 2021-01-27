@@ -4,19 +4,22 @@ import java.util.List;
 
 import org.junit.Test;
 
+import logic.control.ManageClassAssignment;
 import logic.control.SimpleLogger;
 import logic.model.bean.ClassCourseBean;
 import logic.model.bean.ExtendedAssignment;
-import logic.view.boundary.ManageClassAssignmentProfessor;
 
+//@author Adriano
 public class ManageClassAssignmentTest {
 	
 	@Test
 	public void classAssignmentTest() {
-		ManageClassAssignmentProfessor boundary = new ManageClassAssignmentProfessor();
+		//crea un bean fittizio
 		ClassCourseBean courseBean = new ClassCourseBean(3);
 		
-		List<ExtendedAssignment> assignments = boundary.viewClassAssignment(courseBean);
+		ManageClassAssignment controller = new ManageClassAssignment();
+		List<ExtendedAssignment> assignments = controller.viewClassAssignment(courseBean);
+
 		for(int i=0 ; i<assignments.size() ; i++) {
 			SimpleLogger.info(assignments.get(i).getCourseName());
 			SimpleLogger.info(assignments.get(i).getDescription());

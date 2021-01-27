@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="css/stile.css">
 
 <%@ page import = "logic.model.bean.*" %>
-<%@ page import = "logic.view.boundary.*" %>
+<%@ page import = "logic.control.*" %>
 <%@ page import = "java.util.List" %>
 
 <script> 
@@ -67,11 +67,12 @@ function apri(url) {
 				</tr>
 				
 				<%
-					ManageStudentCareerProfessor boundary = new ManageStudentCareerProfessor();
-					Integer intSessionId = Integer.parseInt((String)session.getAttribute("userId"));    
+				
+					Integer intSessionId = Integer.parseInt((String)session.getAttribute("userId"));
 					UserBean professor = new UserBean(intSessionId);
 					
-					List<ClassCourseBean> results = boundary.getAllCourses(professor);
+					RecoverClassCourseInformation controller = new RecoverClassCourseInformation();
+					List<ClassCourseBean> results = controller.getAllCourses(professor);					
 					
 					for(int i=0 ; i<results.size() ; i++){
 						

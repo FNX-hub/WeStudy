@@ -1,6 +1,6 @@
 package logic.control;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import logic.model.Assignment;
@@ -38,8 +38,8 @@ public class ManageClassAssignment extends RecoverClassCourseInformation{
 				
 				String type = results.get(i).getType();
 				String description = results.get(i).getDescription();
-				Date creationDate = results.get(i).getCreationDate();
-				Date deadlineDate = results.get(i).getDeadlineDate();
+				LocalDate creationDate = results.get(i).getCreationDate();
+				LocalDate deadlineDate = results.get(i).getDeadlineDate();
 				
 				ExtendedAssignment assignmentBean = new ExtendedAssignment(type,description, creationDate, deadlineDate, courseName);
 				convertedResults.add(assignmentBean);
@@ -53,34 +53,42 @@ public class ManageClassAssignment extends RecoverClassCourseInformation{
 	}
 	
 	//Dato id di un classCourse -> aggiungi un nuovo assignment
-	public void createAssignment(AssignmentBean assignmentBean, ClassCourseBean classCourseBean) {
+	public void createAssignment(AssignmentBean assignmentBean, ClassCourseBean classCourseBean){
 		
 		//Crea assignment con i parametri passati
 		Assignment assignment;
 		String type = assignmentBean.getType();
+		
+		SimpleLogger.info("DEBUG: createAssignment -> TYPE: <"+type+">");
+		
 		switch(type) {
 			case "ORAL":
+				SimpleLogger.info("DEBUG: created ORAL Assignment");
 				assignment = new OralAssignment(type, assignmentBean.getDescription(), assignmentBean.getDeadline());
 				break;
 			case "WRITTEN":
+				SimpleLogger.info("DEBUG: created WRITTEN Assignment");
 				assignment = new WrittenAssignment(type, assignmentBean.getDescription(), assignmentBean.getDeadline());
 				break;
 			case "PROJECT":
+				SimpleLogger.info("DEBUG: created PROJECT Assignment");
 				assignment = new ProjectAssignment(type, assignmentBean.getDescription(), assignmentBean.getDeadline());
 				break;
 			default:
 				assignment = null;
 				break;
 		}
+
+		SimpleLogger.info("DEBUG: created Assignment: " + assignment.getDescription() + "|" + assignment.getType() +  "|" + assignment.getCreationDate() +  "|" + assignment.getDeadlineDate());
+		
 		//Recupera dalla persistenza i dati per inizializzare il ClassCourse a cui correlare l'assignment
 		Integer courseId = classCourseBean.getCourseId();
-		ClassCourse course = DaoFactory.getClassCourseDao().getFromId(courseId);
+		ClassCourse course = DaoFactory.getClassCourseDao().getFromId(courseId);			
 		
 		//Associa il nuovo assignment al suo classCourse corrispondente
 		course.addAssignment(assignment);
 		
-		
 		//Chiama il DAO per mettere in persistenza l'assignment creato
-		DaoFactory.getAssignmentDao().save(assignment);
+		DaoFactory.getAssignmentDao().save(assignment,courseId);
 	}
 }

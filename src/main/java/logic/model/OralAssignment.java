@@ -1,13 +1,13 @@
 package logic.model;
 
-import java.sql.Date;
+import java.time.LocalDate;
 public class OralAssignment extends Assignment{
 
-	public OralAssignment(String type, String description, Date creation, Date deadline) {
+	public OralAssignment(String type, String description, LocalDate creation, LocalDate deadline) {
 		super(type,description,creation,deadline);
 	}
 	
-	public OralAssignment(String type, String description, Date deadline) {
+	public OralAssignment(String type, String description, LocalDate deadline) {
 		super(type,description,deadline);
 	}
 	

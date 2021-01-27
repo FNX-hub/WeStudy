@@ -3,8 +3,7 @@
 %>
 
 <%@ page import = "logic.model.bean.*" %>
-<%@ page import = "logic.view.boundary.*" %>
-<%@ page import = "logic.control.SimpleLogger" %>
+<%@ page import = "logic.control.*" %>
 <%@ page import = "java.util.List" %>
 
 
@@ -52,11 +51,6 @@ function apri(url) {
 </div>
 
 
-<!-- Header -->
-<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
-<!-- UN INUTILE E INVISIBILE HEADER -->
-</header>
-
 
 <!-- Page content -->
 <div class="w3-content w3-padding" style="max-width:1564px">
@@ -82,24 +76,26 @@ function apri(url) {
 				
 				
 				
-				<table padding = "10" > <!-- TABELLA COLOSSALE 1 CHE CONTIENE TUTTO -->
+				<table padding = "10" > <!-- TABELLA COLOSSALE 1  -->
 				
-				<tr> <!-- TABELLA COLOSSALE 1 CHE CONTIENE TUTTO -->
-				<td> <!-- TABELLA COLOSSALE 1 CHE CONTIENE TUTTO -->
+				<tr> <!-- TABELLA COLOSSALE 1  -->
+				<td> <!-- TABELLA COLOSSALE 1  -->
 				<img class="w3-image" src="RESOURCES/images/classRegisterGrades_logo.png" alt="Grades" width="60%" height="100%">
 				</td> <!-- TABELLA 1 COLOSSALE CHE CONTIENE TUTTO -->
-				<td> <!-- TABELLA 1 COLOSSALE CHE CONTIENE TUTTO -->
+				<td> <!-- TABELLA 1 COLOSSALE -->
 				<img class="w3-image" src="RESOURCES/images/classRegisterAssignment_logo.png" alt="Assignment" width="100%" height="100%">
-				</td> <!-- TABELLA COLOSSALE 1 CHE CONTIENE TUTTO -->
-				</tr> <!-- TABELLA COLOSSALE 1 CHE CONTIENE TUTTO -->
+				</td> <!-- TABELLA COLOSSALE 1  -->
+				</tr> <!-- TABELLA COLOSSALE 1  -->
 				
-				<tr> <!-- TABELLA  COLOSSALE 1 CHE CONTIENE TUTTO -->
-				<td> <!-- TABELLA  COLOSSALE 1 CHE CONTIENE TUTTO -->
+				<tr> <!-- TABELLA  COLOSSALE 1 -->
+				<td> <!-- TABELLA  COLOSSALE 1 -->
 				
 				<%
 					ClassCourseBean courseBean = new ClassCourseBean(Integer.parseInt((String)request.getParameter("insertedClassCourseId")));
-					ManageStudentCareerProfessor boundary = new ManageStudentCareerProfessor();
-					List<ExtendedGrade> courseGrades = boundary.viewExtendedClassCourseGrades(courseBean);
+					
+					
+					ManageStudentCareer gradeController = new ManageStudentCareer();
+					List<ExtendedGrade> courseGrades =  gradeController.viewClassCourseGrades(courseBean);
 					
 				%>
 				
@@ -167,13 +163,13 @@ function apri(url) {
 				
 				
 				
-				</td> <!-- TABELLA COLOSSALE 1 CHE CONTIENE TUTTO -->
+				</td> <!-- TABELLA COLOSSALE 1 -->
 				
-				<td> <!-- TABELLA COLOSSALE 1 CHE CONTIENE TUTTO -->
+				<td> <!-- TABELLA COLOSSALE 1  -->
 				
 				<%
-					ManageClassAssignmentProfessor boundaryAssignment = new ManageClassAssignmentProfessor();
-					List<ExtendedAssignment> courseAssignment = boundaryAssignment.viewClassAssignment(courseBean);
+					ManageClassAssignment assignmentController = new ManageClassAssignment();
+					List<ExtendedAssignment> courseAssignment = assignmentController.viewClassAssignment(courseBean);
 				%>
 				
 				
@@ -220,21 +216,25 @@ function apri(url) {
 				
 				
 				
-				</td> <!-- TABELLA COLOSSALE 1 CHE CONTIENE TUTTO -->
-				</tr> <!-- TABELLA COLOSSALE 1 CHE CONTIENE TUTTO -->
+				</td> <!-- TABELLA COLOSSALE 1  -->
+				</tr> <!-- TABELLA COLOSSALE 1  -->
 				
 				</table>
 				
-				<table padding = "10" > <!-- TABELLA 1 COLOSSALE CHE CONTIENE TUTTO -->
+				<hr>
+				<hr>
+				<hr>
 				
-				<tr> <!-- TABELLA COLOSSALE 2 CHE CONTIENE TUTTO -->
+				<table padding = "10" > <!-- TABELLA COLOSSALE 2-->
+				
+				<tr> <!-- TABELLA COLOSSALE 2  -->
 				
 				
-				<td> <!-- TABELLA COLOSSALE 2 CHE CONTIENE TUTTO -->
+				<td> <!-- TABELLA COLOSSALE 2  -->
 				
 						<%
-							ManageStudentCareerProfessor studentsBoundary = new ManageStudentCareerProfessor();
-							List<StudentBean> students = studentsBoundary.getStudents(courseBean);
+							RecoverClassCourseInformation studentsController = new RecoverClassCourseInformation();
+							List<StudentBean> students = studentsController.viewClassCourseStudents(courseBean);
 						%>
 				
 						<table  border="2" >
@@ -276,71 +276,97 @@ function apri(url) {
 						%>
 						</table>
 				
-				</td> <!-- TABELLA COLOSSALE 2 CHE CONTIENE TUTTO -->
+				</td> <!-- TABELLA COLOSSALE 2  -->
+				</tr> <!-- TABELLA COLOSSALE 2  -->
+				</table> <!-- TABELLA COLOSSALE 2  -->
 				
-				<td> <!-- TABELLA COLOSSALE 2 CHE CONTIENE TUTTO -->
+				
+				<hr>
+				<hr>
+				<hr>
+				
+				<table padding = "10"> <!-- TABELLA COLOSSALE 3 -->
+				<tr> <!-- TABELLA COLOSSALE 3 -->
+				<td> <!-- TABELLA COLOSSALE 3 -->
 				
 				<!-- FORM GRADE -->
 				
-				<form action="classes.jsp"> <table border="2" >
-				<tr>
-					<td bgcolor="Gold"> <b> Student </b> </td>
-					<td bgcolor="Gold"> <b> Grade </b> </td>
-					<td bgcolor="Gold"> <b> Type </b> </td>
-					<td bgcolor="Gold"> <b> Date </b> </td>
-				</tr>
+					<form action="insertGrade.jsp"> <table border="2" >
+					
+					<tr>
+						<td bgcolor="Gold"> <b> Course </b> </td>
+						<td bgcolor="Gold"> <b> Student </b> </td>
+						<td bgcolor="Gold"> <b> Grade </b> </td>
+						<td bgcolor="Gold"> <b> Type </b> </td>
+						<td bgcolor="Gold"> <b> Description </b> </td>
+					</tr>
 				
-				<tr>
-					<td> 
-						<select name="SelectStudent" size="1">
+					<tr>
+					
+						<td>
+							<select name="SelectGradeCourse" size="1">
+							<option>
+							<%
+								out.print(courseBean.getCourseId());
+							%>
+							</option>
+							</select> 
+						</td>
+					
+						<td> 
+							<select name="SelectGradeStudent" size="1">
 													
 							
-						<%							
-							
-							for(int i=0 ; i<students.size() ; i++){
-						%>
-							<option>
-						<%
-							out.print(students.get(i).getId());
-						%>
-							</option>
-						<%
-							out.print(students.get(i).getName());
-							out.print(students.get(i).getSurname());
-							}
-						%>
+							<%							
+								for(int i=0 ; i<students.size() ; i++){
+							%>
+								<option>
+							<%
+								out.print(students.get(i).getId());
+							%>
+								</option>
+							<%
+								out.print(students.get(i).getName());
+								out.print(students.get(i).getSurname());
+								}
+							%>
 
-						</select> 
-					</td>
+							</select> 
+						</td>
 
-					<td> 
-						<select name="SelectGrade" size="1">
-						<option>0</option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-						<option>6</option>
-						<option>7</option>
-						<option>8</option>
-						<option>9</option>
-						<option>10</option>
-						</select> 
-					</td>
+						<td> 
+							<select name="SelectGrade" size="1">
+							<option>0</option>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>10</option>
+							</select> 
+						</td>
 
-					<td> 
-						<select name="SelectTestType" size="1">
-						<option>Written Test</option>
-						<option>Oral Test</option>
-						<option>Project</option>
-						</select> 
-					</td>
-					<td>
-						<input type="date" id="start" name="trip-start" value="2020-09-30" min="2000-01-01" max="2030-12-31">
-					</td>
-				
-					
+						<td> 
+							<select name="SelectGradeType" size="1">
+							<option>WRITTEN</option>
+							<option>ORAL</option>
+							<option>PROJECT</option>
+							</select> 
+						</td>
+						
+						
+						<td>
+							<input type="text" name="SelectGradeDescription"> 
+						</td>
+						
+						<!-- <input name="SelectCourse"> -->
+						
+						
+						
 				</tr>
 				
 				</table>
@@ -349,67 +375,43 @@ function apri(url) {
 				
 				
 				
-				</td> <!-- TABELLA COLOSSALE 2 CHE CONTIENE TUTTO -->
+				</td> <!-- TABELLA COLOSSALE 3  -->
 				
-				<td> <!-- TABELLA COLOSSALE 2 CHE CONTIENE TUTTO -->
+				<td> <!-- TABELLA COLOSSALE 3 -->
 				
 				<!-- FORM ASSIGNMENT -->
 				
-				<form> <table border="2" >
+				<form action="insertAssignment.jsp"> <table border="2" >
 				<tr>
+					<td bgcolor="Gold"> <b> Course </b> </td>
 					<td bgcolor="Gold"> <b> Type </b> </td>
 					<td bgcolor="Gold"> <b> Description </b> </td>
 					<td bgcolor="Gold"> <b> Deadline date </b> </td>
 				</tr>
 				
 				<tr>
-					<td> 
-						<select name="SelectStudent" size="1">
-						<option>DINAMICAMENTE</option>
-						<option>dinamicamente</option>
-						<option>DINAmicamente</option>
-						<option>DINAmicamente</option>
-						<option>DINAmicamente</option>
-						<option>DINAmicamente</option>
-						<option>DINAmicamente</option>
-						<option>DINAmicamente</option>
-						<option>DINAmicamente</option>
-						</select> 
-					</td>
-
-					<td> 
-						<select name="SelectSubject" size="1">
-						<option>DINAMICAMENTE</option>
-						<option>dinamicamente</option>
-						<option>DINAmicamente</option>
-						</select> 
-					</td>
-
-					<td> 
-						<select name="SelectGrade" size="1">
-						<option>0</option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-						<option>6</option>
-						<option>7</option>
-						<option>8</option>
-						<option>9</option>
-						<option>10</option>
-						</select> 
-					</td>
-
-					<td> 
-						<select name="SelectTestType" size="1">
-						<option>Written Test</option>
-						<option>Oral Test</option>
-						<option>Project</option>
-						</select> 
-					</td>
 					<td>
-						<input type="date" id="start" name="trip-start" value="2020-09-30" min="2000-01-01" max="2030-12-31">
+						<select name="SelectAssignmentCourse" size="1">
+						<option>
+						<% out.print(courseBean.getCourseId()); %>
+						</option>
+						</select> 
+					</td>
+				
+					<td> 
+						<select name="SelectAssignmentType" size="1">
+						<option>WRITTEN</option>
+						<option>ORAL</option>
+						<option>PROJECT</option>
+						</select> 
+					</td>				
+				
+					<td> 
+						<input type="text" name="SelectAssignmentDescription"> 
+					</td>
+					
+					<td>
+						<input type="date" id="start" name="SelectAssignmentDeadline" value="2020-09-30" min="2000-01-01" max="2099-12-31">
 					</td>
 					
 				</tr>
@@ -419,9 +421,9 @@ function apri(url) {
 				</form>
 				
 				
-				</td> <!-- TABELLA COLOSSALE 2 CHE CONTIENE TUTTO -->
-				</tr> <!-- TABELLA COLOSSALE 2 CHE CONTIENE TUTTO -->
-				</table> <!-- TABELLA COLOSSALE 2 CHE CONTIENE TUTTO -->
+				</td> <!-- TABELLA COLOSSALE 3  -->
+				</tr> <!-- TABELLA COLOSSALE 3  -->
+				</table> <!-- TABELLA COLOSSALE 3  -->
 				
 				
 				<hr>

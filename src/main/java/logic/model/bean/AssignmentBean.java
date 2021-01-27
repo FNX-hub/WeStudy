@@ -1,17 +1,23 @@
 package logic.model.bean;
-import java.sql.Date;
+import java.time.LocalDate;
 
+//@author Adriano
 public class AssignmentBean {
 	private Integer id;
 	private String type;
 	private String description;
-	private Date deadline;
+	private LocalDate deadline;
 	
-	//Utilizzato per crearne uno nuovo
-	public AssignmentBean(String type, String description) {
+	//Utilizzato dalla GUI
+	public AssignmentBean(String type, String description, LocalDate deadline) throws WrongDeclarationCustomException{
+		
+		//lancia eccezione se viene fornita da input una deadline precedente alla data corrente
+		if(deadline.compareTo(LocalDate.now())<0) {
+			throw new WrongDeclarationCustomException("Wrong parameters");
+		}
 		this.type = type;
 		this.description = description;
-		
+		this.deadline = deadline;
 	}
 	
 	//Utilizzato dalla DAO
@@ -40,11 +46,11 @@ public class AssignmentBean {
 		this.description = description;
 	}
 
-	public Date getDeadline() {
+	public LocalDate getDeadline() {
 		return deadline;
 	}
 
-	public void setDeadline(Date deadline) {
+	public void setDeadline(LocalDate deadline) {
 		this.deadline = deadline;
 	}
 }

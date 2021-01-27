@@ -8,7 +8,7 @@
 
 
 <%@ page import = "logic.model.bean.*" %>
-<%@ page import = "logic.view.boundary.*" %>
+<%@ page import = "logic.control.*" %>
 <%@ page import = "java.util.List" %>
 
 <script>
@@ -72,12 +72,12 @@ function ShowHide(id){
 				
 				
 				<%
-					ViewStudentCareerStudent boundary = new ViewStudentCareerStudent();
 					String strSessionId = (String)session.getAttribute("userId");
 					Integer intSessionId = Integer.parseInt(strSessionId);
 					UserBean studentBean = new UserBean(intSessionId);
 					
-					List<ExtendedGrade> grades = boundary.view(studentBean);
+					ViewStudentCareer gradeController = new ViewStudentCareer();
+					List<ExtendedGrade> grades = gradeController.getExtendedStudentCareer(studentBean);
 					
 					for(int i=0 ; i<grades.size() ; i++){
 					
@@ -149,8 +149,10 @@ function ShowHide(id){
 				</tr>
 				
 				<%
-					ViewClassAssignmentStudent boundary2 = new ViewClassAssignmentStudent();
-					List<ExtendedAssignment> assignments = boundary2.viewAssignment(studentBean);
+					ViewAssignment assignmentController = new ViewAssignment();
+					List<ExtendedAssignment> assignments =  assignmentController.viewAssignmentStudent(studentBean);
+					
+					
 					try{
 					
 						for(int i=0 ; i<assignments.size() ; i++){
@@ -199,10 +201,10 @@ function ShowHide(id){
 					%>
 					
 						<td> No Assignments </td>
-						<td> No Assignments  </td>
 						<td> No Assignments </td>
-						<td> No Assignments  </td>
-						<td> No Assignments  </td>
+						<td> No Assignments </td>
+						<td> No Assignments </td>
+						<td> No Assignments </td>
 						
 					<%
 					}

@@ -11,9 +11,9 @@ import logic.control.SimpleLogger;
 import logic.model.bean.ClassCourseBean;
 import logic.model.bean.ExtendedGrade;
 import logic.model.bean.StudentBean;
-import logic.view.boundary.ManageStudentCareerProfessor;
 
 public class ManageStudentCareerTest {
+	
 	
 	@Test
 	//SIMULA ESECUZIONE COMPLETA
@@ -28,7 +28,7 @@ public class ManageStudentCareerTest {
 		
 		//Esecuzione del caso d'uso
 		ManageStudentCareer controller = new ManageStudentCareer();
-		List<StudentBean> students = controller.
+		List<StudentBean> students = controller.viewClassCourseStudents(course);
 		
 		//Stampa di controllo
 		for(int i=0 ; i<students.size() ; i++) {
@@ -48,11 +48,14 @@ public class ManageStudentCareerTest {
 		Integer ActualNumOfGrades;
 		Integer ExpectedNumOfGrades = 0;
 		
-		//Eseguo il caso d'uso
-		ManageStudentCareerProfessor boundary = new ManageStudentCareerProfessor();
+		
+		
 		//Richiedi un ClassCourse non esistente
 		ClassCourseBean courseBean = new ClassCourseBean(1998);
-		List<ExtendedGrade> grades = boundary.viewExtendedClassCourseGrades(courseBean);
+		
+		//Eseguo il caso d'uso
+		ManageStudentCareer controller = new ManageStudentCareer();
+		List<ExtendedGrade> grades = controller.viewClassCourseGrades(courseBean);
 		
 		//Stampa di controllo
 		for(int i=0 ; i<grades.size() ; i++) {

@@ -1,20 +1,19 @@
 package logic.model.bean;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 //author Adriano
 
 
 public class ExtendedAssignment{
-	private Date creationDate;
-	private Date deadlineDate;
+	private LocalDate creationDate;
+	private LocalDate deadlineDate;
 	private String description;
 	private String type;
 	private String courseName;
 	
 	//Per recuperarlo dalla persistenza
-		public ExtendedAssignment(String type, String description, Date creation, Date deadline) {
+		public ExtendedAssignment(String type, String description, LocalDate creation, LocalDate deadline) {
 			this.type = type;
 			this.description = description;
 			this.creationDate = creation;
@@ -25,20 +24,20 @@ public class ExtendedAssignment{
 		public ExtendedAssignment(String type, String description) {
 			this.type = type;
 			this.description = description;
-			this.creationDate = Date.valueOf(LocalDate.now());
+			this.creationDate = LocalDate.now();
 		}
 		
-		public ExtendedAssignment(String type, String description, Date creation, Date deadline, String courseName){
+		public ExtendedAssignment(String type, String description, LocalDate creation, LocalDate deadline, String courseName){
 			this(type,description,creation,deadline);
 			this.courseName = courseName;
 		}
 		
 
-		public Date getCreationDate() {
+		public LocalDate getCreationDate() {
 			return creationDate;
 		}
 
-		public Date getDeadlineDate() {
+		public LocalDate getDeadlineDate() {
 			return deadlineDate;
 		}
 
@@ -46,11 +45,11 @@ public class ExtendedAssignment{
 			return description;
 		}
 
-		public void setCreationDate(Date creationDate) {
+		public void setCreationDate(LocalDate creationDate) {
 			this.creationDate = creationDate;
 		}
 
-		public void setDeadlineDate(Date deadlineDate) {
+		public void setDeadlineDate(LocalDate deadlineDate) {
 			this.deadlineDate = deadlineDate;
 		}
 

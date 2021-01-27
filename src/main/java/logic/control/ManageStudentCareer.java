@@ -11,31 +11,30 @@ import logic.model.bean.ClassCourseBean;
 import logic.model.bean.ExtendedGrade;
 import logic.model.ClassCourse;
 import logic.model.bean.GradeBean;
-import logic.model.bean.UserBean;
 import logic.model.dao.DaoFactory;
 
 //@author Adriano
-//Estensione necessaria: utilizza metodi comuni ad un altro controller di un altro caso d'uso
 public class ManageStudentCareer extends RecoverClassCourseInformation{
 	
 	//Dato un Grade e uno Student -> aggiungi quel Grade a quello Student
-	public void addGrade(GradeBean gradeBean, ClassCourseBean classCourseBean, UserBean studentBean) {
-		
-		Integer courseId = classCourseBean.getCourseId();
-		Integer studentId = studentBean.getId();
-		
-		String description = gradeBean.getDescription();
-		String type = gradeBean.getType();
-		Integer value = gradeBean.getValue();
-		
-		//Recupera dalla persistenza il classCourse corrispondente
-		ClassCourse temporaryCourse = new ClassCourse(courseId);
-		
-		Grade grade = new Grade(temporaryCourse,value, description, type);
+		public void addGrade(GradeBean gradeBean) {
 			
-		//Istanzia una DAO e memorizza il Grade nella persistenza
-		DaoFactory.getGradeDao().save(grade,studentId,courseId);
-	}
+			Integer courseId = gradeBean.getClassCourse();
+			Integer studentId = gradeBean.getStudentId();
+			
+			String description = gradeBean.getDescription();
+			String type = gradeBean.getType();
+			Integer value = gradeBean.getValue();
+			
+			//Recupera dalla persistenza il classCourse corrispondente
+			ClassCourse temporaryCourse = new ClassCourse(courseId);
+			
+			Grade grade = new Grade(temporaryCourse,value, description, type);
+				
+			//Istanzia una DAO e memorizza il Grade nella persistenza
+			DaoFactory.getGradeDao().save(grade,studentId,courseId);
+		}
+		
 	
 	
 	//Dato id di un ClassCourse -> restituisci TUTTI i Grade

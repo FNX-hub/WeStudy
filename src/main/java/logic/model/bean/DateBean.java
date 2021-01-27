@@ -1,5 +1,6 @@
 package logic.model.bean;
 
+
 public class DateBean {
 	Integer day;
 	Integer month;

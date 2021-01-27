@@ -1,5 +1,6 @@
 package logic.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /* author Adriano */
@@ -14,9 +15,21 @@ public class ClassCourse {
 		this.id = id;
 	}
 	
+	
+	//Inizializza un ClassCourse
+	public ClassCourse(String subject, Integer id, List<Assignment> assignmentList, List<Student> studentList)  {
+		this.subject = subject;
+		this.id = id;
+		this.assignments = assignmentList;
+		this.students = studentList;
+	}
+	
+	//Inizializza un ClassCourse privo di Student e Assignment
 	public ClassCourse(String subject, Integer id) {
 		this.subject = subject;
 		this.id = id;
+		this.assignments = new ArrayList<>();
+		this.students = new ArrayList<>();
 	}
 	
 	public ClassCourse(String subject) {

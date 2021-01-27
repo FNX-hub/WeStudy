@@ -13,10 +13,9 @@ import logic.model.dao.DaoFactory;
 //@author Adriano
 //Semplice elemento del dominio della soluzione con la responsabilita' di restituire alla GUI 
 //alcuni bean propedeutici all'esecuzione di diversi casi d'uso
-//Tutti i controller di casi d'uso che hanno bisogno di questi metodi mandano un messaggio a questa classe
+//Tutti i controller di casi d'uso che hanno bisogno di questi metodi estendono questa classe
 
-//IDEA ALTERNATIVA SCARTATA: una interface con questi metodi
-//	tutte le boundary che necessitano questi metodi implementano l'interfaccia
+
 public class RecoverClassCourseInformation {
 	
 	//Dato id dello Student -> restituisci TUTTI i classCourse che frequenta

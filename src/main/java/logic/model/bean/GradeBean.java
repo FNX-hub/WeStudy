@@ -8,6 +8,19 @@ public class GradeBean {
 	String description;
 	String type; //ORAL, WRITTEN, PROJECT
 	
+	public GradeBean(Integer studentId, Integer grade, String description, Integer classCourse, String type) throws WrongDeclarationCustomException {
+		//Controllo sintassi 
+		if(classCourse < 0 || studentId < 0) {
+			throw new WrongDeclarationCustomException("Wrong parameters");
+		}
+		
+		this.studentId = studentId;
+		this.value = grade;
+		this.description = description;
+		this.type = type;
+		this.classCourse = classCourse;
+	}
+	
 	public GradeBean(Integer grade, String description, Integer classCourse, String type) {
 		this.value = grade;
 		this.description = description;
