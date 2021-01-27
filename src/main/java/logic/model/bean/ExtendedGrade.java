@@ -1,94 +1,116 @@
 package logic.model.bean;
 
 import java.sql.Date;
+import java.time.LocalDate;
+
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class ExtendedGrade {
-	private Integer studentId;
-	private String coursename;
-	private String studentName;
-	private String studentSurname;
-	private Date databaseDate;
-	private Integer mark;
-	private String description;
-	private String type;
+	private IntegerProperty studentId;
+	private StringProperty coursename;
+	private StringProperty studentName;
+	private StringProperty studentSurname;
+	private ObjectProperty<LocalDate> databaseDate;
+	private SimpleIntegerProperty mark;
+	private StringProperty description;
+	private StringProperty type;
 	
 	
 	
 	public ExtendedGrade(Integer studentId, String studentName, String studentSurname, Date date, Integer mark, String description, String type) {
-		this.studentId = studentId;
-		this.studentName = studentName;
-		this.studentSurname = studentSurname;
-		this.databaseDate = date;
-		this.mark = mark;
-		this.description = description;
-		this.type = type;		
+		this.studentId = new SimpleIntegerProperty(studentId);
+		this.studentName = new SimpleStringProperty(studentName);
+		this.studentSurname = new SimpleStringProperty(studentSurname);
+		this.databaseDate = new SimpleObjectProperty<>(LocalDate.parse(date.toString()));
+		this.mark = new SimpleIntegerProperty(mark);
+		this.description = new SimpleStringProperty(description);
+		this.type = new SimpleStringProperty(type);		
 	}
 	
 	
 	public ExtendedGrade(Integer studentId, String courseName, String studentName, String studentSurname, Date date, Integer mark, String description, String type) {
-		this.studentId = studentId;
-		this.coursename = courseName;
-		this.studentName = studentName;
-		this.studentSurname = studentSurname;
-		this.databaseDate = date;
-		this.mark = mark;
-		this.description = description;
-		this.type = type;		
+		this.studentId = new SimpleIntegerProperty(studentId);
+		this.coursename = new SimpleStringProperty(courseName);
+		this.studentName = new SimpleStringProperty(studentName);
+		this.studentSurname = new SimpleStringProperty(studentSurname);
+		this.databaseDate = new SimpleObjectProperty<>(LocalDate.parse(date.toString()));
+		this.mark = new SimpleIntegerProperty(mark);
+		this.description = new SimpleStringProperty(description);
+		this.type = new SimpleStringProperty(type);				
 	}
 	
 	public Integer getStudentId() {
-		return studentId;
+		return studentId.get();
 	}
 	public String getCoursename() {
-		return coursename;
+		return coursename.get();
 	}
 	public String getStudentName() {
-		return studentName;
+		return studentName.get();
 	}
 	public String getStudentSurname() {
-		return studentSurname;
+		return studentSurname.get();
 	}
-	public Date getDatabaseDate() {
-		return databaseDate;
+	public LocalDate getDatabaseDate() {
+		return databaseDate.get();
 	}
 	public void setStudentId(Integer studentId) {
-		this.studentId = studentId;
+		this.studentId = new SimpleIntegerProperty(studentId);
 	}
 	public void setCoursename(String coursename) {
-		this.coursename = coursename;
+		this.coursename = new SimpleStringProperty(coursename);
 	}
 	public void setStudentName(String studentName) {
-		this.studentName = studentName;
+		this.studentName = new SimpleStringProperty(studentName);
 	}
 	public void setStudentSurname(String studentSurname) {
-		this.studentSurname = studentSurname;
+		this.studentSurname = new SimpleStringProperty(studentSurname);
 	}
 	public void setDatabaseDate(Date databaseDate) {
-		this.databaseDate = databaseDate;
+		this.databaseDate = new SimpleObjectProperty<>(LocalDate.parse(databaseDate.toString()));
 	}
 
 	public Integer getMark() {
-		return mark;
+		return mark.get();
 	}
 
 	public String getDescription() {
-		return description;
+		return description.get();
 	}
 
 	public String getType() {
-		return type;
+		return type.get();
 	}
 
 	public void setMark(Integer mark) {
-		this.mark = mark;
+		this.mark = new SimpleIntegerProperty(mark);
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		this.description = new SimpleStringProperty(description);
 	}
 
 	public void setType(String type) {
-		this.type = type;
+		this.type = new SimpleStringProperty(type);
+	}
+
+
+	public ObjectProperty<LocalDate> dateProperty() {
+		return databaseDate;
+	}
+
+	public IntegerProperty markProperty() {
+		return mark;
+	}
+
+
+	public StringProperty coursenameProperty() {
+		return coursename;
 	}
 	
 	

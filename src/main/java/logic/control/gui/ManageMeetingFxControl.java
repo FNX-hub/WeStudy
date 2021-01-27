@@ -42,12 +42,12 @@ public class ManageMeetingFxControl implements ManageMeetingBoundary, Observer {
 	
 	@FXML
 	private void initialize() {
-		tbColDate.setCellValueFactory(cellData -> cellData.getValue().dateProperty()); 
-		tbColSurname.setCellValueFactory(cellData -> cellData.getValue().parentSurnameProperty());
-		beanList = FXCollections.observableArrayList();
-		tvMeetingTable.setItems(beanList);
-		tvMeetingTable.getSelectionModel().selectedItemProperty().addListener(
-				(observable, oldValue, newValue) -> showMeetingDetails(newValue));
+//		tbColDate.setCellValueFactory(cellData -> cellData.getValue().dateProperty()); 
+//		tbColSurname.setCellValueFactory(cellData -> cellData.getValue().parentSurnameProperty());
+//		beanList = FXCollections.observableArrayList();
+//		tvMeetingTable.setItems(beanList);
+//		tvMeetingTable.getSelectionModel().selectedItemProperty().addListener(
+//				(observable, oldValue, newValue) -> showMeetingDetails(newValue));
 	}
 	
 	private void showMeetingDetails(MeetingBean meeting) {
@@ -95,7 +95,18 @@ public class ManageMeetingFxControl implements ManageMeetingBoundary, Observer {
 
 	public void setSession(UserBean session) {
 		this.session = session;
-		if(session.getType().equals(UserType.PARENT)) tbColSurname.setText("Professor");
-		else tbColSurname.setText("Parent");
+		tbColDate.setCellValueFactory(cellData -> cellData.getValue().dateProperty()); 
+		if(session.getType().equals(UserType.PARENT)) {
+			tbColSurname.setText("Professor");
+			tbColSurname.setCellValueFactory(cellData -> cellData.getValue().professorSurnameProperty());
+		}
+		else {
+			tbColSurname.setText("Parent");
+			tbColSurname.setCellValueFactory(cellData -> cellData.getValue().parentSurnameProperty());
+		}
+		beanList = FXCollections.observableArrayList();
+		tvMeetingTable.setItems(beanList);
+		tvMeetingTable.getSelectionModel().selectedItemProperty().addListener(
+				(observable, oldValue, newValue) -> showMeetingDetails(newValue));
 	}
 }

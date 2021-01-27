@@ -37,7 +37,6 @@ public class ViewStudentCareer {
 		
 		//Richiedi la lista di ClassCourse che lo studente frequenta
 		List<ClassCourse> courses = DaoFactory.getClassCourseDao().getFromStudentId(studentId);
-		
 		//Per ogni ClassCourse nella lista -> richiedi tutti i grade presi da quello studente
 		for(int i=0 ; i<courses.size() ; i++) {
 			Integer courseId = courses.get(i).getId();
@@ -45,7 +44,6 @@ public class ViewStudentCareer {
 			
 			//Richiedi TUTTI i grade in quel ClassCourse presi da quello student
 			List<Grade> grades = DaoFactory.getGradeDao().getStudentCourseGrades(courseId, studentId);
-			
 			//Per ogni Grade ottenuto -> Convertilo nel formato del bean e aggiungilo alla lista
 			for(int k=0 ; k<grades.size() ; k++) {
 				String description = grades.get(k).getDescription();

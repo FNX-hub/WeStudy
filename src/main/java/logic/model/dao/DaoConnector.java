@@ -49,10 +49,18 @@ public class DaoConnector {
 			url = reader.readLine();
 			user = reader.readLine();
 			password = reader.readLine();
-			this.connection = DriverManager.getConnection(url, user, password);
-		} catch (IOException io) {
-			// TODO abstract factory method for error handling
-			SimpleLogger.severe(io.getMessage());
+			if(url==null || user==null || password==null) throw new IOException();
+			if(url.isBlank() || user.isBlank() || password.isBlank()) throw new IOException();
+		} catch (IOException e) {
+			SimpleLogger.severe(e.getMessage());
+			url = "jdbc:mysql://localhost/westudy";
+			user = password = "application";
+		}
+		try {
+			this.connection = DriverManager.getConnection(url, user, password);			
+		}
+		catch (SQLException sql) {
+			System.exit(1);
 		}
 	}
 	

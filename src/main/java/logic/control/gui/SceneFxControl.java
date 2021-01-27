@@ -68,7 +68,11 @@ public class SceneFxControl {
 	@FXML
 	private void openGrades() {
 		try {
-			sceneRoot.setCenter(new FXMLLoader(getClass().getResource("/ChatMessageB.fxml")).load());
+			stage.setTitle("Student Career");
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Grades.fxml"));
+			sceneRoot.setCenter(loader.load());
+			ViewStudentCareerFxControl controlFx = loader.getController();
+			controlFx.setSession(userSession);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
@@ -109,6 +113,7 @@ public class SceneFxControl {
 		case PARENT:
 			menuItemQuestion.setVisible(false);
 			menuItemCourse.setVisible(false);
+			menuItemGrade.setVisible(false);
 			openBookings();
 			break;
 		case PROFESSOR:
@@ -116,6 +121,7 @@ public class SceneFxControl {
 			break;
 		case STUDENT:
 			menuItemBookings.setVisible(false);
+			openGrades();
 			break;
 		default:
 			break;

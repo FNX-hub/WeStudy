@@ -39,7 +39,7 @@ public class ClassCourseDao implements Dao<ClassCourse>{
 	
 	//Dato id di uno studente, restituisci TUTTI i corsi di cui fa parte
 		public List<ClassCourse> getFromStudentId(Integer studentId){
-			List<ClassCourse> courses = new ArrayList<ClassCourse>();
+			List<ClassCourse> courses = new ArrayList<>();
 			
 			String query = String.format(SELECT_BY_STUDENT_ID,studentId);
 			
@@ -73,7 +73,7 @@ public class ClassCourseDao implements Dao<ClassCourse>{
 	
 	//Dato id di un docente, restituisci TUTTI i corsi in cui insegna
 	public List<ClassCourse> getFromProfessorId(Integer professorId){
-		List<ClassCourse> courses = new ArrayList<ClassCourse>();
+		List<ClassCourse> courses = new ArrayList<>();
 		
 		String query = String.format(SELECT_BY_PROF_ID,professorId);
 		
@@ -134,7 +134,7 @@ public class ClassCourseDao implements Dao<ClassCourse>{
 	//restituisci TUTTI i course presenti
 	@Override
 	public List<ClassCourse> getAll() {
-		List<ClassCourse> courses = new ArrayList<ClassCourse>();
+		List<ClassCourse> courses = new ArrayList<>();
 		
 		String query = String.format(SELECT_ALL);
 		
