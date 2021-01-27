@@ -62,6 +62,7 @@ public class ManageStudentCareer{
 	//Dato id di un ClassCourse -> restituisci TUTTI i Grade
 	public List<ExtendedGrade> viewClassCourseGrades(ClassCourseBean  classCourseBean){
 		
+		
 		//Risultato sotto forma di Lista di Bean
 		List<ExtendedGrade> convertedCourseGrades = new ArrayList<>();
 	
@@ -83,14 +84,16 @@ public class ManageStudentCareer{
 			
 			//Inizializza un DAO per effettuare la query e prendere i Grade
 			//Risultato sottoforma di Lista di Entity
-			List<Grade> courseGrades = DaoFactory.getGradeDao().getStudentGrades(studentId);
+			List<Grade> courseGrades = DaoFactory.getGradeDao().getStudentCourseGrades(courseId,studentId);
 			
 			for(int k=0 ; k<courseGrades.size() ; k++) {
+				
 				Date date = courseGrades.get(k).getDate();
 				String description = courseGrades.get(k).getDescription();
 				Integer mark = courseGrades.get(k).getMark();
 				String type = courseGrades.get(k).getType();
-			
+				SimpleLogger.info("DEBUG: GRADE NUMERO (" + k + ")" + date + "/" + description + "/" + mark + "/" + type);
+				
 				ExtendedGrade grade = new ExtendedGrade(studentId,studentName, studentSurname, date,mark, description, type);
 				
 				convertedCourseGrades.add(grade);

@@ -8,9 +8,8 @@ import logic.model.bean.LoginBean;
 import logic.model.bean.Session;
 import logic.model.dao.DaoFactory;
 
-//public class LoginBean extends HttpServlet
 
-//@author Simone
+//@author Simone e Adriano
 public class LoginControl {
 	
 	public LoginControl() {

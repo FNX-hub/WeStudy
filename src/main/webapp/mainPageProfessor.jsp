@@ -26,11 +26,11 @@ function apri(url) {
     <div class="w3-right w3-hide-small">
   
       <a href="mainPageProfessor.jsp" class="w3-bar-item w3-button"> <b> <font color="gold"> Home </font> </b> </a>
-      <a href="profComingSoon.jsp" class="w3-bar-item w3-button"> <b> Material </b> </a>
-      <a href="profComingSoon.jsp" class="w3-bar-item w3-button"> <b> Question </b> </a>
-      <a href="profComingSoon.jsp" class="w3-bar-item w3-button"> <b> Events </b> </a>
+      <a class="w3-bar-item w3-button"> <b> Material </b> </a>
+      <a class="w3-bar-item w3-button"> <b> Question </b> </a>
+      <a class="w3-bar-item w3-button"> <b> Events </b> </a>
       <a href="meeting.html" class="w3-bar-item w3-button"> <b> Meeting </b> </a>
-      <a href="profComingSoon.jsp" class="w3-bar-item w3-button"> <b> Profile </b> </a>
+      <a class="w3-bar-item w3-button"> <b> Profile </b> </a>
       <a href="logout.jsp" class="w3-bar-item w3-button"> <b> Logout</b> </a>
       <% 
       		String sessionId = (String)session.getAttribute("userId");    
@@ -67,12 +67,11 @@ function apri(url) {
 				</tr>
 				
 				<%
-					ManageClassAssignmentProfessor boundary = new ManageClassAssignmentProfessor();
+					ManageStudentCareerProfessor boundary = new ManageStudentCareerProfessor();
+					Integer intSessionId = Integer.parseInt((String)session.getAttribute("userId"));    
+					UserBean professor = new UserBean(intSessionId);
 					
-					out.println("ID DEL PROF HARDCODED PER ADESSO");
-					UserBean professor = new UserBean(1);
-					
-					List<String> results = boundary.getClassCourses(professor);
+					List<ClassCourseBean> results = boundary.getAllCourses(professor);
 					
 					for(int i=0 ; i<results.size() ; i++){
 						
@@ -80,13 +79,12 @@ function apri(url) {
 						<tr>
 						<td>
 				<%
-						out.println(results.get(i));
-						i++;
+						out.println(results.get(i).getCourseId());
 				%>
 						</td>
 						<td>
 				<%
-						out.println(results.get(i));
+						out.println(results.get(i).getSubject());
 				%>
 						</td>
 						</tr>						
@@ -99,21 +97,19 @@ function apri(url) {
 			<hr>
 			
 			
-			<form action="classes.jsp" class="form-signin" id="login" role="form" method="post">
+			<form action="classes.jsp" class="form-signin" id="classChoice" role="form" method="post">
 			
 				<select name="insertedClassCourseId" size="1">
 						
 			<%
-				for(int i=0 ; i<results.size() ; i=i+2){
+				for(int i=0 ; i<results.size() ; i++){
 			%>
 					
 						<option>
 							<%
-								out.println(results.get(i));
+								out.println(results.get(i).getCourseId());
 							%>
 						</option>
-
-						
 			<%
 				}
 			%>

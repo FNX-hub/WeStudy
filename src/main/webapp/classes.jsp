@@ -35,11 +35,11 @@ function apri(url) {
     <div class="w3-right w3-hide-small">
   
       <a href="mainPageProfessor.jsp" class="w3-bar-item w3-button"> <b> Home </b> </a>
-      <a href="professorMaterial.html" class="w3-bar-item w3-button"> <b> Material </b> </a>
-      <a href="questions.html" class="w3-bar-item w3-button"> <b> Question </b> </a>
-      <a href="events.html" class="w3-bar-item w3-button"> <b> Events </b> </a>
+      <a class="w3-bar-item w3-button"> <b> Material </b> </a>
+      <a class="w3-bar-item w3-button"> <b> Question </b> </a>
+      <a class="w3-bar-item w3-button"> <b> Events </b> </a>
       <a href="meeting.html" class="w3-bar-item w3-button"> <b> Meeting </b> </a>
-      <a href="yourPage.html" class="w3-bar-item w3-button"> <b> Profile </b> </a>
+      <a class="w3-bar-item w3-button"> <b> Profile </b> </a>
       <a href="logout.jsp" class="w3-bar-item w3-button"> <b> Logout</b> </a>
       <% 
       		String sessionId = (String)session.getAttribute("userId");
@@ -97,9 +97,9 @@ function apri(url) {
 				<td> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
 				
 				<%
-					ClassCourseBean courseBean = new ClassCourseBean(Integer.parseInt(request.getParameter("insertedClassCourseId")));
+					ClassCourseBean courseBean = new ClassCourseBean(Integer.parseInt((String)request.getParameter("insertedClassCourseId")));
 					ManageStudentCareerProfessor boundary = new ManageStudentCareerProfessor();
-					List<String> courseGrades = boundary.viewExtendedClassCourseGrades(courseBean);
+					List<ExtendedGrade> courseGrades = boundary.viewExtendedClassCourseGrades(courseBean);
 					
 				%>
 				
@@ -125,43 +125,37 @@ function apri(url) {
 					<tr>
 					<td>
 				<%
-						out.print(courseGrades.get(i));
-						i++;
+						out.print(courseGrades.get(i).getStudentId());
 				%>
 					</td>
 					<td>
 				<%
-						out.print(courseGrades.get(i));
-						i++;
+						out.print(courseGrades.get(i).getStudentName());
 				%>
 					</td>
 					<td>
 				<%
-						out.print(courseGrades.get(i));
-						i++;
+						out.print(courseGrades.get(i).getStudentSurname());
 				%>
 					</td>
 					<td>
 				<%
-						out.print(courseGrades.get(i));
-						i++;
+						out.print(courseGrades.get(i).getMark());
 				%>
 					</td>
 					<td>
 				<%
-						out.print(courseGrades.get(i));
-						i++;
+						out.print(courseGrades.get(i).getType());
 				%>
 					</td>
 					<td>
 				<%
-						out.print(courseGrades.get(i));
-						i++;
+						out.print(courseGrades.get(i).getDescription());
 				%>
 					</td>
 					<td>
 				<%
-						out.print(courseGrades.get(i));
+						out.print(courseGrades.get(i).getDatabaseDate());
 				%>
 					</td>
 					</tr>	
@@ -179,7 +173,7 @@ function apri(url) {
 				
 				<%
 					ManageClassAssignmentProfessor boundaryAssignment = new ManageClassAssignmentProfessor();
-					List<String> courseAssignment = boundaryAssignment.viewAssignments(courseBean);
+					List<ExtendedAssignment> courseAssignment = boundaryAssignment.viewClassAssignment(courseBean);
 				%>
 				
 				
@@ -198,25 +192,22 @@ function apri(url) {
 					<tr>
 					<td>
 				<%
-						out.print(courseAssignment.get(i));
-						i++;
+						out.print(courseAssignment.get(i).getType());
 				%>
 					</td>
 					<td>
 				<%
-						out.print(courseAssignment.get(i));
-						i++;
+						out.print(courseAssignment.get(i).getDescription());
 				%>
 					</td>
 					<td>
 				<%
-						out.print(courseAssignment.get(i));
-						i++;
+						out.print(courseAssignment.get(i).getCreationDate());
 				%>
 					</td>
 					<td>
 				<%
-						out.print(courseAssignment.get(i));
+						out.print(courseAssignment.get(i).getDeadlineDate());
 				%>
 					</td>
 					</tr>	

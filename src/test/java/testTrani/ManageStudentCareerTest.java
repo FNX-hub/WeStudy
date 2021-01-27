@@ -22,7 +22,7 @@ public class ManageStudentCareerTest {
 		//Eseguo il caso d'uso
 		ManageStudentCareerProfessor boundary = new ManageStudentCareerProfessor();
 		//Richiedi un ClassCourse non esistente
-		ClassCourseBean courseBean = new ClassCourseBean(2);
+		ClassCourseBean courseBean = new ClassCourseBean(1998);
 		List<ExtendedGrade> grades = boundary.viewExtendedClassCourseGrades(courseBean);
 		
 		//Stampa di controllo
