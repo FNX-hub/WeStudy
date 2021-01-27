@@ -8,17 +8,18 @@ import logic.model.bean.ClassCourseBean;
 import logic.model.bean.ExtendedAssignment;
 
 //@author Adriano
-public class ManageClassAssignmentProfessor {
+public interface ManageClassAssignmentProfessor extends RecoverCourseInformation {
 	
 	
-	
-	public List<ExtendedAssignment> viewClassAssignment(ClassCourseBean bean){
+	//Dato un ClassCourse -> restituisci TUTTI i suoi assignment
+	public default List<ExtendedAssignment> viewClassAssignment(ClassCourseBean bean){
 		ManageClassAssignment controller = new ManageClassAssignment();
 		return controller.viewClassAssignment(bean);
 	}
 	
 	
-	public void createAssignment(AssignmentBean assignmentBean, ClassCourseBean courseBean){
+	//Dato un ClassCourse e un Assignment dalla GUI -> inizializza un nuovo Assignment all'interno di quel ClassCourse
+	public default void createAssignment(AssignmentBean assignmentBean, ClassCourseBean courseBean){
 		ManageClassAssignment controller = new ManageClassAssignment();
 		controller.createAssignment(assignmentBean, courseBean);
 	}

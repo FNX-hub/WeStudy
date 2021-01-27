@@ -8,17 +8,11 @@ import logic.model.bean.ExtendedGrade;
 import logic.model.bean.GradeBean;
 import logic.model.bean.UserBean;
 
-public class ManageStudentCareerProfessor {
-	
-	//Restituisci TUTTI i classCourse in cui quel professor insegna
-	public List<ClassCourseBean> getAllCourses(UserBean professorBean){
-		ManageStudentCareer controller = new ManageStudentCareer();
-		return controller.getAllCourses(professorBean);
-	}
+public interface ManageStudentCareerProfessor extends RecoverCourseInformation {
 	
 	
-	//Aggiungi un voto ad uno student
-	public void addGrade(GradeBean gradeBean, ClassCourseBean classCourseBean, UserBean studentBean) {
+	//Dato un Grade, un ClassCourse e uno Student -> Aggiungi a quello Student quel Grade
+	public default void addGrade(GradeBean gradeBean, ClassCourseBean classCourseBean, UserBean studentBean) {
 		//Inizializza il controller per l'esecuzione del caso d'uso
 		ManageStudentCareer controller = new ManageStudentCareer();
 		
@@ -28,7 +22,7 @@ public class ManageStudentCareerProfessor {
 	
 	
 	//Restituisci tutti i voti di questo corso
-	public List<ExtendedGrade> viewExtendedClassCourseGrades(ClassCourseBean classCourseBean){
+	public default List<ExtendedGrade> viewExtendedClassCourseGrades(ClassCourseBean classCourseBean){
 		ManageStudentCareer controller = new ManageStudentCareer();
 		return controller.viewClassCourseGrades(classCourseBean);
 	}

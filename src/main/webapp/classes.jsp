@@ -82,19 +82,19 @@ function apri(url) {
 				
 				
 				
-				<table padding = "10" > <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				<table padding = "10" > <!-- TABELLA COLOSSALE 1 CHE CONTIENE TUTTO -->
 				
-				<tr> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
-				<td> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				<tr> <!-- TABELLA COLOSSALE 1 CHE CONTIENE TUTTO -->
+				<td> <!-- TABELLA COLOSSALE 1 CHE CONTIENE TUTTO -->
 				<img class="w3-image" src="RESOURCES/images/classRegisterGrades_logo.png" alt="Grades" width="60%" height="100%">
-				</td> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
-				<td> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				</td> <!-- TABELLA 1 COLOSSALE CHE CONTIENE TUTTO -->
+				<td> <!-- TABELLA 1 COLOSSALE CHE CONTIENE TUTTO -->
 				<img class="w3-image" src="RESOURCES/images/classRegisterAssignment_logo.png" alt="Assignment" width="100%" height="100%">
-				</td> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
-				</tr> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				</td> <!-- TABELLA COLOSSALE 1 CHE CONTIENE TUTTO -->
+				</tr> <!-- TABELLA COLOSSALE 1 CHE CONTIENE TUTTO -->
 				
-				<tr> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
-				<td> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				<tr> <!-- TABELLA  COLOSSALE 1 CHE CONTIENE TUTTO -->
+				<td> <!-- TABELLA  COLOSSALE 1 CHE CONTIENE TUTTO -->
 				
 				<%
 					ClassCourseBean courseBean = new ClassCourseBean(Integer.parseInt((String)request.getParameter("insertedClassCourseId")));
@@ -167,9 +167,9 @@ function apri(url) {
 				
 				
 				
-				</td> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				</td> <!-- TABELLA COLOSSALE 1 CHE CONTIENE TUTTO -->
 				
-				<td> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				<td> <!-- TABELLA COLOSSALE 1 CHE CONTIENE TUTTO -->
 				
 				<%
 					ManageClassAssignmentProfessor boundaryAssignment = new ManageClassAssignmentProfessor();
@@ -220,18 +220,208 @@ function apri(url) {
 				
 				
 				
-				</td> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
-				</tr> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
-				<tr> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
-				<td> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				</td> <!-- TABELLA COLOSSALE 1 CHE CONTIENE TUTTO -->
+				</tr> <!-- TABELLA COLOSSALE 1 CHE CONTIENE TUTTO -->
 				
-				</td> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				</table>
 				
-				<td> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				<table padding = "10" > <!-- TABELLA 1 COLOSSALE CHE CONTIENE TUTTO -->
 				
-				</td> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
-				</tr> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
-				</table> <!-- TABELLA COLOSSALE CHE CONTIENE TUTTO -->
+				<tr> <!-- TABELLA COLOSSALE 2 CHE CONTIENE TUTTO -->
+				
+				
+				<td> <!-- TABELLA COLOSSALE 2 CHE CONTIENE TUTTO -->
+				
+						<%
+							ManageStudentCareerProfessor studentsBoundary = new ManageStudentCareerProfessor();
+							List<StudentBean> students = studentsBoundary.getStudents(courseBean);
+						%>
+				
+						<table  border="2" >
+						
+						<tr>
+							<td bgcolor="Gold"> <b> Student Id </b> </td>
+							<td bgcolor="Gold"> <b> Name </b> </td>
+							<td bgcolor="Gold"> <b> Surname </b> </td>
+							</tr>
+						
+						<% 
+							for(int i=0 ; i<students.size() ; i++)
+							{
+						%>
+						
+						<tr>
+						
+						<td>
+						<%
+							out.print(students.get(i).getId());	
+						%>
+						</td>
+						
+						<td>
+						<%
+							out.print(students.get(i).getName());	
+						%>
+						</td>
+						
+						<td>
+						<%
+							out.print(students.get(i).getSurname());	
+						%>
+						</td>
+						
+						</tr>
+						<%
+							}
+						%>
+						</table>
+				
+				</td> <!-- TABELLA COLOSSALE 2 CHE CONTIENE TUTTO -->
+				
+				<td> <!-- TABELLA COLOSSALE 2 CHE CONTIENE TUTTO -->
+				
+				<!-- FORM GRADE -->
+				
+				<form action="classes.jsp"> <table border="2" >
+				<tr>
+					<td bgcolor="Gold"> <b> Student </b> </td>
+					<td bgcolor="Gold"> <b> Grade </b> </td>
+					<td bgcolor="Gold"> <b> Type </b> </td>
+					<td bgcolor="Gold"> <b> Date </b> </td>
+				</tr>
+				
+				<tr>
+					<td> 
+						<select name="SelectStudent" size="1">
+													
+							
+						<%							
+							
+							for(int i=0 ; i<students.size() ; i++){
+						%>
+							<option>
+						<%
+							out.print(students.get(i).getId());
+						%>
+							</option>
+						<%
+							out.print(students.get(i).getName());
+							out.print(students.get(i).getSurname());
+							}
+						%>
+
+						</select> 
+					</td>
+
+					<td> 
+						<select name="SelectGrade" size="1">
+						<option>0</option>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+						</select> 
+					</td>
+
+					<td> 
+						<select name="SelectTestType" size="1">
+						<option>Written Test</option>
+						<option>Oral Test</option>
+						<option>Project</option>
+						</select> 
+					</td>
+					<td>
+						<input type="date" id="start" name="trip-start" value="2020-09-30" min="2000-01-01" max="2030-12-31">
+					</td>
+				
+					
+				</tr>
+				
+				</table>
+				<input type="submit" name="AddGradeButton" style="border-radius: 250px; class="btn btn-outline-dark"> Add </input>
+				</form>
+				
+				
+				
+				</td> <!-- TABELLA COLOSSALE 2 CHE CONTIENE TUTTO -->
+				
+				<td> <!-- TABELLA COLOSSALE 2 CHE CONTIENE TUTTO -->
+				
+				<!-- FORM ASSIGNMENT -->
+				
+				<form> <table border="2" >
+				<tr>
+					<td bgcolor="Gold"> <b> Type </b> </td>
+					<td bgcolor="Gold"> <b> Description </b> </td>
+					<td bgcolor="Gold"> <b> Deadline date </b> </td>
+				</tr>
+				
+				<tr>
+					<td> 
+						<select name="SelectStudent" size="1">
+						<option>DINAMICAMENTE</option>
+						<option>dinamicamente</option>
+						<option>DINAmicamente</option>
+						<option>DINAmicamente</option>
+						<option>DINAmicamente</option>
+						<option>DINAmicamente</option>
+						<option>DINAmicamente</option>
+						<option>DINAmicamente</option>
+						<option>DINAmicamente</option>
+						</select> 
+					</td>
+
+					<td> 
+						<select name="SelectSubject" size="1">
+						<option>DINAMICAMENTE</option>
+						<option>dinamicamente</option>
+						<option>DINAmicamente</option>
+						</select> 
+					</td>
+
+					<td> 
+						<select name="SelectGrade" size="1">
+						<option>0</option>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+						</select> 
+					</td>
+
+					<td> 
+						<select name="SelectTestType" size="1">
+						<option>Written Test</option>
+						<option>Oral Test</option>
+						<option>Project</option>
+						</select> 
+					</td>
+					<td>
+						<input type="date" id="start" name="trip-start" value="2020-09-30" min="2000-01-01" max="2030-12-31">
+					</td>
+					
+				</tr>
+				
+				</table>
+				<input type="submit" name="AddAssignmentButton" style="border-radius: 250px; class="btn btn-outline-dark"> Add </input>
+				</form>
+				
+				
+				</td> <!-- TABELLA COLOSSALE 2 CHE CONTIENE TUTTO -->
+				</tr> <!-- TABELLA COLOSSALE 2 CHE CONTIENE TUTTO -->
+				</table> <!-- TABELLA COLOSSALE 2 CHE CONTIENE TUTTO -->
 				
 				
 				<hr>

@@ -6,14 +6,43 @@ import java.util.List;
 
 import org.junit.Test;
 
+import logic.control.ManageStudentCareer;
 import logic.control.SimpleLogger;
 import logic.model.bean.ClassCourseBean;
 import logic.model.bean.ExtendedGrade;
+import logic.model.bean.StudentBean;
 import logic.view.boundary.ManageStudentCareerProfessor;
 
 public class ManageStudentCareerTest {
 	
 	@Test
+	//SIMULA ESECUZIONE COMPLETA
+	//Dato id del classCourse -> restituisci i suoi studenti
+	public void viewClassStudentsTest() {
+		//Valori di controllo
+		Integer expectedNumOfStudents = 0;
+		Integer actualNumOfStudents;
+		
+		//Variabili iniziali
+		ClassCourseBean course = new ClassCourseBean(1998);
+		
+		//Esecuzione del caso d'uso
+		ManageStudentCareer controller = new ManageStudentCareer();
+		List<StudentBean> students = controller.
+		
+		//Stampa di controllo
+		for(int i=0 ; i<students.size() ; i++) {
+			SimpleLogger.info("STUDENT:" + students.get(i).getId().toString() + "/" + students.get(i).getName() + "/" + students.get(i).getSurname());
+		}
+	
+		//Controllo
+		actualNumOfStudents = students.size();
+		assertEquals(expectedNumOfStudents,actualNumOfStudents);
+	}
+	
+	@Test
+	//SIMULA ESECUZIONE COMPLETA
+	//Dato id del classCourse -> restituisci i suoi grade
 	public void viewClassGradeTest() {
 		//Variabili di controllo
 		Integer ActualNumOfGrades;

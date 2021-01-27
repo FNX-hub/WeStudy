@@ -13,15 +13,10 @@ import logic.model.dao.DaoFactory;
 
 
 /*@author Adriano*/
-public class ViewStudentCareer {
-	
-	public ViewStudentCareer() {
-		SimpleLogger.info("ViewStudentCareer costruttore");
-	}
+public class ViewStudentCareer implements RecoverClassCourseInformation{
 	
 	
-	
-	//Dato uno studente -> visualizza TUTTI i grade che ha preso
+	//Dato uno Student -> visualizza TUTTI i grade che ha preso
 	public List<ExtendedGrade> getExtendedStudentCareer(UserBean studentBean) {
 		
 		//Parametri ricevuti

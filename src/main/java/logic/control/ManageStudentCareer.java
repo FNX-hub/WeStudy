@@ -14,33 +14,11 @@ import logic.model.bean.GradeBean;
 import logic.model.bean.UserBean;
 import logic.model.dao.DaoFactory;
 
-
-public class ManageStudentCareer{
+//@author Adriano
+//Estensione necessaria: utilizza metodi comuni ad un altro controller di un altro caso d'uso
+public class ManageStudentCareer extends RecoverClassCourseInformation{
 	
-	
-	//Dato id del professore-> restituisci TUTTI i classCourse in cui insegna
-	public List<ClassCourseBean> getAllCourses(UserBean professorBean){
-		
-		Integer profId = professorBean.getId();
-		List<ClassCourseBean> convertedCourses = new ArrayList<>();
-		
-		
-		//Esegui la query
-		List<ClassCourse> courses = DaoFactory.getClassCourseDao().getFromProfessorId(profId);
-		
-		//Converti i risultati ottenuti
-		for(int i=0 ; i<courses.size() ; i++) {
-			String courseName = courses.get(i).getSubject();
-			Integer courseId = courses.get(i).getId();
-			
-			ClassCourseBean convertedCourse = new ClassCourseBean(courseId,courseName);
-			convertedCourses.add(convertedCourse);
-		}
-		
-		return convertedCourses;
-	}
-	
-	//Aggiungi un certo voto ad uno studente in un certo course
+	//Dato un Grade e uno Student -> aggiungi quel Grade a quello Student
 	public void addGrade(GradeBean gradeBean, ClassCourseBean classCourseBean, UserBean studentBean) {
 		
 		Integer courseId = classCourseBean.getCourseId();
@@ -58,6 +36,7 @@ public class ManageStudentCareer{
 		//Istanzia una DAO e memorizza il Grade nella persistenza
 		DaoFactory.getGradeDao().save(grade,studentId,courseId);
 	}
+	
 	
 	//Dato id di un ClassCourse -> restituisci TUTTI i Grade
 	public List<ExtendedGrade> viewClassCourseGrades(ClassCourseBean  classCourseBean){

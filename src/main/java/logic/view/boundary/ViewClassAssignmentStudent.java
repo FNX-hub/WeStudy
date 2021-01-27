@@ -8,22 +8,18 @@ import logic.model.bean.ClassCourseBean;
 import logic.model.bean.ExtendedAssignment;
 import logic.model.bean.UserBean;
 
-public class ViewClassAssignmentStudent {
+public interface ViewClassAssignmentStudent extends RecoverCourseInformation{
 	
-	public ViewClassAssignmentStudent() {
-		SimpleLogger.info("ViewClassAssignmentStudent creata con successo");
+	
+	//Dato uno Student e un ClassCourse -> Restituisci tutti gli assignment in quel ClassCourse
+	public default List<ExtendedAssignment> viewAssignment(UserBean studentBean, ClassCourseBean courseBean){
+		ViewAssignment controller = new ViewAssignment();
+		return controller.viewAssignmentStudentCourse(studentBean, courseBean);
 	}
 	
 	
-	//Restituisci tutti gli assignment di un certo studente in un certo ClassCourse
-		public List<ExtendedAssignment> viewAssignment(UserBean studentBean, ClassCourseBean courseBean){
-			ViewAssignment controller = new ViewAssignment();
-			return controller.viewAssignmentStudentCourse(studentBean, courseBean);
-		}
-	
-	
-	//Restituisci TUTTI gli assignment di uno student
-	public List<ExtendedAssignment> viewAssignment(UserBean studentBean){
+	//Dato uno Student -> restituisci TUTTI i suoi Assignment
+	public default List<ExtendedAssignment> viewAssignment(UserBean studentBean){
 		ViewAssignment controller = new ViewAssignment();
 		return controller.viewAssignmentStudent(studentBean);
 	}

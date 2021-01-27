@@ -14,7 +14,8 @@ import logic.model.bean.ExtendedAssignment;
 import logic.model.dao.DaoFactory;
 
 //@author Adriano
-public class ManageClassAssignment {
+//Estensione necessaria: utilizza metodi comuni ad un altro controller di un altro caso d'uso
+public class ManageClassAssignment extends RecoverClassCourseInformation{
 	
 	
 	//Dato id di un determinato ClassCourse -> restituisci TUTTI i suoi assignment

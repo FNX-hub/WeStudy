@@ -10,6 +10,7 @@ import java.util.List;
 import logic.control.SimpleLogger;
 import logic.model.Student;
 
+//@author Adriano e Simone
 public class StudentDao implements Dao<Student> {
 
 	private static final String ID = "id";
@@ -96,6 +97,7 @@ public class StudentDao implements Dao<Student> {
 		}
 		return std;
 	}
+	
 	public List<Student> getFromParentId(Integer id) {
 		String query = String.format(SELECT_BY_PARENT_ID, id);
 		List<Student> listStudent = new ArrayList<>();

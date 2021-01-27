@@ -27,7 +27,7 @@ public class ClassCourseDao implements Dao<ClassCourse>{
 	private static final String SELECT_ALL = "SELECT * FROM course";
 	private static final String SELECT_BY_PRIMARY_KEY = "SELECT * FROM course WHERE course.id = '%d'";
 	private static final String SELECT_BY_PROF_ID = "SELECT * FROM course WHERE professor_id = '%d'";
-	private static final String SELECT_BY_STUDENT_ID = "SELECT * FROM student_course JOIN course WHERE student_id = '%d' AND student_course.course_id = course.id";
+	private static final String SELECT_BY_STUDENT_ID = "SELECT  course.id, course.course_name  FROM student_course JOIN course WHERE student_id = '%d' AND student_course.course_id = course.id";
 	private static final String INSERT = "INSERT INTO course(PROFESSOR_ID, COURSE_NAME) VALUES ('%d','%s')";
 	private static final String DELETE = "DELETE FROM course WHERE id = '%d'";
 	

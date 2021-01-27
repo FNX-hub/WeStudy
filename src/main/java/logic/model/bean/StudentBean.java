@@ -1,7 +1,6 @@
 package logic.model.bean;
 
 //@author Adriano
-//Utilizzato per aggiungere Grade ai vari studenti nei casi d'uso dedicati
 public class StudentBean {
 	private String name;
 	private String surname;
