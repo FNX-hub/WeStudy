@@ -26,11 +26,11 @@ function apri(url) {
     <div class="w3-right w3-hide-small">
   
       <a href="mainPageProfessor.jsp" class="w3-bar-item w3-button"> <b> <font color="gold"> Home </font> </b> </a>
-      <a href="professorMaterial.html" class="w3-bar-item w3-button"> <b> Material </b> </a>
-      <a href="questions.html" class="w3-bar-item w3-button"> <b> Question </b> </a>
-      <a href="events.html" class="w3-bar-item w3-button"> <b> Events </b> </a>
+      <a href="profComingSoon.jsp" class="w3-bar-item w3-button"> <b> Material </b> </a>
+      <a href="profComingSoon.jsp" class="w3-bar-item w3-button"> <b> Question </b> </a>
+      <a href="profComingSoon.jsp" class="w3-bar-item w3-button"> <b> Events </b> </a>
       <a href="meeting.html" class="w3-bar-item w3-button"> <b> Meeting </b> </a>
-      <a href="yourPage.html" class="w3-bar-item w3-button"> <b> Profile </b> </a>
+      <a href="profComingSoon.jsp" class="w3-bar-item w3-button"> <b> Profile </b> </a>
       <a href="logout.jsp" class="w3-bar-item w3-button"> <b> Logout</b> </a>
       <% 
       		String sessionId = (String)session.getAttribute("userId");    

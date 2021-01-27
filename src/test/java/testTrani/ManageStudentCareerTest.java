@@ -1,53 +1,42 @@
 package testTrani;
 
-import java.util.ArrayList;
-import java.util.Date;
+import static org.junit.Assert.assertEquals;
+
 import java.util.List;
 
 import org.junit.Test;
 
-import logic.model.ClassCourse;
-import logic.model.Grade;
-import logic.model.Student;
+import logic.control.SimpleLogger;
+import logic.model.bean.ClassCourseBean;
+import logic.model.bean.ExtendedGrade;
+import logic.view.boundary.ManageStudentCareerProfessor;
+
 public class ManageStudentCareerTest {
 	
-//	@Test
-//	//Inizializza uno studente/studentessa e gli/le assegna una serie di voti
-//	public void multipleGradeCreation() {
-//		Student user1 = new Student(1,"Paolino","Paperino","PP8Password", 12);
-//		List<Grade> studentGrades = new ArrayList<Grade>();
-//		ClassCourse tempCourse01 = new ClassCourse("Matematica");
-//		ClassCourse tempCourse02 = new ClassCourse("Letteratura");
-//		
-//		studentGrades = user1.getGrades();
-//		
-//		//Stampa di Controllo
-//		System.err.print("[DEBUG]: <TESTING> ");
-//		System.err.print("(Student: "+ user1.getName() + " " + user1.getSurname() + " )");
-//		System.err.print("(Grades: ");
-//		for(int i=0 ; i<studentGrades.size() ; i++) {
-//			System.err.print("-[" + studentGrades.get(i).getCourse().getSubject() + "/" + studentGrades.get(i).getMark() + "/" + studentGrades.get(i).getDescription() + "]-");
-//		}
-//		System.err.println(")");
-//		
-//		//Creazione di 2 Grade
-//		Date todayDate = new Date();
-//		Grade grade01 = new Grade(tempCourse01,10,todayDate,"Testing Things");
-//		Grade grade02 = new Grade(tempCourse01,9,todayDate,"Something");
-//		Grade grade03 = new Grade(tempCourse02,7,todayDate,"");
-//		
-//		//Aggiungo quei voti alla carriera dello studente
-//		user1.addGrade(grade01);
-//		user1.addGrade(grade02);
-//		user1.addGrade(grade03);
-//		
-//		//Stampa di Controllo
-//		System.err.print("[DEBUG]: <TESTING> ");
-//		System.err.print("(Student: "+ user1.getName() + " " + user1.getSurname() + " )");
-//		System.err.print("(Grades: ");
-//		for(int i=0 ; i<studentGrades.size() ; i++) {
-//			System.err.print("-[" + studentGrades.get(i).getCourse().getSubject() + "/" + studentGrades.get(i).getMark() + "/" + studentGrades.get(i).getDescription() + "]-");
-//		}
-//		System.err.println(")");
-//	}
+	@Test
+	public void viewClassGradeTest() {
+		//Variabili di controllo
+		Integer ActualNumOfGrades;
+		Integer ExpectedNumOfGrades = 0;
+		
+		//Eseguo il caso d'uso
+		ManageStudentCareerProfessor boundary = new ManageStudentCareerProfessor();
+		//Richiedi un ClassCourse non esistente
+		ClassCourseBean courseBean = new ClassCourseBean(2);
+		List<ExtendedGrade> grades = boundary.viewExtendedClassCourseGrades(courseBean);
+		
+		//Stampa di controllo
+		for(int i=0 ; i<grades.size() ; i++) {
+			SimpleLogger.info(grades.get(i).getStudentName());
+			SimpleLogger.info(grades.get(i).getStudentSurname());
+			SimpleLogger.info(grades.get(i).getDescription());
+			SimpleLogger.info(grades.get(i).dateProperty().toString());
+			SimpleLogger.info(grades.get(i).getMark().toString());
+		}
+		
+		//Controlla quanti risultati hai ottenuto
+		ActualNumOfGrades = grades.size();
+		
+		assertEquals(ExpectedNumOfGrades,ActualNumOfGrades);
+	}
 }

@@ -74,7 +74,6 @@ public class GradeDao implements Dao<Grade> {
 	
 	//Memorizza nella persistenza un grade, La data viene automaticamente calcolata dal DBMS
 	public void save(Grade t, Integer studentId, Integer classCourseId) {
-		//Integer gradeId = NULL;
 		Integer student = studentId;
 		Integer course = classCourseId;
 		Integer value = t.getMark();

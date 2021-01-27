@@ -29,10 +29,10 @@ function ShowHide(id){
     <div class="w3-right w3-hide-small">
   
       <a href="mainPageStudent.jsp" class="w3-bar-item w3-button"> <b> <b> <font color="gold"> Home </font></b> </a>
-      <a href="studentMaterial.html" class="w3-bar-item w3-button"> <b> Material </b> </a>
-      <a href="questions.html" class="w3-bar-item w3-button"> <b> Question </b> </a>
-      <a href="events.html" class="w3-bar-item w3-button"> <b> Events </b> </a>
-      <a href="yourPage.html" class="w3-bar-item w3-button"> <b> Profile </b> </a>
+      <a href="comingSoon.jsp" class="w3-bar-item w3-button"> <b> Material </b> </a>
+      <a href="comingSoon.jsp" class="w3-bar-item w3-button"> <b> Question </b> </a>
+      <a href="comingSoon.jsp" class="w3-bar-item w3-button"> <b> Events </b> </a>
+      <a href="comingSoon.jsp" class="w3-bar-item w3-button"> <b> Profile </b> </a>
       <a href="logout.jsp" class="w3-bar-item w3-button"> <b> Logout</b> </a>
       <%
       		String sessionId = (String)session.getAttribute("userId");    
@@ -57,7 +57,6 @@ function ShowHide(id){
 <hr>
 	
 <div class="w3-container w3-padding-32" id="projects">
-    <!-- <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Materie</h3> -->
     <img class="w3-image" src="RESOURCES/images/grades_logo.png" alt="Your Grades" width="30%" height="100%">
     
     
@@ -70,6 +69,56 @@ function ShowHide(id){
 					<td bgcolor="Gold"> <b> Description </b> </td>
 					<td bgcolor="Gold"> <b> Date </b> </td>		
 				</tr>
+				
+				
+				<%
+					ViewStudentCareerStudent boundary = new ViewStudentCareerStudent();
+					String strSessionId = (String)session.getAttribute("userId");
+					Integer intSessionId = Integer.parseInt(strSessionId);
+					UserBean studentBean = new UserBean(intSessionId);
+					
+					List<ExtendedGrade> grades = boundary.view(studentBean);
+					
+					for(int i=0 ; i<grades.size() ; i++){
+					
+				%>
+				<tr>
+				
+				<td>
+				<%
+					out.println(grades.get(i).getCoursename());
+				%>
+				</td>
+				
+				<td>
+				<%
+					out.println(grades.get(i).getMark());
+				%>
+				</td>
+				
+				<td>
+				<%
+					out.println(grades.get(i).getType());
+				%>
+				</td>
+				
+				<td>
+				<%
+					out.println(grades.get(i).getDescription());
+				%>
+				</td>
+				
+				<td>
+				<%
+					out.println(grades.get(i).getDatabaseDate());
+				%>
+				</td>
+				
+				
+				</tr>
+				<%
+					}
+				%>
 				
 			</table>
     
@@ -98,6 +147,69 @@ function ShowHide(id){
 					<td bgcolor="Gold"> <b> Creation Date </b> </td>
 					<td bgcolor="Gold"> <b> Deadline Date </b> </td>		
 				</tr>
+				
+				<%
+					ViewClassAssignmentStudent boundary2 = new ViewClassAssignmentStudent();
+					List<ExtendedAssignment> assignments = boundary2.viewAssignment(studentBean);
+					try{
+					
+						for(int i=0 ; i<assignments.size() ; i++){
+					
+				%>
+				<tr>
+				
+				<td>
+				<%
+						out.println(assignments.get(i).getCourseName());
+				%>
+				</td>
+				
+				
+				<td>
+				<%
+						out.println(assignments.get(i).getType());
+				%>
+				</td>
+				
+				<td>
+				<%
+						out.println(assignments.get(i).getDescription());
+				%>
+				</td>
+				
+				<td>
+				<%
+						out.println(assignments.get(i).getCreationDate());
+				%>
+				</td>
+				
+				
+				<td>
+				<%
+						out.println(assignments.get(i).getDeadlineDate());
+				%>
+				</td>
+				
+				
+				</tr>
+				<%
+						}
+					}catch(NullPointerException e){
+					
+					%>
+					
+						<td> No Assignments </td>
+						<td> No Assignments  </td>
+						<td> No Assignments </td>
+						<td> No Assignments  </td>
+						<td> No Assignments  </td>
+						
+					<%
+					}
+				%>
+				
+			</table>
+				
 				
 			</table>
   

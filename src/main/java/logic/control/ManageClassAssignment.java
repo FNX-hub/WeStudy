@@ -19,29 +19,33 @@ public class ManageClassAssignment {
 	
 	//Dato id di un determinato ClassCourse -> restituisci TUTTI i suoi assignment
 	public List<ExtendedAssignment> viewClassAssignment(ClassCourseBean bean){
-		//Lista di entity Assignment
-		List<Assignment> results;
-		
-		//Chiama la DAO corrispondente ed esegui la query per ottenere gli Assignment
-		results = DaoFactory.getAssignmentDao().getCourseAssignment(bean.getCourseId());
-		
-		//Chiama la DAO corrispondente e chiedi il nome del ClassCourse
-		ClassCourse temporaryCourse = new ClassCourse(bean.getCourseId());
-		temporaryCourse = DaoFactory.getClassCourseDao().getFromId(bean.getCourseId());
-		String courseName = temporaryCourse.getSubject();
-		
 		//Converti i risultati ottenuti
 		List<ExtendedAssignment> convertedResults = new ArrayList<>();
-		
-		for(int i=0 ; i<results.size() ; i++){
+		//Chiama la DAO corrispondente ed esegui la query per ottenere gli Assignment
+		try {
+			List<Assignment> results = DaoFactory.getAssignmentDao().getCourseAssignment(bean.getCourseId());
 			
-			String type = results.get(i).getType();
-			String description = results.get(i).getDescription();
-			Date creationDate = results.get(i).getCreationDate();
-			Date deadlineDate = results.get(i).getDeadlineDate();
+			//Chiama la DAO corrispondente e chiedi il nome del ClassCourse
+			ClassCourse temporaryCourse = new ClassCourse(bean.getCourseId());
+			temporaryCourse = DaoFactory.getClassCourseDao().getFromId(bean.getCourseId());
+			String courseName = temporaryCourse.getSubject();
 			
-			ExtendedAssignment assignmentBean = new ExtendedAssignment(type,description, creationDate, deadlineDate, courseName);
-			convertedResults.add(assignmentBean);
+			SimpleLogger.info("DEBUG: "+ courseName);
+			
+			
+			for(int i=0 ; i<results.size() ; i++){
+				
+				String type = results.get(i).getType();
+				String description = results.get(i).getDescription();
+				Date creationDate = results.get(i).getCreationDate();
+				Date deadlineDate = results.get(i).getDeadlineDate();
+				
+				ExtendedAssignment assignmentBean = new ExtendedAssignment(type,description, creationDate, deadlineDate, courseName);
+				convertedResults.add(assignmentBean);
+			}
+		}
+		catch(NullPointerException e) {
+			SimpleLogger.info("La query ha restituito 0 valori");
 		}
 		
 		return convertedResults;
@@ -74,7 +78,6 @@ public class ManageClassAssignment {
 		//Associa il nuovo assignment al suo classCourse corrispondente
 		course.addAssignment(assignment);
 		
-		//TODO propagazione agli studenti interessati (notifica)
 		
 		//Chiama il DAO per mettere in persistenza l'assignment creato
 		DaoFactory.getAssignmentDao().save(assignment);

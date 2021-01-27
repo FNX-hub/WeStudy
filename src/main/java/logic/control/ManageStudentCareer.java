@@ -62,27 +62,28 @@ public class ManageStudentCareer{
 	//Dato id di un ClassCourse -> restituisci TUTTI i Grade
 	public List<ExtendedGrade> viewClassCourseGrades(ClassCourseBean  classCourseBean){
 		
-		//Risultato sottoforma di Lista di Entity
-		List<Grade> courseGrades;
-		
 		//Risultato sotto forma di Lista di Bean
 		List<ExtendedGrade> convertedCourseGrades = new ArrayList<>();
 	
 		//Parametri necessari da passare al DAO
 		Integer courseId = classCourseBean.getCourseId();
-		
+		SimpleLogger.info("DEBUG: courseID:" + courseId);
 		
 		//Chiedi alla DAO di restituire la lista di studenti di quel corso
 		List<Student> students = DaoFactory.getStudentDao().getFromCourseId(courseId);
+		
+		SimpleLogger.info("DEBUG: il corso contiene nStudenti:" + students.size());
 		
 		//Per ogni Student nella lista -> richiedi i suoi Grade
 		for(int j=0 ; j<students.size() ; j++) {
 			Integer studentId = students.get(j).getId();
 			String studentName = students.get(j).getName();
 			String studentSurname = students.get(j).getSurname();
+			SimpleLogger.info("DEBUG: (" + j + ")" + studentId + "/" + studentName + "/" + studentSurname);
 			
 			//Inizializza un DAO per effettuare la query e prendere i Grade
-			courseGrades = DaoFactory.getGradeDao().getStudentGrades(studentId);
+			//Risultato sottoforma di Lista di Entity
+			List<Grade> courseGrades = DaoFactory.getGradeDao().getStudentGrades(studentId);
 			
 			for(int k=0 ; k<courseGrades.size() ; k++) {
 				Date date = courseGrades.get(k).getDate();

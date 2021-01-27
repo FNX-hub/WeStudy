@@ -26,26 +26,27 @@ public class StudentDao implements Dao<Student> {
 	private static final String INSERT = "INSERT INTO student VALUES ('%d','%s','%s', '%s', '%d')";
 	private static final String UPDATE = "UPDATE student SET id = '%d', surname = '%s', name = '%s', password = '%s' WHERE id = '%s'";
 	private static final String DELETE = "DELETE FROM student WHERE id = '%d'";
-	private static final String SELECT_STUDENDS_BY_COURSE_ID = "SELECT * FROM student_course JOIN student WHERE student_course.course_id = '%d' AND student_course.student_id = student.id";
-	
+	private static final String SELECT_STUDENDS_BY_COURSE_ID = "SELECT student.id, student.name, student.surname, student.password, student.id, student.parent_id, student_course.course_id FROM student_course JOIN student WHERE student_course.course_id = '%d' AND student_course.student_id = student.id";
+
 	// Error message
-	
 	private static final String ERROR = "Unable to execute %s: %s";
 	
 	
 	public List<Student> getFromCourseId(Integer courseId){
 		List<Student> listStudent = new ArrayList<>();
-		
+		String query = String.format(SELECT_STUDENDS_BY_COURSE_ID, courseId);
 		try (
 				Connection c = DaoConnector.getIstance().getConnection();
 				Statement stm = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-				ResultSet rs = stm.executeQuery(SELECT_STUDENDS_BY_COURSE_ID)
+				ResultSet rs = stm.executeQuery(query)
 			)
 		{
 			if(!rs.first()) {
+				SimpleLogger.info("DEBUG: query restituisce 0 tuple");
 				return listStudent;
 			}
 			do {
+				SimpleLogger.info("DEBUG: ottenuto student con id: "+ rs.getInt(ID));
 				Student s = new Student(rs.getInt(ID), rs.getString(SURNAME), rs.getString(NAME), rs.getString(PASSWORD), rs.getInt(PARENT_ID));
 				listStudent.add(s);
 			} while(rs.next());
