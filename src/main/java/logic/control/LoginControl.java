@@ -28,29 +28,39 @@ public class LoginControl {
 		
 		SimpleLogger.info("[" + id + "] [" + password + "]");
 		
+		//Cerca tra i professori
 		try {
-			//Cerca tra i professori
 			extractedUser = DaoFactory.getProfessorDao().getFromId(id);
 			if(extractedUser.getPassword().equals(password)) {
 				return "Professor";
 			}
+		}catch(NullPointerException e) {
+			SimpleLogger.info("Non esiste un professor con questo id");
+		}
 			
-			//Cerca tra gli studenti
+		//Cerca tra gli studenti
+		try {
+			
 			extractedUser = DaoFactory.getStudentDao().getFromId(id);
 			if(extractedUser.getPassword().equals(password)) {
 				return "Student";
 			}
+		}
+		catch(NullPointerException e) {
+			SimpleLogger.info("Non esiste uno student con questo id");
+		}	
 			
-			//Cerca tra i genitori
+		//Cerca tra i genitori
+		try {
 			extractedUser = DaoFactory.getParentDao().getFromId(id);
 			if(extractedUser.getPassword().equals(password)) {
 				return "Parent";
 			}
 		}
 		catch(NullPointerException e) {
-			return "ERROR";
+			SimpleLogger.info("Non esiste un parent con questo id");
 		}
-		
+
 		return "ERROR";
 	}
 	

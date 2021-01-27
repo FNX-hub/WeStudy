@@ -10,6 +10,13 @@ import logic.model.bean.UserBean;
 
 public class ManageStudentCareerProfessor {
 	
+	//Restituisci TUTTI i classCourse in cui quel professor insegna
+	public List<ClassCourseBean> getAllCourses(UserBean professorBean){
+		ManageStudentCareer controller = new ManageStudentCareer();
+		return controller.getAllCourses(professorBean);
+	}
+	
+	
 	//Aggiungi un voto ad uno student
 	public void addGrade(GradeBean gradeBean, ClassCourseBean classCourseBean, UserBean studentBean) {
 		//Inizializza il controller per l'esecuzione del caso d'uso

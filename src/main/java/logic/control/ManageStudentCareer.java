@@ -17,6 +17,29 @@ import logic.model.dao.DaoFactory;
 
 public class ManageStudentCareer{
 	
+	
+	//Dato id del professore-> restituisci TUTTI i classCourse in cui insegna
+	public List<ClassCourseBean> getAllCourses(UserBean professorBean){
+		
+		Integer profId = professorBean.getId();
+		List<ClassCourseBean> convertedCourses = new ArrayList<>();
+		
+		
+		//Esegui la query
+		List<ClassCourse> courses = DaoFactory.getClassCourseDao().getFromProfessorId(profId);
+		
+		//Converti i risultati ottenuti
+		for(int i=0 ; i<courses.size() ; i++) {
+			String courseName = courses.get(i).getSubject();
+			Integer courseId = courses.get(i).getId();
+			
+			ClassCourseBean convertedCourse = new ClassCourseBean(courseId,courseName);
+			convertedCourses.add(convertedCourse);
+		}
+		
+		return convertedCourses;
+	}
+	
 	//Aggiungi un certo voto ad uno studente in un certo course
 	public void addGrade(GradeBean gradeBean, ClassCourseBean classCourseBean, UserBean studentBean) {
 		
