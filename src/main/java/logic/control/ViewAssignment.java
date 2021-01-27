@@ -12,7 +12,7 @@ import logic.model.bean.UserBean;
 import logic.model.dao.DaoFactory;
 
 // @author Adriano
-public class ViewAssignment implements RecoverClassCourseInformation{
+public class ViewAssignment{
 
 	//Funzione di supporto
 	//Dato uno specifico classCourse & uno specifico studente -> visualizza TUTTI gli assignment in quel classCourse

@@ -7,6 +7,7 @@ import logic.model.Student;
 import logic.model.dao.DaoFactory;
 import logic.model.dao.StudentDao;
 
+//@author Adriano
 public class DatabaseSimpleTest {
 	
 	@Test

@@ -2,7 +2,6 @@ package logic.view.boundary;
 
 import java.util.List;
 
-import logic.control.SimpleLogger;
 import logic.control.ViewAssignment;
 import logic.model.bean.ClassCourseBean;
 import logic.model.bean.ExtendedAssignment;

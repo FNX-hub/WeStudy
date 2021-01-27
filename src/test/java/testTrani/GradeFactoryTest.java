@@ -11,7 +11,7 @@ import logic.control.SimpleLogger;
 import logic.model.ClassCourse;
 import logic.model.Grade;
 
-
+//@author Adriano
 public class GradeFactoryTest {
 	
 	@Test

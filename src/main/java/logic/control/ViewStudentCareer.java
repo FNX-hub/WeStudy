@@ -13,7 +13,7 @@ import logic.model.dao.DaoFactory;
 
 
 /*@author Adriano*/
-public class ViewStudentCareer implements RecoverClassCourseInformation{
+public class ViewStudentCareer{
 	
 	
 	//Dato uno Student -> visualizza TUTTI i grade che ha preso
