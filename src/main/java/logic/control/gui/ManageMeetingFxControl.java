@@ -40,16 +40,6 @@ public class ManageMeetingFxControl implements ManageMeetingBoundary, Observer {
 	private MeetingBean selected;
 	private ObservableList<MeetingBean> beanList;
 	
-	@FXML
-	private void initialize() {
-//		tbColDate.setCellValueFactory(cellData -> cellData.getValue().dateProperty()); 
-//		tbColSurname.setCellValueFactory(cellData -> cellData.getValue().parentSurnameProperty());
-//		beanList = FXCollections.observableArrayList();
-//		tvMeetingTable.setItems(beanList);
-//		tvMeetingTable.getSelectionModel().selectedItemProperty().addListener(
-//				(observable, oldValue, newValue) -> showMeetingDetails(newValue));
-	}
-	
 	private void showMeetingDetails(MeetingBean meeting) {
 		try{
 			this.selected = meeting;

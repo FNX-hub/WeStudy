@@ -51,7 +51,11 @@ public class ClassCourse {
 	
 	public void addAssignment(Assignment newAssignment) {
 		//Aggiungi alla lista
-		this.assignments.add(newAssignment);
+		try {
+			this.assignments.add(newAssignment);
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public Integer getId() {

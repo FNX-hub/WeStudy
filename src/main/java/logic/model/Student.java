@@ -2,6 +2,8 @@ package logic.model;
 
 import java.util.List;
 
+import logic.model.dao.DaoFactory;
+
 
 public class Student extends User {
 	private List<Grade> gradeList;
@@ -15,13 +17,12 @@ public class Student extends User {
 		return parentId;
 	}
 	public List<Grade> getGrades() {
-		if(gradeList.isEmpty()) {
-			//TODO controllare la correttezza
-			//TODO controlla
-			// add --> this.grades = DaoFactory.getGradeDao().getGradeByStudentId(getId());			
+		if(gradeList == null) {
+			this.gradeList = DaoFactory.getGradeDao().getStudentGrades(super.getId());			
 		}
 		return gradeList;
 	}
+	
 	public void addGrade(Grade grade) {
 		this.gradeList.add(grade);
 	}

@@ -12,6 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import logic.control.SimpleLogger;
 import logic.model.bean.Session;
 import logic.model.bean.UserBean;
 
@@ -60,7 +61,11 @@ public class SceneFxControl {
 	@FXML
 	private void openCourses() {
 		try {
-			sceneRoot.setCenter(new FXMLLoader(getClass().getResource("/ChatMessageB.fxml")).load());
+			stage.setTitle("Courses - Assignments");
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Assignements.fxml"));
+			sceneRoot.setCenter(loader.load());
+			ManageClassAssignmentFxControl controlFx = loader.getController();
+			controlFx.setSession(userSession);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
@@ -73,6 +78,7 @@ public class SceneFxControl {
 			sceneRoot.setCenter(loader.load());
 			ViewStudentCareerFxControl controlFx = loader.getController();
 			controlFx.setSession(userSession);
+			controlFx.update();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
@@ -108,10 +114,10 @@ public class SceneFxControl {
 	}
 
 	public void setUserSession(String sessionId) {
+		menuItemQuestion.setVisible(false);
 		this.userSession = Session.getIstance().getSessionById(sessionId);
 		switch(userSession.getType()) {
 		case PARENT:
-			menuItemQuestion.setVisible(false);
 			menuItemCourse.setVisible(false);
 			menuItemGrade.setVisible(false);
 			openBookings();

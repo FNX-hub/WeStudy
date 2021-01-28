@@ -17,7 +17,7 @@ import logic.model.bean.ExtendedGrade;
 import logic.model.bean.UserBean;
 import logic.view.boundary.ViewStudentCareerStudent;
 
-public class ViewStudentCareerFxControl extends ViewStudentCareerStudent implements Observer {
+public class ViewStudentCareerFxControl implements ViewStudentCareerStudent, Observer {
 
 	private UserBean session;
 	@FXML

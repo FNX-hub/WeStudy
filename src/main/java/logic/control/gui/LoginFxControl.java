@@ -29,7 +29,7 @@ public class LoginFxControl implements LoginBoundary {
 	@FXML
 	private void initialize() {
 		tfUsername.setText("1");
-		pfPassword.setText("GIACOMOJVERDI");
+		pfPassword.setText("ALESSANDROPELLEGRINI");
 	}
 	
 	@FXML
