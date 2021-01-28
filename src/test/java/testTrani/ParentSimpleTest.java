@@ -25,7 +25,7 @@ public class ParentSimpleTest {
 		Integer expectedNumOfChildren = 0;
 		
 		//Esegui il caso d'uso
-		RecoverStudentInformation controller = new RecoverStudentInformation();
+		RecoverUserInformation controller = new RecoverUserInformation();
 		List<StudentBean> children = controller.getAllChildren(parentBean);
 		
 		//Stampa di controllo
