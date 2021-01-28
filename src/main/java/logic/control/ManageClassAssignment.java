@@ -81,13 +81,8 @@ public class ManageClassAssignment extends RecoverClassCourseInformation{
 
 		SimpleLogger.info("DEBUG: created Assignment: " + assignment.getDescription() + "|" + assignment.getType() +  "|" + assignment.getCreationDate() +  "|" + assignment.getDeadlineDate());
 		
-		//Recupera dalla persistenza i dati per inizializzare il ClassCourse a cui correlare l'assignment
 		Integer courseId = classCourseBean.getCourseId();
-		ClassCourse course = DaoFactory.getClassCourseDao().getFromId(courseId);			
-		
-		//Associa il nuovo assignment al suo classCourse corrispondente
-		course.addAssignment(assignment);
-		
+	
 		//Chiama il DAO per mettere in persistenza l'assignment creato
 		DaoFactory.getAssignmentDao().save(assignment,courseId);
 	}
