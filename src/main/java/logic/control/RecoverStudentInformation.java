@@ -8,6 +8,9 @@ import logic.model.bean.StudentBean;
 import logic.model.bean.UserBean;
 import logic.model.dao.DaoFactory;
 
+//@author Adriano
+//Semplice elemento del dominio della soluzione con la responsabilita' di restituire alla GUI 
+//alcuni bean contenenti informazioni utili per eseguire casi d'uso, ma non correlati a questi ultimi
 public class RecoverStudentInformation {
 
 	//Dato un Parent -> Restituisci TUTTI i suoi figli Student

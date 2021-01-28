@@ -31,8 +31,9 @@ function apri(url) {
       <a class="w3-bar-item w3-button"> <b> Profile </b> </a>
       <a href="logout.jsp" class="w3-bar-item w3-button"> <b> Logout</b> </a>
       <%
-      		String sessionId = (String)session.getAttribute("userId");    
-			out.println("USER ID: " + sessionId);
+      		String sessionId = (String)session.getAttribute("userId");
+      		String sessionRole = (String)session.getAttribute("userRole");  
+			out.println("USER: " + sessionId + " " + sessionRole);
 	  %>
     </div>
   </div>
@@ -52,14 +53,16 @@ function apri(url) {
 <hr>
 	
 <div class="w3-container w3-padding-32" id="projects">
-    <img class="w3-image" src="RESOURCES/images/meeting_logo.png" alt="meeting" width="60%" height="100%">
+    <img class="w3-image" src="RESOURCES/images/meeting_logo.png" alt="meeting" width="30%" height="100%">
 </div>
 
   <div class="w3-row-padding">
   
-<table border="2">
+	<table border="2">
 				<tr>
+					<td bgcolor="Gold"> <b> Your ID </b> </td>
 					<td bgcolor="Gold"> <b> Your Surname </b> </td>
+					<td bgcolor="Gold"> <b> Professor ID </b> </td>
 					<td bgcolor="Gold"> <b> Professor Surname </b> </td>
 					<td bgcolor="Gold"> <b> Date </b> </td>
 					<td bgcolor="Gold"> <b> Message </b> </td>
@@ -78,7 +81,18 @@ function apri(url) {
 						<tr>
 						<td>
 				<%
+						out.println(results.get(i).getParentId());
+				%>
+						</td>
+						
+						<td>
+				<%
 						out.println(results.get(i).getParentSurname());
+				%>
+						</td>
+						<td>
+				<%
+						out.println(results.get(i).getProfessorId());
 				%>
 						</td>
 						<td>
@@ -102,8 +116,144 @@ function apri(url) {
 					}
 				%>
 				
-			</table>
-    
+		</table>
+		
+		<hr>
+		
+		<%
+		RecoverProfessorInformation professorController = new RecoverProfessorInformation();
+		List<UserBean> professorsId = professorController.getAllProfessor();
+		%>
+		
+		<table border="2" >
+		<td bgcolor="Gold"> <b> Professor ID </b> </td>
+		<td bgcolor="Gold"> <b> Professor Surname </b> </td>
+		<td bgcolor="Gold"> <b> Professor Name </b> </td>
+		
+		<%
+		for(int i=0 ; i<professorsId.size() ; i++){
+		%>
+			<tr>
+			<td>
+		<%	out.println(professorsId.get(i).getId()); %>
+			</td>
+			<td>
+		<%	out.println(professorsId.get(i).getSurname()); %>
+			</td>
+			<td>
+		<%	out.println(professorsId.get(i).getName()); %>
+			</td>			
+			
+			</tr>
+		<%
+		}
+		%>
+		</table>
+		
+		<hr>
+		
+		<form action="insertMeeting.jsp"> <table border="2" >
+				<tr>
+					<td bgcolor="Gold"> <b> Your ID </b> </td>
+					<td bgcolor="Gold"> <b> Professor ID </b> </td>
+					<td bgcolor="Gold"> <b> Date </b> </td>
+					<td bgcolor="Gold"> <b> Message </b> </td>
+					
+				</tr>
+				
+				<tr>
+					<td>
+						<select name="SelectMeetingParentId" size="1">
+						<option>
+						<% out.print(intSessionId); %>
+						</option>
+						</select> 
+					</td>
+				
+			
+	
+				
+					<td>
+						<select name="SelectMeetingProfessorId" size="1">
+						
+						<%
+							for(int i=0 ; i<professorsId.size() ; i++){
+						%>
+								<option>
+								<% out.print(professorsId.get(i).getId()); %>
+								</option>
+						<%
+							}
+						%>
+						</select> 
+					</td>
+								
+					
+					<td>
+						<input type="date" id="start" name="SelectMeetingDate" value="2020-09-30" min="2000-01-01" max="2099-12-31">
+					</td>
+					
+					<td>
+						<input type="text" name="SelectMeetingMessage"> 
+					</td>
+					
+				</tr>
+				
+				</table>
+				<input type="submit" value="Add" name="AddMeetingButton" style="border-radius: 250px; class="btn btn-outline-dark"> </input>
+				</form>
+		
+		
+    			<hr>
+    			
+    			
+    			<form action="removeMeeting.jsp"> <table border="2" >
+				<tr>
+					<td bgcolor="Gold"> <b> Your ID </b> </td>
+					<td bgcolor="Gold"> <b> Professor ID </b> </td>
+					<td bgcolor="Gold"> <b> Date </b> </td>
+					
+				</tr>
+				
+				<tr>
+					<td>
+						<select name="RemoveMeetingParentId" size="1">
+						<option>
+						<% out.print(intSessionId); %>
+						</option>
+						</select> 
+					</td>
+				
+			
+	
+				
+					<td>
+						<select name="RemoveMeetingProfessorId" size="1">
+						
+						<%
+							for(int i=0 ; i<professorsId.size() ; i++){
+						%>
+								<option>
+								<% out.print(professorsId.get(i).getId()); %>
+								</option>
+						<%
+							}
+						%>
+						</select> 
+					</td>
+								
+					
+					<td>
+						<input type="date" id="start" name="RemoveMeetingDate" value="2020-09-30" min="2000-01-01" max="2099-12-31">
+					</td>
+					
+					
+				</tr>
+				
+				</table>
+				<input type="submit" value="Remove" name="RemoveMeetingButton" style="border-radius: 250px; class="btn btn-outline-dark"> </input>
+				</form>
+    			
     
     		 
 

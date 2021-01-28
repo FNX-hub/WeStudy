@@ -50,7 +50,7 @@
 					{
 						out.println(loginResult);
 						String sessionId = (String)session.getAttribute("userId");  
-						out.println("SESSION: " + sessionId);
+						session.setAttribute("userRole", "Professor");
 				%>
 						<a href="mainPageProfessor.jsp" class="w3-bar-item w3-button"> <b> Click Here to Start </b> </a>
 				<%
@@ -58,6 +58,7 @@
 					if( loginResult.equals("Student")) 
 					{
 						out.println(loginResult);
+						session.setAttribute("userRole", "Student");
 				%>
 						<a href="mainPageStudent.jsp" class="w3-bar-item w3-button"> <b> Click Here to Start </b> </a>
 				<%
@@ -65,6 +66,7 @@
 					if( loginResult.equals("Parent")) 
 					{
 						out.println(loginResult);
+						session.setAttribute("userRole", "Parent");
 				%>						
 						<a href="mainPageParent.jsp" class="w3-bar-item w3-button"> <b> Click Here to Start </b> </a>
 				<%

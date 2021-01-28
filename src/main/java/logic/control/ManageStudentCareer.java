@@ -1,6 +1,5 @@
 package logic.control;
 
-
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +13,7 @@ import logic.model.bean.GradeBean;
 import logic.model.dao.DaoFactory;
 
 //@author Adriano
-public class ManageStudentCareer extends RecoverClassCourseInformation{
+public class ManageStudentCareer{
 	
 	//Dato un Grade e uno Student -> aggiungi quel Grade a quello Student
 		public void addGrade(GradeBean gradeBean) {

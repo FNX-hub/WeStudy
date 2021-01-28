@@ -32,8 +32,9 @@ function apri(url) {
       <a class="w3-bar-item w3-button"> <b> Profile </b> </a>
       <a href="logout.jsp" class="w3-bar-item w3-button"> <b> Logout</b> </a>
       <%
-      		String sessionId = (String)session.getAttribute("userId");    
-			out.println("USER ID: " + sessionId);
+      		String sessionId = (String)session.getAttribute("userId");
+      		String sessionRole = (String)session.getAttribute("userRole");  
+			out.println("USER: " + sessionId + " " + sessionRole);
 	  %>
     </div>
   </div>

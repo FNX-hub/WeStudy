@@ -31,13 +31,13 @@ function apri(url) {
 <div class="w3-top">
   <div class="w3-bar w3-black w3-wide w3-padding w3-card-2">  
     <!-- Float links to the right. Hide them on small screens -->
-    <div class="w3-right w3-hide-small">
+     <div class="w3-right w3-hide-small"> 
   
       <a href="mainPageProfessor.jsp" class="w3-bar-item w3-button"> <b> Home </b> </a>
       <a class="w3-bar-item w3-button"> <b> Material </b> </a>
       <a class="w3-bar-item w3-button"> <b> Question </b> </a>
       <a class="w3-bar-item w3-button"> <b> Events </b> </a>
-      <a href="meeting.html" class="w3-bar-item w3-button"> <b> Meeting </b> </a>
+      <a href="meetingProfessor.jsp" class="w3-bar-item w3-button"> <b> Meeting </b> </a>
       <a class="w3-bar-item w3-button"> <b> Profile </b> </a>
       <a href="logout.jsp" class="w3-bar-item w3-button"> <b> Logout</b> </a>
       <% 
@@ -370,7 +370,7 @@ function apri(url) {
 				</tr>
 				
 				</table>
-				<input type="submit" name="AddGradeButton" style="border-radius: 250px; class="btn btn-outline-dark"> Add </input>
+				<input type="submit" value="add" name="AddGradeButton" style="border-radius: 250px; class="btn btn-outline-dark">  </input>
 				</form>
 				
 				
@@ -417,7 +417,7 @@ function apri(url) {
 				</tr>
 				
 				</table>
-				<input type="submit" name="AddAssignmentButton" style="border-radius: 250px; class="btn btn-outline-dark"> Add </input>
+				<input type="submit"  value="add" name="AddAssignmentButton" style="border-radius: 250px; class="btn btn-outline-dark"> </input>
 				</form>
 				
 				

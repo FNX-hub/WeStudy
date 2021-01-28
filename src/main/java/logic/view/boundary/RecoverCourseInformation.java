@@ -7,7 +7,8 @@ import logic.model.bean.ClassCourseBean;
 import logic.model.bean.StudentBean;
 import logic.model.bean.UserBean;
 
-//classe NON legata all'esecuzione di un singolo caso d'uso, 
+//@author Adriano
+//interfaccia NON legata all'esecuzione di un singolo caso d'uso, 
 //ma con la responsabilita' di fornire informazioni propedeutiche a vari casi d'uso
 //tutte le boundary di casi d'uso che necessitano queste informazioni ereditano da questa interfaccia
 public interface RecoverCourseInformation {
