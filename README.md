@@ -1,1 +1,1 @@
-# WeStudy ![Build](https://github.com/FNX-hub/WeStudy/workflows/Build/badge.svg) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=FNX-hub_WeStudy&metric=code_smells)](https://sonarcloud.io/dashboard?id=FNX-hub_WeStudy) 
+# WeStudy ![SonarClod with Gradle](https://github.com/FNX-hub/WeStudy/workflows/SonarClod%20with%20Gradle/badge.svg) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=FNX-hub_WeStudy&metric=code_smells)](https://sonarcloud.io/dashboard?id=FNX-hub_WeStudy) 
