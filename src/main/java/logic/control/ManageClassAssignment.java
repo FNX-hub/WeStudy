@@ -16,7 +16,6 @@ import logic.model.dao.DaoFactory;
 //@author Adriano
 public class ManageClassAssignment{
 	
-	
 	//Dato id di un determinato ClassCourse -> restituisci TUTTI i suoi assignment
 	public List<ExtendedAssignment> viewClassAssignment(ClassCourseBean bean){
 		//Converti i risultati ottenuti

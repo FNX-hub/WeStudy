@@ -40,13 +40,12 @@ function apri(url) {
     </div>
   </div>
 </div>
-
-
 <!-- Header -->
+
 <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
+    </h1>
   </div>
 </header>
-
 <!-- Page content -->
 <div class="w3-content w3-padding" style="max-width:1564px">
   <!-- Project Section -->
@@ -55,39 +54,63 @@ function apri(url) {
 <hr>
 <hr>
 	
-	<div class="w3-container w3-padding-32" id="projects">
-    	<!-- <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Materie</h3> -->
-    	<img class="w3-image" src="RESOURCES/images/classes_logo.png" alt="Your Classes" width="30%" height="100%">
-    	
-    	
-    	
-			 <table border="2">
+<div class="w3-container w3-padding-32" id="projects">
+    <img class="w3-image" src="RESOURCES/images/meeting_logo.png" alt="meeting" width="30%" height="100%">
+</div>
+
+  <div class="w3-row-padding">
+  
+	<table border="2">
 				<tr>
-					<td bgcolor="Gold"> <b> Id </b> </td>
-					<td bgcolor="Gold"> <b> CourseName </b> </td>
-							
+					<td bgcolor="Gold"> <b> Parent ID </b> </td>
+					<td bgcolor="Gold"> <b> Parent Surname </b> </td>
+					<td bgcolor="Gold"> <b> Your ID </b> </td>
+					<td bgcolor="Gold"> <b> Your Surname </b> </td>
+					<td bgcolor="Gold"> <b> Date </b> </td>
+					<td bgcolor="Gold"> <b> Message </b> </td>
+
 				</tr>
 				
 				<%
-				
 					Integer intSessionId = Integer.parseInt((String)session.getAttribute("userId"));
-					UserBean professor = new UserBean(intSessionId);
 					
-					RecoverClassCourseInformation controller = new RecoverClassCourseInformation();
-					List<ClassCourseBean> results = controller.getAllCourses(professor);					
-					
+					ManageMeetingControl meetingController = new ManageMeetingControl();
+					List<MeetingBean> results = meetingController.getUserMeeting(intSessionId, UserType.PROFESSOR);
+			
 					for(int i=0 ; i<results.size() ; i++){
 						
 				%>
 						<tr>
 						<td>
 				<%
-						out.println(results.get(i).getCourseId());
+						out.println(results.get(i).getParentId());
+				%>
+						</td>
+						
+						<td>
+				<%
+						out.println(results.get(i).getParentSurname());
 				%>
 						</td>
 						<td>
 				<%
-						out.println(results.get(i).getSubject());
+						out.println(results.get(i).getProfessorId());
+				%>
+						</td>
+						<td>
+				<%
+						out.println(results.get(i).getProfessorSurname());
+				%>
+						</td>
+						<td>
+				<%
+						out.println(results.get(i).getDate());
+				%>
+						</td>
+						
+						<td>
+				<%
+						out.println(results.get(i).getMessage());
 				%>
 						</td>
 						</tr>						
@@ -95,43 +118,142 @@ function apri(url) {
 					}
 				%>
 				
-			</table>
+		</table>
+		
+		<hr>
+		
+		<%
+		RecoverUserInformation professorController = new RecoverUserInformation();
+		List<UserBean> parentsId = professorController.getAllParent();
+		%>
+		
+		<table border="2" >
+		<td bgcolor="Gold"> <b> Parent ID </b> </td>
+		<td bgcolor="Gold"> <b> Parent Surname </b> </td>
+		<td bgcolor="Gold"> <b> Parent Name </b> </td>
+		
+		<%
+		for(int i=0 ; i<parentsId.size() ; i++){
+		%>
+			<tr>
+			<td>
+		<%	out.println(parentsId.get(i).getId()); %>
+			</td>
+			<td>
+		<%	out.println(parentsId.get(i).getSurname()); %>
+			</td>
+			<td>
+		<%	out.println(parentsId.get(i).getName()); %>
+			</td>			
 			
-			<hr>
-			
-			
-			<form action="classes.jsp" class="form-signin" id="classChoice" role="form" method="post">
-			
-				<select name="insertedClassCourseId" size="1">
-						
-			<%
-				for(int i=0 ; i<results.size() ; i++){
-			%>
+			</tr>
+		<%
+		}
+		%>
+		</table>
+		
+		<hr>
+		
+		<form action="insertMeeting.jsp"> <table border="2" >
+				<tr>
+					<td bgcolor="Gold"> <b> ParentId </b> </td>
+					<td bgcolor="Gold"> <b> Your ID </b> </td>
+					<td bgcolor="Gold"> <b> Date </b> </td>
+					<td bgcolor="Gold"> <b> Message </b> </td>
+					<td bgcolor="Gold"> <b> Confirm? </b> </td>
 					
-						<option>
-							<%
-								out.println(results.get(i).getCourseId());
-							%>
-						</option>
-			<%
-				}
-			%>
-				</select> 
-			
+				</tr>
 				
-				<button type="submit"  style="border-radius: 250px; class="btn btn-outline-dark"> Show Selected Class </button>
-			</form> 
-    	
-	</div>
-
-  <div class="w3-row-padding">
-  
-  <div class="w3-row-padding">
-  
-    </div>
-
+				<tr>
+				
+					<td>
+						<select name="SelectMeetingProfessorId" size="1">
+						
+						<%
+							for(int i=0 ; i<parentsId.size() ; i++){
+						%>
+								<option>
+								<% out.print(parentsId.get(i).getId()); %>
+								</option>
+						<%
+							}
+						%>
+						</select> 
+					</td>
+				
+					<td>
+						<select name="SelectMeetingParentId" size="1">
+						<option>
+						<% out.print(intSessionId); %>
+						</option>
+						</select> 
+					</td>
+				
+					
+								
+					
+					<td>
+						<input type="date" id="start" name="SelectMeetingDate" value="2020-09-30" min="2000-01-01" max="2099-12-31">
+					</td>
+					
+					<td>
+						<input type="text" name="SelectMeetingMessage"> 
+					</td>
+					
+					<td>
+						<select name="SelectMeetingConfirm" size="1">
+						<option> yes </option>
+						<option> no </option>
+						</select>
+					</td>
+					
+				</tr>
+				
+				</table>
+				<input type="submit" value="Add" name="AddMeetingButton" style="border-radius: 250px; class="btn btn-outline-dark"> </input>
+				</form>
+		
+		
+    			<hr>
+    			
+    			
+    			
+    			<form action="removeMeeting.jsp"> <table border="2" >
+    			
+    			<tr>
+					<td bgcolor="Gold"> <b> Parent ID / Your ID / Date </b> </td>
+					
+				</tr>
+				
+				<tr>
+					<td>
+					<select name="RemoveMeetingPk" size="1">
+					<%
+						for(int i=0 ; i<results.size() ; i++){
+					%>
+							<option>
+							<% out.print(results.get(i).getParentId() + "," + results.get(i).getProfessorId() + "," + results.get(i).getDate()); %>
+							</option>
+					<%
+						}
+					%>
+					</select> 
+					</td>
+				</tr>
+				
+    			</table> 
+    			<input type="submit" value="Remove" name="RemoveMeetingButton" style="border-radius: 250px; class="btn btn-outline-dark"> </input>
+    			</form>
+    			
   </div>
-
+  
+  <div class="w3-row-padding">
+  
+    
+    </div>
+    
+    
+  </div>
 <!-- End page content -->
 </div>
 <!-- Footer -->

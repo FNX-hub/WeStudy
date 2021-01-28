@@ -4,7 +4,7 @@ import java.util.List;
 
 import logic.control.ManageStudentCareer;
 import logic.control.RecoverClassCourseInformation;
-import logic.control.RecoverStudentInformation;
+import logic.control.RecoverUserInformation;
 import logic.control.ViewStudentCareer;
 import logic.model.bean.ClassCourseBean;
 import logic.model.bean.ExtendedGrade;
@@ -42,6 +42,7 @@ public interface ManageClassCourseInformation {
 		ViewStudentCareer controller = new ViewStudentCareer();
 		return controller.getExtendedStudentCareer(studentBean);
 	}
+	
 	public default List<ExtendedGrade> getStudentGrades(StudentBean studentBean) {
 		ViewStudentCareer controller = new ViewStudentCareer();
 		return controller.getExtendedStudentCareer(new UserBean(studentBean.getId()));
@@ -49,7 +50,7 @@ public interface ManageClassCourseInformation {
 	
 	//Dato un Parent -> restituisci TUTTI i suoi figli Student
 	public default List<StudentBean> getAllChildren(UserBean parentBean){
-		RecoverStudentInformation controller = new RecoverStudentInformation();
+		RecoverUserInformation controller = new RecoverUserInformation();
 		return controller.getAllChildren(parentBean);
 	}
 	

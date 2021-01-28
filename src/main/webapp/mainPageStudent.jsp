@@ -154,7 +154,6 @@ function ShowHide(id){
 					List<ExtendedAssignment> assignments =  assignmentController.viewAssignmentStudent(studentBean);
 					
 					
-					try{
 					
 						for(int i=0 ; i<assignments.size() ; i++){
 					
@@ -197,17 +196,7 @@ function ShowHide(id){
 				</tr>
 				<%
 						}
-					}catch(NullPointerException e){
-					%>
 					
-						<td> No Assignments </td>
-						<td> No Assignments </td>
-						<td> No Assignments </td>
-						<td> No Assignments </td>
-						<td> No Assignments </td>
-						
-					<%
-					}
 				%>
 				
 			</table>

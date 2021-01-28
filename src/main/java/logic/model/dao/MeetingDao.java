@@ -138,6 +138,7 @@ public class MeetingDao implements Dao<Meeting> {
 			)
 		{
 			stm.executeUpdate(query);
+
 		} catch (SQLException e) {
 			SimpleLogger.severe(String.format(ERROR, query, e.getMessage()));
 		}

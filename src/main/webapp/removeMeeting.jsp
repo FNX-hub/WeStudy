@@ -14,10 +14,24 @@
 <%@ page import = "java.sql.Date" %>"
 <%@ page import = "java.time.LocalDate" %>
 <%@ page import = "java.text.SimpleDateFormat" %>"
-
+<%@ page import = "java.util.StringTokenizer" %>"
 
 </head>
 
+
+
+<%
+String useCaseResult;
+						
+String allParam = request.getParameter("RemoveMeetingPk");
+StringTokenizer tokenizer = new StringTokenizer(allParam, ",");
+						
+Integer parentId = Integer.parseInt(tokenizer.nextToken());
+Integer professorId = Integer.parseInt(tokenizer.nextToken());
+String strDate = tokenizer.nextToken();
+LocalDate date = LocalDate.parse(strDate);
+
+%>
 
 <body background="RESOURCES/images/background_index_books.jpg" style="opacity:1.5" >
 	<div class="w3-display-middle w3-margin-top w3-center"> 
@@ -31,16 +45,15 @@
 					<td>
 				<% 
 					out.println("Parent Id: ");
-					out.println(request.getParameter("SelectMeetingParentId"));
-					out.println("Professor Id: ");
-					out.println(request.getParameter("SelectMeetingProfessorId"));
+					out.println(parentId);
+					
 				%>
 					</td>
 					<td>
 				<%
 					
-					out.println("Message: ");
-					out.println(request.getParameter("SelectMeetingMessage"));
+					out.println("Professor Id: ");
+					out.println(professorId);
 				%>
 					</td>
 					</tr>
@@ -49,44 +62,27 @@
 					<td>
 				<% 
 					out.println("Date: ");
-					out.println(request.getParameter("SelectMeetingDate"));
+					out.println(date);
 				%>
 					</td>
 					
 					<td>
 					
 					<%
-						String useCaseResult;
 						
-						Integer parentId = Integer.parseInt(request.getParameter("SelectMeetingParentId"));
-						Integer professorId = Integer.parseInt(request.getParameter("SelectMeetingProfessorId"));
-						String strDate = request.getParameter("SelectMeetingDate");
-						LocalDate date = LocalDate.parse(strDate);
-						String message = request.getParameter("SelectMeetingMessage");
-						String confirm = request.getParameter("SelectMeetingConfirm");
-						
-						try{
-							MeetingBean bean = new MeetingBean(parentId,professorId,date,message);
+						try{							
+							//Rimuovi dal database un meeting con queste PK
+							MeetingBean bean = new MeetingBean(parentId,professorId,date,"");
 							ManageMeetingControl controller = new ManageMeetingControl();
-							controller.newMeeting(bean);
-							
-							if(confirm.equals("yes")){
-								bean.setConfirmed(true);
-								useCaseResult = "Meeting created with success";
-							}
-							else{
-								bean.setConfirmed(false);
-								useCaseResult = "Error: Meeting not confirmed";
-							}
-
+							controller.deleteMeeting(bean);
+							useCaseResult = "Delete request sent";
 						}
 						catch(NullPointerException e){
 							useCaseResult = "ERROR: internal error";
 						}
 						catch(WrongDeclarationCustomException e){
-							useCaseResult = "ERROR: you can not book a meeting for a past date";
+							useCaseResult = "ERROR: you can not remove a past meeting";
 						}
-						
 						out.println(useCaseResult);
 					%>
 					

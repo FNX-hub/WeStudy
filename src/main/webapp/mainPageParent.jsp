@@ -73,7 +73,7 @@ function apri(url) {
 					UserBean parent = new UserBean(intSessionId);
 					
 					
-					RecoverStudentInformation controller = new RecoverStudentInformation();
+					RecoverUserInformation controller = new RecoverUserInformation();
 					List<StudentBean> results = controller.getAllChildren(parent);
 					
 									

@@ -2,7 +2,7 @@ package logic.view.boundary;
 
 import java.util.List;
 
-import logic.control.RecoverStudentInformation;
+import logic.control.RecoverUserInformation;
 import logic.control.ViewStudentCareer;
 import logic.model.bean.ExtendedGrade;
 import logic.model.bean.StudentBean;
@@ -12,7 +12,7 @@ public interface ViewStudentCareerParent extends RecoverCourseInformation {
 	
 	//Dato un Parent -> restituisci TUTTI i suoi figli Student
 	public default List<StudentBean> getAllChildren(UserBean parentBean){
-		RecoverStudentInformation controller = new RecoverStudentInformation();
+		RecoverUserInformation controller = new RecoverUserInformation();
 		return controller.getAllChildren(parentBean);
 	}
 	
