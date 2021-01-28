@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import logic.control.RecoverStudentInformation;
+import logic.control.RecoverUserInformation;
 import logic.control.SimpleLogger;
 import logic.model.bean.StudentBean;
 import logic.model.bean.UserBean;
