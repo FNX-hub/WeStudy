@@ -29,7 +29,7 @@ function apri(url) {
       <a class="w3-bar-item w3-button"> <b> Material </b> </a>
       <a class="w3-bar-item w3-button"> <b> Question </b> </a>
       <a class="w3-bar-item w3-button"> <b> Events </b> </a>
-      <a href="meeting.html" class="w3-bar-item w3-button"> <b> Meeting </b> </a>
+      <a href="meetingProfessor.jsp" class="w3-bar-item w3-button"> <b> Meeting </b> </a>
       <a class="w3-bar-item w3-button"> <b> Profile </b> </a>
       <a href="logout.jsp" class="w3-bar-item w3-button"> <b> Logout</b> </a>
       <% 

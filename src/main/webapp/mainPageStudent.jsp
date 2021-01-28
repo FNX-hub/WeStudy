@@ -197,7 +197,6 @@ function ShowHide(id){
 				<%
 						}
 					}catch(NullPointerException e){
-					
 					%>
 					
 						<td> No Assignments </td>

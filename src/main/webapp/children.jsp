@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>WeStudy - MainPage Parent</title>
+<title>WeStudy - Children </title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/stile.css">
@@ -54,74 +54,75 @@ function apri(url) {
 	
 <div class="w3-container w3-padding-32" id="projects">
     <!-- <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Materie</h3> -->
-    <img class="w3-image" src="RESOURCES/images/children_logo.png" alt="Your Children" width="30%" height="100%">
+    
 </div>
 
   <div class="w3-row-padding">
   
-<table border="2">
+  <img class="w3-image" src="RESOURCES/images/classRegisterGrades_logo.png" alt="Grade" width="30%" height="100%">
+    
+    
+    
+    <table border="2">
 				<tr>
-					<td bgcolor="Gold"> <b> Id </b> </td>
-					<td bgcolor="Gold"> <b> Name </b> </td>
-					<td bgcolor="Gold"> <b> Surname </b> </td>
+					<td bgcolor="Gold"> <b> Course </b> </td>
+					<td bgcolor="Gold"> <b> Grade </b> </td>
+					<td bgcolor="Gold"> <b> Type </b> </td>
+					<td bgcolor="Gold"> <b> Description </b> </td>
+					<td bgcolor="Gold"> <b> Date </b> </td>		
 				</tr>
 				
-				<%
 				
-					Integer intSessionId = Integer.parseInt((String)session.getAttribute("userId"));
-					UserBean parent = new UserBean(intSessionId);
-					
-					
-					RecoverStudentInformation controller = new RecoverStudentInformation();
-					List<StudentBean> results = controller.getAllChildren(parent);
-					
-									
-					for(int i=0 ; i<results.size() ; i++){
-						
-				%>
-						<tr>
-						<td>
 				<%
-						out.println(results.get(i).getId());
+					String strSessionId = (String)session.getAttribute("userId");
+					Integer intSessionId = Integer.parseInt(strSessionId);
+					UserBean studentBean = new UserBean(intSessionId);
+					
+					ViewStudentCareer gradeController = new ViewStudentCareer();
+					List<ExtendedGrade> grades = gradeController.getExtendedStudentCareer(studentBean);
+					
+					for(int i=0 ; i<grades.size() ; i++){
+					
 				%>
-						</td>
-						<td>
-				<%
-						out.println(results.get(i).getName());
-				%>
-						</td>
+				<tr>
+				
 				<td>
 				<%
-						out.println(results.get(i).getSurname());
+					out.println(grades.get(i).getCoursename());
 				%>
-						</td>
-						</tr>						
+				</td>
+				
+				<td>
+				<%
+					out.println(grades.get(i).getMark());
+				%>
+				</td>
+				
+				<td>
+				<%
+					out.println(grades.get(i).getType());
+				%>
+				</td>
+				
+				<td>
+				<%
+					out.println(grades.get(i).getDescription());
+				%>
+				</td>
+				
+				<td>
+				<%
+					out.println(grades.get(i).getDatabaseDate());
+				%>
+				</td>
+				
+				
+				</tr>
 				<%
 					}
 				%>
 				
 			</table>
-    
-    
-    		<form action="children.jsp" class="form-signin" id="childChoice" role="form" method="post">
-			
-				<select name="insertedClassCourseId" size="1">
-						
-			<%
-				for(int i=0 ; i<results.size() ; i++){
-			%>
-					
-						<option>
-							<%
-								out.println(results.get(i).getId());
-							%>
-						</option>
-			<%
-				}
-			%>
-				</select> 
-				<button type="submit"  style="border-radius: 250px; class="btn btn-outline-dark"> Show Selected Child </button>
-			</form> 
 
   </div>
   

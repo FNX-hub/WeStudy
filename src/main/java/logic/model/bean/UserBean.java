@@ -13,6 +13,11 @@ public class UserBean {
 		this.id = id;
 	}
 	
+	public UserBean(Integer id, UserType type) {
+		this.id = id;
+		this.type = type;
+	}
+	
 	public UserBean(UserType type, Integer id, String surname, String name) {
 		this.id = id;
 		this.name = name;

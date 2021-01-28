@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>WeStudy - MainPage Parent</title>
+<title>WeStudy - Meeting Parent</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/stile.css">
@@ -10,7 +10,6 @@
 <%@ page import = "logic.model.bean.*" %>
 <%@ page import = "logic.control.*" %>
 <%@ page import = "java.util.List" %>
-
 
 <script> 
 function apri(url) { 
@@ -26,9 +25,9 @@ function apri(url) {
 
     <div class="w3-right w3-hide-small">
   
-      <a href="mainPageParent.jsp" class="w3-bar-item w3-button"> <b> <font color="gold"> Home </font> </b> </a>
+      <a href="mainPageParent.jsp" class="w3-bar-item w3-button"> <b> Home  </b> </a>
       <a class="w3-bar-item w3-button"> <b> Events </b> </a>
-      <a href="meetingParent.jsp" class="w3-bar-item w3-button"> <b> Meeting </b> </a>
+      <a href="meetingParent.jsp" class="w3-bar-item w3-button"> <b> <font color="gold"> Meeting </font> </b> </a>
       <a class="w3-bar-item w3-button"> <b> Profile </b> </a>
       <a href="logout.jsp" class="w3-bar-item w3-button"> <b> Logout</b> </a>
       <%
@@ -53,46 +52,49 @@ function apri(url) {
 <hr>
 	
 <div class="w3-container w3-padding-32" id="projects">
-    <!-- <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Materie</h3> -->
-    <img class="w3-image" src="RESOURCES/images/children_logo.png" alt="Your Children" width="30%" height="100%">
+    <img class="w3-image" src="RESOURCES/images/meeting_logo.png" alt="meeting" width="60%" height="100%">
 </div>
 
   <div class="w3-row-padding">
   
 <table border="2">
 				<tr>
-					<td bgcolor="Gold"> <b> Id </b> </td>
-					<td bgcolor="Gold"> <b> Name </b> </td>
-					<td bgcolor="Gold"> <b> Surname </b> </td>
+					<td bgcolor="Gold"> <b> Your Surname </b> </td>
+					<td bgcolor="Gold"> <b> Professor Surname </b> </td>
+					<td bgcolor="Gold"> <b> Date </b> </td>
+					<td bgcolor="Gold"> <b> Message </b> </td>
+
 				</tr>
 				
 				<%
-				
 					Integer intSessionId = Integer.parseInt((String)session.getAttribute("userId"));
-					UserBean parent = new UserBean(intSessionId);
 					
-					
-					RecoverStudentInformation controller = new RecoverStudentInformation();
-					List<StudentBean> results = controller.getAllChildren(parent);
-					
-									
+					ManageMeetingControl meetingController = new ManageMeetingControl();
+					List<MeetingBean> results = meetingController.getUserMeeting(intSessionId, UserType.PARENT);
+			
 					for(int i=0 ; i<results.size() ; i++){
 						
 				%>
 						<tr>
 						<td>
 				<%
-						out.println(results.get(i).getId());
+						out.println(results.get(i).getParentSurname());
 				%>
 						</td>
 						<td>
 				<%
-						out.println(results.get(i).getName());
+						out.println(results.get(i).getProfessorSurname());
 				%>
 						</td>
-				<td>
+						<td>
 				<%
-						out.println(results.get(i).getSurname());
+						out.println(results.get(i).getDate());
+				%>
+						</td>
+						
+						<td>
+				<%
+						out.println(results.get(i).getMessage());
 				%>
 						</td>
 						</tr>						
@@ -103,25 +105,7 @@ function apri(url) {
 			</table>
     
     
-    		<form action="children.jsp" class="form-signin" id="childChoice" role="form" method="post">
-			
-				<select name="insertedClassCourseId" size="1">
-						
-			<%
-				for(int i=0 ; i<results.size() ; i++){
-			%>
-					
-						<option>
-							<%
-								out.println(results.get(i).getId());
-							%>
-						</option>
-			<%
-				}
-			%>
-				</select> 
-				<button type="submit"  style="border-radius: 250px; class="btn btn-outline-dark"> Show Selected Child </button>
-			</form> 
+    		 
 
   </div>
   

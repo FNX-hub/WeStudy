@@ -50,7 +50,11 @@ public class AssignmentBean {
 		return deadline;
 	}
 
-	public void setDeadline(LocalDate deadline) {
+	public void setDeadline(LocalDate deadline) throws WrongDeclarationCustomException {
+		//lancia eccezione se viene fornita da input una deadline precedente alla data corrente
+		if(deadline.compareTo(LocalDate.now())<0) {
+			throw new WrongDeclarationCustomException("Wrong parameters");
+		}
 		this.deadline = deadline;
 	}
 }
