@@ -3,6 +3,8 @@ package logic.control.gui;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -16,6 +18,7 @@ import logic.model.bean.AssignemntType;
 import logic.model.bean.AssignmentBean;
 import logic.model.bean.ClassCourseBean;
 import logic.model.bean.UserBean;
+import logic.model.bean.WrongDeclarationCustomException;
 import logic.view.boundary.ManageClassAssignmentProfessor;
 
 public class CreateAssignmentFxControl extends Subject implements ManageClassAssignmentProfessor{
@@ -36,7 +39,6 @@ public class CreateAssignmentFxControl extends Subject implements ManageClassAss
 	private ComboBox<AssignemntType> cbType;
 	@FXML
 	private TextArea txtarDescription;
-	private UserBean session;
 	
 	
 	@FXML
@@ -47,8 +49,7 @@ public class CreateAssignmentFxControl extends Subject implements ManageClassAss
 	}
 	
 	public void setUserSession(UserBean userSession) {
-		this.session = userSession;
-		cbCourse.setItems(FXCollections.observableArrayList(getAllCourses(session)));
+		cbCourse.setItems(FXCollections.observableArrayList(getAllCourses(userSession)));
 		cbType.setItems(FXCollections.observableArrayList(AssignemntType.values()));
 	}
 	
@@ -64,8 +65,11 @@ public class CreateAssignmentFxControl extends Subject implements ManageClassAss
 				SimpleLogger.info("info");
 				createAssignment(new AssignmentBean(cbType.getValue().name(), txtarDescription.getText(), dpDate.getValue()), cbCourse.getValue());
 				super.notifyObservers();
-			} catch (Exception e) {
-				e.printStackTrace();
+			} catch (WrongDeclarationCustomException e) {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("Invalid information in form");
+				alert.initStyle(StageStyle.DECORATED);
+				alert.showAndWait();
 			}
 			root.close();
 		}

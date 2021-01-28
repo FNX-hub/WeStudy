@@ -44,7 +44,7 @@ public class ManageMeetingControl implements Runnable, Observer {
 		{
 			String parent = DaoFactory.getParentDao().getFromId(m.getParentId()).getSurname();
 			String professor = DaoFactory.getProfessorDao().getFromId(m.getProfessorId()).getSurname();
-			beanList.add(new MeetingBean(m, parent, professor));
+			beanList.add(new MeetingBean(m.getParentId(), m.getProfessorId(), m.getDate(), m.getMessage(), parent, professor));
 		});
 		return beanList;
 	}

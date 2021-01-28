@@ -2,15 +2,12 @@ package logic.control.gui;
 
 import java.time.LocalDate;
 
-import org.apache.commons.math3.ode.events.EventHandler;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
@@ -46,14 +43,12 @@ public class ViewStudentCareerFxControl implements ManageClassCourseInformation,
 	@FXML
 	private Text txtDescription;
 	
-	private ExtendedGrade selected;
 	private ObservableList<ExtendedGrade> beanList; 
 	
 	
 	private void showGradeDetails(ExtendedGrade grade) {
 		try{
-			this.selected = grade;
-			txtDescription.setText(selected.getDescription());
+			txtDescription.setText(grade.getDescription());
 		} catch (NullPointerException e) {
 			txtDescription.setText("No grade selected");			
 		}
@@ -69,7 +64,7 @@ public class ViewStudentCareerFxControl implements ManageClassCourseInformation,
 	@FXML
 	private void newGrade() {
 		try {
-			if(cbCourse.getValue() != null & cbStudent.getValue()!=null) {
+			if(cbCourse.getValue() != null && cbStudent.getValue()!=null) {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/CreateGrade.fxml"));
 				Stage appliation = loader.load();
 				CreateGradeFxControl controlFx = loader.getController();
@@ -78,7 +73,7 @@ public class ViewStudentCareerFxControl implements ManageClassCourseInformation,
 				appliation.show();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			new FatalErrorFx();
 		}			
 	}
 	

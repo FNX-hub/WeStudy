@@ -40,7 +40,6 @@ public class UserBean {
 	@Override
 	public String toString() {
 		return surname;
-		//return super.toString();
 	}
 
 	public String getName() {

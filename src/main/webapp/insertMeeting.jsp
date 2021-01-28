@@ -66,9 +66,10 @@
 						
 						try{
 							MeetingBean bean = new MeetingBean(parentId,professorId,date,message);
-							bean.setConfirmed(true);
 							ManageMeetingControl controller = new ManageMeetingControl();
 							controller.newMeeting(bean);
+							
+							bean.setConfirmed(true);
 							
 							useCaseResult = "Meeting created with success";
 						}

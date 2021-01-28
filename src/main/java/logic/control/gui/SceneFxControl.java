@@ -12,11 +12,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import logic.control.AppLauncher;
 import logic.control.SimpleLogger;
-import logic.model.bean.Session;
 import logic.model.bean.UserBean;
+import logic.view.boundary.LoginBoundary;
 
-public class SceneFxControl {
+public class SceneFxControl implements LoginBoundary {
 
 	private UserBean userSession;
 	@FXML
@@ -34,7 +35,7 @@ public class SceneFxControl {
 	@FXML
 	protected MenuItem menuItemQuestion;
 	@FXML
-	protected MenuItem menuItemEvents;
+	protected MenuItem menuItemEvent;
 	@FXML
 	protected MenuItem menuItemBookings;
 	@FXML
@@ -67,7 +68,7 @@ public class SceneFxControl {
 			ManageClassAssignmentFxControl controlFx = loader.getController();
 			controlFx.setSession(userSession);
 		} catch (IOException e) {
-			e.printStackTrace();
+			new FatalErrorFx();
 		}		
 	}
 	@FXML
@@ -78,26 +79,9 @@ public class SceneFxControl {
 			sceneRoot.setCenter(loader.load());
 			ViewStudentCareerFxControl controlFx = loader.getController();
 			controlFx.setSession(userSession);
-//			controlFx.update();
 		} catch (IOException e) {
-			e.printStackTrace();
+			new FatalErrorFx();
 		}		
-	}
-	@FXML
-	private void openQuestions() {
-		try {
-			sceneRoot.setCenter(new FXMLLoader(getClass().getResource("/ChatMessageA.fxml")).load());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	@FXML
-	private void openEvents() {
-		try {
-			sceneRoot.setCenter(new FXMLLoader(getClass().getResource("/ChatMessageA.fxml")).load());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 	@FXML
 	private void openBookings() {
@@ -109,13 +93,15 @@ public class SceneFxControl {
 			controlFx.setSession(userSession);
 			controlFx.update();
 		} catch (IOException e) {
-			e.printStackTrace();
+			new FatalErrorFx();
 		}
 	}
 
-	public void setUserSession(String sessionId) {
+	public void setUserSession(UserBean userSession) {
 		menuItemQuestion.setVisible(false);
-		this.userSession = Session.getIstance().getSessionById(sessionId);
+		menuItemEvent.setVisible(false);
+		this.userSession = userSession;
+		SimpleLogger.info("ok2");
 		switch(userSession.getType()) {
 		case PARENT:
 			menuItemCourse.setVisible(false);
@@ -126,7 +112,7 @@ public class SceneFxControl {
 			break;
 		case STUDENT:
 			menuItemBookings.setVisible(false);
-			openGrades();
+			openCourses();
 			break;
 		default:
 			break;
@@ -136,5 +122,11 @@ public class SceneFxControl {
 	public UserBean getUserSession() {
 		return userSession;
 	}
-
+	
+	@FXML
+	private void logout() {
+		logout(userSession);
+		stage.close();
+		new AppLauncher().start(new Stage());
+	}
 }

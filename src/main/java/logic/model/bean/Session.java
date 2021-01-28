@@ -3,10 +3,6 @@ package logic.model.bean;
 import java.util.HashMap;
 import java.util.Map;
 
-import logic.model.Professor;
-import logic.model.Student;
-import logic.model.User;
-
 
 /**
  * @author Simone
@@ -23,17 +19,15 @@ public class Session {
 		return istance;
 	}
 	
-	public void addSession(String id, User value) {
-		if(value.getClass().equals(Professor.class)) {
-			map.put(id, new UserBean(UserType.PROFESSOR, value.getId(), value.getSurname()));
-		}
-		else if(value.getClass().equals(Student.class)) {
-			map.put(id, new UserBean(UserType.STUDENT, value.getId(), value.getSurname()));
-		}
-		else map.put(id, new UserBean(UserType.PARENT, value.getId(), value.getSurname()));
+	public void addSession(String id, UserBean value) {
+		map.put(id, value);
 	}
 	
 	public UserBean getSessionById(String id) {
 		return map.get(id);
+	}
+	
+	public void closeSession(String id) {
+		map.remove(id);
 	}
 }

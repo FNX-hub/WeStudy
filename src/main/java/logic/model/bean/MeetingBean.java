@@ -21,20 +21,26 @@ public class MeetingBean extends Subject {
 	private StringProperty message;
 	private Boolean confirmed;
 	
-	public MeetingBean(Integer parentId, Integer professorId, LocalDate date, String message) {
+	public MeetingBean(Integer parentId, Integer professorId, LocalDate date, String message) throws WrongDeclarationCustomException {
 		this.parentId = new SimpleIntegerProperty(parentId);
 		this.professorId = new SimpleIntegerProperty(professorId);
 		this.date = new SimpleObjectProperty<>(date);
-		this.message = new SimpleStringProperty(message);				
+		this.message = new SimpleStringProperty(message);	
+		validate(date);
 	}
 	
-	public MeetingBean(Meeting meeting, String parentSurname, String professorSurname) {
-		this.parentId = new SimpleIntegerProperty(meeting.getParentId());
+	public MeetingBean(Integer parentId, Integer professorId, LocalDate date, String message, String parentSurname, String professorSurname) {
+		this.parentId = new SimpleIntegerProperty(parentId);
 		this.parentSurname = new SimpleStringProperty(parentSurname);
-		this.professorId = new SimpleIntegerProperty(meeting.getProfessorId());
+		this.professorId = new SimpleIntegerProperty(professorId);
 		this.professorSurname = new SimpleStringProperty(professorSurname);
-		this.date = new SimpleObjectProperty<>(meeting.getDate());
-		this.message = new SimpleStringProperty(meeting.getMessage());				
+		this.date = new SimpleObjectProperty<>(date);
+		this.message = new SimpleStringProperty(message);
+	}
+	
+	
+	private void validate(LocalDate date) throws WrongDeclarationCustomException {
+		if(date.isBefore(LocalDate.now())) throw new WrongDeclarationCustomException("invalid date");
 	}
 	
 	public Integer getParentId() {

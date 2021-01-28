@@ -67,7 +67,7 @@ public class ExtendedAssignment{
 		}
 
 		public void setType(String type) {
-			this.type = new SimpleStringProperty(type);;
+			this.type = new SimpleStringProperty(type);
 		}
 	
 

@@ -13,7 +13,7 @@ public interface ViewClassAssignmentStudent extends RecoverCourseInformation{
 	//Dato uno Student e un ClassCourse -> Restituisci tutti gli assignment in quel ClassCourse
 	public default List<ExtendedAssignment> viewAssignment(UserBean studentBean, ClassCourseBean courseBean){
 		ViewAssignment controller = new ViewAssignment();
-		return controller.viewAssignmentStudentCourse(studentBean, courseBean);
+		return controller.viewAssignmentStudentCourse(courseBean);
 	}
 	
 	

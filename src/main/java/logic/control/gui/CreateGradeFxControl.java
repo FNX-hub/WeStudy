@@ -3,13 +3,16 @@ package logic.control.gui;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import logic.model.Subject;
 import logic.model.bean.AssignemntType;
 import logic.model.bean.ClassCourseBean;
@@ -60,8 +63,10 @@ public class CreateGradeFxControl extends Subject implements ManageClassCourseIn
 				this.addGrade(new GradeBean(student.getId(), sMark.getValue(), tarMessage.getText(), course.getCourseId(), cbType.getValue().name()));
 				super.notifyObservers();
 			} catch (WrongDeclarationCustomException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("Invalid information in form");
+				alert.initStyle(StageStyle.DECORATED);
+				alert.showAndWait();
 			}
 		}
 		stage.close();

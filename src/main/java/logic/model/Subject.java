@@ -17,11 +17,7 @@ public abstract class Subject {
 			if(itr.next().equals(o)) itr.remove();
 		}
 	}
-//	public void notifyObservers() throws Exception {
-//		for(Observer o : observers) {
-//			o.update();
-//		}
-//	}
+
 	public void notifyObservers() {
 		observers.forEach(Observer::update);
 	}

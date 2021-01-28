@@ -9,7 +9,7 @@ import org.junit.Test;
 import logic.model.ClassCourse;
 import logic.model.Grade;
 import logic.model.Student;
-public class ManageStudentCareerTest {
+public class DummyViewStudentGradeTest {
 	
 //	@Test
 //	//Inizializza uno studente/studentessa e gli/le assegna una serie di voti

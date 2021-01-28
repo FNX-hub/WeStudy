@@ -4,6 +4,7 @@ package logic.control;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import logic.control.gui.FatalErrorFx;
 
 public class AppLauncher extends Application {	
 	@Override
@@ -13,7 +14,7 @@ public class AppLauncher extends Application {
 			Stage root = loader.load();
 			root.show();
 		} catch (Exception e) {
-			e.printStackTrace();
+			new FatalErrorFx();
 		}
 	}
 }

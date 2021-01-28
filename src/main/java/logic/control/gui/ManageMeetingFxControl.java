@@ -69,7 +69,7 @@ public class ManageMeetingFxControl implements ManageMeetingBoundary, Observer {
 			controlFx.attach(this);
 			appliation.show();
 		} catch (Exception e) {
-			e.printStackTrace();
+			new FatalErrorFx();
 		}
 	}
 	

@@ -39,12 +39,10 @@ public class ManageClassAssignmentFxControl implements ManageClassAssignmentProf
 	@FXML
 	private Text txtDescription;
 	
-	private ExtendedAssignment selected;
 	private ObservableList<ExtendedAssignment> beanList;
 	
 	private void showAssignemntDetails(ExtendedAssignment assignment) {
 		try{
-			this.selected = assignment;
 			txtDescription.setText(assignment.getDescription());
 		} catch (NullPointerException e) {
 			txtDescription.setText("No Assignment selected");			
@@ -67,7 +65,7 @@ public class ManageClassAssignmentFxControl implements ManageClassAssignmentProf
 			controlFx.attach(this);
 			appliation.show();
 		} catch (Exception e) {
-			e.printStackTrace();
+			new FatalErrorFx();
 		}
 	}
 	

@@ -16,7 +16,7 @@ public class ViewAssignment{
 
 	//Funzione di supporto
 	//Dato uno specifico classCourse & uno specifico studente -> visualizza TUTTI gli assignment in quel classCourse
-	public List<ExtendedAssignment> viewAssignmentStudentCourse(UserBean studentBean, ClassCourseBean courseBean){
+	public List<ExtendedAssignment> viewAssignmentStudentCourse(ClassCourseBean courseBean){
 		List<ExtendedAssignment> convertedResults = new ArrayList<>();
 		
 		//Richiedi gli assignment di quel classCourse

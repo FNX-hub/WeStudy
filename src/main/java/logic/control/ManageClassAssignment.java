@@ -26,8 +26,7 @@ public class ManageClassAssignment{
 			List<Assignment> results = DaoFactory.getAssignmentDao().getCourseAssignment(bean.getCourseId());
 			
 			//Chiama la DAO corrispondente e chiedi il nome del ClassCourse
-			ClassCourse temporaryCourse = new ClassCourse(bean.getCourseId());
-			temporaryCourse = DaoFactory.getClassCourseDao().getFromId(bean.getCourseId());
+			ClassCourse temporaryCourse = DaoFactory.getClassCourseDao().getFromId(bean.getCourseId());
 			String courseName = temporaryCourse.getSubject();
 			
 			SimpleLogger.info("DEBUG: "+ courseName);

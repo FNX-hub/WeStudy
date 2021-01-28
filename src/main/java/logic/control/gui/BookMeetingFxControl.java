@@ -22,6 +22,7 @@ import logic.model.Subject;
 import logic.model.bean.MeetingBean;
 import logic.model.bean.UserBean;
 import logic.model.bean.UserType;
+import logic.model.bean.WrongDeclarationCustomException;
 import logic.view.boundary.ManageMeetingBoundary;
 
 public class BookMeetingFxControl extends Subject implements ManageMeetingBoundary {
@@ -86,56 +87,65 @@ public class BookMeetingFxControl extends Subject implements ManageMeetingBounda
 		else {
 			message = tarMessage.getText();			
 		}
-		
-		if(session.getType().equals(UserType.PROFESSOR)) {
-			return  new MeetingBean(
-					cbSubject.getValue().getId(),
+		try {
+			if(session.getType().equals(UserType.PROFESSOR)) {
+				return  new MeetingBean(
+						cbSubject.getValue().getId(),
+						session.getId(),
+						dpDate.getValue(),
+						message);
+			}
+			return new MeetingBean(
 					session.getId(),
+					cbSubject.getValue().getId(),
 					dpDate.getValue(),
 					message);
+		} catch(WrongDeclarationCustomException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Invalid information in form");
+			alert.initStyle(StageStyle.DECORATED);
+			alert.showAndWait();
+			return null;
 		}
-		return new MeetingBean(
-				session.getId(),
-				cbSubject.getValue().getId(),
-				dpDate.getValue(),
-				message);
-		}
+	}
 	
 	@FXML
 	public void next() {
 		if(cbSubject.getValue()== null || dpDate.getValue() == null) return;
 		MeetingBean bean = meetingBeanCreator();
-		bookMeeting(bean);
-		
-		// ALERT CREATION 
-		// |
-		// v
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Confirm Booking");
-		alert.initStyle(StageStyle.DECORATED);
-		alert.setHeaderText("Confirm booking?");
-		alert.setContentText(String.format(CONFIRM, cbSubject.getValue().getSurname(), bean.getDate().toString(), bean.getMessage()));
-		ButtonType btnAbort = new ButtonType("Back");
-		ButtonType btnConfirm = new ButtonType("Confirm");
-		alert.getButtonTypes().setAll(btnAbort, btnConfirm);
-		Button tmp = (Button) alert.getDialogPane().lookupButton(alert.getButtonTypes().get(0));
-		tmp.setPadding(new Insets(10,10,10,10));
-		tmp = (Button) alert.getDialogPane().lookupButton(alert.getButtonTypes().get(1));
-		tmp.setPadding(new Insets(10,10,10,10));
-		Optional<ButtonType> result = alert.showAndWait();
-		// ^
-		// |
-		// ALERT CREATION
-		
-		if (result.isPresent() && result.get() == btnAbort){
-		    alert.close();
-		    abortMeeting(bean);
-		} else {
-			alert.close();
-			stage.close();
-			confirmMeeting(bean);
+		if(bean!=null) {
+			bookMeeting(bean);
+			
+			// ALERT CREATION 
+			// |
+			// v
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Confirm Booking");
+			alert.initStyle(StageStyle.DECORATED);
+			alert.setHeaderText("Confirm booking?");
+			alert.setContentText(String.format(CONFIRM, cbSubject.getValue().getSurname(), bean.getDate().toString(), bean.getMessage()));
+			ButtonType btnAbort = new ButtonType("Back");
+			ButtonType btnConfirm = new ButtonType("Confirm");
+			alert.getButtonTypes().setAll(btnAbort, btnConfirm);
+			Button tmp = (Button) alert.getDialogPane().lookupButton(alert.getButtonTypes().get(0));
+			tmp.setPadding(new Insets(10,10,10,10));
+			tmp = (Button) alert.getDialogPane().lookupButton(alert.getButtonTypes().get(1));
+			tmp.setPadding(new Insets(10,10,10,10));
+			Optional<ButtonType> result = alert.showAndWait();
+			// ^
+			// |
+			// ALERT CREATION
+			
+			if (result.isPresent() && result.get() == btnAbort){
+				alert.close();
+				abortMeeting(bean);
+			} else {
+				alert.close();
+				stage.close();
+				confirmMeeting(bean);
+			}
+			notifyObservers();
 		}
-		notifyObservers();
 	}
 
 }
