@@ -19,9 +19,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import logic.model.Subject;
-import logic.model.UserType;
 import logic.model.bean.MeetingBean;
 import logic.model.bean.UserBean;
+import logic.model.bean.UserType;
 import logic.view.boundary.ManageMeetingBoundary;
 
 public class BookMeetingFxControl extends Subject implements ManageMeetingBoundary {

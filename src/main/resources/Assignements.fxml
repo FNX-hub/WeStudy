@@ -18,12 +18,11 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-
 <BorderPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.control.gui.ManageClassAssignmentFxControl">
    <center>
       <SplitPane dividerPositions="0.5">
          <items>
-            <TableView fx:id="tvAssignments">
+            <TableView fx:id="tvAssignments" minWidth="200.0">
                <columns>
                   <TableColumn fx:id="tbColDeadline" minWidth="80.0" prefWidth="100.0" text="Date" />
                   <TableColumn fx:id="tbColType" minWidth="100.0" prefWidth="120.0" text="Subject" />

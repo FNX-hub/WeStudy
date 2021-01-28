@@ -1,7 +1,5 @@
 package logic.model.bean;
 
-import logic.model.UserType;
-
 public class UserBean {
 	
 	private UserType type;

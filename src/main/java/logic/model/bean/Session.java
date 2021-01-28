@@ -6,7 +6,6 @@ import java.util.Map;
 import logic.model.Professor;
 import logic.model.Student;
 import logic.model.User;
-import logic.model.UserType;
 
 
 /**

@@ -78,7 +78,7 @@ public class SceneFxControl {
 			sceneRoot.setCenter(loader.load());
 			ViewStudentCareerFxControl controlFx = loader.getController();
 			controlFx.setSession(userSession);
-			controlFx.update();
+//			controlFx.update();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
@@ -119,7 +119,6 @@ public class SceneFxControl {
 		switch(userSession.getType()) {
 		case PARENT:
 			menuItemCourse.setVisible(false);
-			menuItemGrade.setVisible(false);
 			openBookings();
 			break;
 		case PROFESSOR:

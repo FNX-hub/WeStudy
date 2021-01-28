@@ -1,4 +1,4 @@
-package logic.model;
+package logic.model.bean;
 
 public enum UserType {
 	PROFESSOR,

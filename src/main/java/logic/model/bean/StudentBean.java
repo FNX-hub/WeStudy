@@ -39,5 +39,15 @@ public class StudentBean {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
+	@Override
+	public String toString() {
+		try {
+			return String.format("%s-%s", surname, name);
+		} catch (NullPointerException e) {
+			return super.toString();			
+		}
+	}
+	
 	
 }

@@ -8,9 +8,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import logic.model.Meeting;
 import logic.model.Observer;
 import logic.model.User;
-import logic.model.UserType;
 import logic.model.bean.MeetingBean;
 import logic.model.bean.UserBean;
+import logic.model.bean.UserType;
 import logic.model.dao.DaoFactory;
 
 /**

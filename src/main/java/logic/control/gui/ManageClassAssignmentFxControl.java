@@ -15,10 +15,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.control.SimpleLogger;
 import logic.model.Observer;
-import logic.model.UserType;
 import logic.model.bean.ClassCourseBean;
 import logic.model.bean.ExtendedAssignment;
 import logic.model.bean.UserBean;
+import logic.model.bean.UserType;
 import logic.view.boundary.ManageClassAssignmentProfessor;
 
 public class ManageClassAssignmentFxControl implements ManageClassAssignmentProfessor, Observer{

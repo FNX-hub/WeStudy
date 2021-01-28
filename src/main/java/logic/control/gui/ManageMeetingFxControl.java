@@ -13,9 +13,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.model.Observer;
-import logic.model.UserType;
 import logic.model.bean.MeetingBean;
 import logic.model.bean.UserBean;
+import logic.model.bean.UserType;
 import logic.view.boundary.ManageMeetingBoundary;
 
 public class ManageMeetingFxControl implements ManageMeetingBoundary, Observer {
