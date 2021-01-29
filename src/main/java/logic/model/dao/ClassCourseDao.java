@@ -37,44 +37,10 @@ public class ClassCourseDao implements Dao<ClassCourse>{
 	private static final String ERROR = "Unable to execute %s: %s";
 	
 	
-	//Dato id di uno studente, restituisci TUTTI i corsi di cui fa parte
-		public List<ClassCourse> getFromStudentId(Integer studentId){
-			List<ClassCourse> courses = new ArrayList<>();
-			String query = String.format(SELECT_BY_STUDENT_ID,studentId);
-			try (
-					Connection c = DaoConnector.getIstance().getConnection();
-					Statement stm = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-					ResultSet rs = stm.executeQuery(query)
-				)
-			{
-				if(!rs.first()) {
-					return courses;
-				}
-				do { 
-					//Estrai i valori dal DB
-					Integer id = rs.getInt(ID);
-					String subject = rs.getString(COURSENAME);
-					
-					//Inizializza 
-					ClassCourse course = new ClassCourse(subject,id);
-					
-					//Aggiungilo agli altri ottenuti dalla query
-					courses.add(course);
-				} while(rs.next()); //Ripeti fino a che il resultSet rs contiene tuple
-				
-			}catch(SQLException e) {
-				SimpleLogger.severe(String.format(ERROR, SELECT_BY_STUDENT_ID, e.getMessage()));
-			}
-			return courses;
-		}
 	
-	
-	//Dato id di un docente, restituisci TUTTI i corsi in cui insegna
-	public List<ClassCourse> getFromProfessorId(Integer professorId){
-		List<ClassCourse> courses = new ArrayList<>();
-		
-		String query = String.format(SELECT_BY_PROF_ID,professorId);
-		
+	//per risolvere code smell codice duplicato
+	public List<ClassCourse> executeQuery(String query, List<ClassCourse> courses){		
+		//----------------------------------------------------------------------------
 		try (
 				Connection c = DaoConnector.getIstance().getConnection();
 				Statement stm = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -94,11 +60,39 @@ public class ClassCourseDao implements Dao<ClassCourse>{
 				
 				//Aggiungilo agli altri ottenuti dalla query
 				courses.add(course);
-			} while(rs.next()); //Ripeti finchè il resultSet rs contiene tuple
+			} while(rs.next()); //Ripeti fino a che il resultSet rs contiene tuple
 			
 		}catch(SQLException e) {
-			SimpleLogger.severe(String.format(ERROR, SELECT_BY_PROF_ID, e.getMessage()));
+			SimpleLogger.severe(String.format(ERROR, SELECT_BY_STUDENT_ID, e.getMessage()));
 		}
+		return courses;
+		//----------------------------------------------------------------------------
+	}
+	
+	//Dato id di uno studente, restituisci TUTTI i corsi di cui fa parte
+		public List<ClassCourse> getFromStudentId(Integer studentId){
+			List<ClassCourse> courses = new ArrayList<>();
+			String query = String.format(SELECT_BY_STUDENT_ID,studentId);
+
+			//per risolvere code smell sostituisco TUTTO il blocco di codice con questa chiamata a metodo
+			executeQuery(query,courses);
+			// - - - - - -  - - - - - -  - - - - - -  - - - - - -  - - - - - -  - - - - - -  - - - - - - 
+			
+			return courses;
+			
+		}
+	
+	
+	//Dato id di un docente, restituisci TUTTI i corsi in cui insegna
+	public List<ClassCourse> getFromProfessorId(Integer professorId){
+		List<ClassCourse> courses = new ArrayList<>();
+		
+		String query = String.format(SELECT_BY_PROF_ID,professorId);
+		
+		//per risolvere code smell sostituisco TUTTO il blocco di codice con questa chiamata a metodo
+		executeQuery(query,courses);
+		// - - - - - -  - - - - - -  - - - - - -  - - - - - -  - - - - - -  - - - - - -  - - - - - - 
+		
 		return courses;
 	}
 	
@@ -107,6 +101,8 @@ public class ClassCourseDao implements Dao<ClassCourse>{
 
 			String query = String.format(SELECT_BY_PRIMARY_KEY, classCourse);
 			ClassCourse course = null;
+			
+			
 			try (
 					Connection c = DaoConnector.getIstance().getConnection();
 					Statement stm = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -136,30 +132,10 @@ public class ClassCourseDao implements Dao<ClassCourse>{
 		
 		String query = String.format(SELECT_ALL);
 		
-		try (
-				Connection c = DaoConnector.getIstance().getConnection();
-				Statement stm = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-				ResultSet rs = stm.executeQuery(query)
-			)
-		{
-			if(!rs.first()) {
-				return courses;
-			}
-			do { 
-				//Estrai i valori dal DB
-				Integer id = rs.getInt(ID);
-				String subject = rs.getString(COURSENAME);
-				
-				//Inizializza 
-				ClassCourse course = new ClassCourse(subject,id);
-				
-				//Aggiungilo agli altri ottenuti dalla query
-				courses.add(course);
-			} while(rs.next()); //Ripeti finchè il resultSet rs contiene tuple
-			
-		}catch(SQLException e) {
-			SimpleLogger.severe(String.format(ERROR, SELECT_BY_PROF_ID, e.getMessage()));
-		}
+		//per risolvere code smell sostituisco TUTTO il blocco di codice con questa chiamata a metodo
+		executeQuery(query,courses);
+		// - - - - - -  - - - - - -  - - - - - -  - - - - - -  - - - - - -  - - - - - -  - - - - - -
+		
 		return courses;
 	}
 
@@ -180,6 +156,7 @@ public class ClassCourseDao implements Dao<ClassCourse>{
 	//Memorizza un nuovo classCourse
 	@Override
 	public void save(ClassCourse t) {
+		//NOT IMPLEMENTED Utilizzata una versione con diversa segnatura
 		SimpleLogger.info("Utilizzata una versione con diversa segnatura");
 	}
 

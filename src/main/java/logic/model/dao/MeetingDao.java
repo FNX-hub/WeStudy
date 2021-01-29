@@ -39,70 +39,15 @@ public class MeetingDao implements Dao<Meeting> {
 	
 	@Override
 	public List<Meeting> getAll() {
-//		List<Meeting> listMeeting = new ArrayList<>();
 		return executeQuery(SELECT_ALL, new ArrayList<>());
-//		try (
-//				Connection c = DaoConnector.getIstance().getConnection();
-//				Statement stm = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-//				ResultSet rs = stm.executeQuery(SELECT_ALL)
-//			)
-//		{
-//			if(!rs.first()) {
-//				return listMeeting;
-//			}
-//			do {
-//				Meeting m = new Meeting(rs.getInt(PARENT), rs.getInt(PROFESSOR), LocalDate.parse(rs.getDate(DATE).toString()), rs.getString(MESSAGE));
-//				listMeeting.add(m);
-//			} while(rs.next());
-//		} catch (SQLException e) {
-//			SimpleLogger.severe(String.format(ERROR, SELECT_ALL, e.getMessage()));
-//		}
-//		return listMeeting;
 	}
 	public List<Meeting> getFromParent(Integer userId) {
 		String query = String.format(SELECT_BY_PARENT, userId);
 		return executeQuery(query, new ArrayList<>());
-//		List<Meeting> listMeeting = new ArrayList<>();
-//		try (
-//				Connection c = DaoConnector.getIstance().getConnection();
-//				Statement stm = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-//				ResultSet rs = stm.executeQuery(query)
-//			)
-//		{
-//			if(!rs.first()) {
-//				return listMeeting;
-//			}
-//			do {
-//				Meeting m = new Meeting(rs.getInt(PARENT), rs.getInt(PROFESSOR), LocalDate.parse(rs.getDate(DATE).toString()), rs.getString(MESSAGE));
-//				listMeeting.add(m);
-//			} while(rs.next());
-//		} catch (SQLException e) {
-//			SimpleLogger.severe(String.format(ERROR, SELECT_ALL, e.getMessage()));
-//		}
-//		return listMeeting;
 	}
 	public List<Meeting> getFromProfessor(Integer userId) {
 		String query = String.format(SELECT_BY_PROFESSOR, userId);
 		return executeQuery(query, new ArrayList<>());
-//		List<Meeting> listMeeting = new ArrayList<>();
-		
-//		try (
-//				Connection c = DaoConnector.getIstance().getConnection();
-//				Statement stm = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-//				ResultSet rs = stm.executeQuery(query)
-//				)
-//		{
-//			if(!rs.first()) {
-//				return listMeeting;
-//			}
-//			do {
-//				Meeting m = new Meeting(rs.getInt(PARENT), rs.getInt(PROFESSOR), LocalDate.parse(rs.getDate(DATE).toString()), rs.getString(MESSAGE));
-//				listMeeting.add(m);
-//			} while(rs.next());
-//		} catch (SQLException e) {
-//			SimpleLogger.severe(String.format(ERROR, SELECT_ALL, e.getMessage()));
-//		}
-//		return listMeeting;
 	}
 
 	private List<Meeting> executeQuery(String query, List<Meeting> list) {
