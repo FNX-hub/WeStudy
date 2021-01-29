@@ -46,7 +46,7 @@ public class LoginFxControl implements LoginBoundary {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Wrong Credentials");
 			alert.initStyle(StageStyle.DECORATED);
-			alert.setHeaderText("Username or password are wrog");
+			alert.setHeaderText("Username or password are wrong");
 			alert.show();
 		} catch (Exception e) {
 			new FatalErrorFx();

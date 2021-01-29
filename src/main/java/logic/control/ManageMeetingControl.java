@@ -157,7 +157,7 @@ public class ManageMeetingControl implements Runnable, Observer {
 	 * @implSpec It's synchronized so that only one {@link Thread} can execute at a time 
 	 */
 	@Override
-	public synchronized void run() {
+	public void run() {
 		running.set(true);
 		SimpleLogger.info("Daemon is running...");
 		stopped.set(false);

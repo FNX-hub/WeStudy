@@ -105,42 +105,19 @@ public class MeetingDao implements Dao<Meeting> {
 	@Override
 	public void save(Meeting t) {
 		String query = String.format(INSERT, t.getParentId(), t.getProfessorId(), t.getDate().toString(), t.getMessage());
-		try (
-				Connection c = DaoConnector.getIstance().getConnection();
-				Statement stm = c.createStatement();
-			)
-		{
-			stm.executeUpdate(query);
-		} catch (SQLException e) {
-			SimpleLogger.severe(String.format(ERROR, query, e.getMessage()));
-		}
+		executeUpdate(query,ERROR);
 	}
+	
 	@Override
 	public void update(Meeting t, String[] pkeys) {
 		String query = String.format(UPDATE, t.getParentId(), t.getProfessorId(), t.getDate().toString(), pkeys[0], pkeys[1], pkeys[2]);
-		try (
-				Connection c = DaoConnector.getIstance().getConnection();
-				Statement stm = c.createStatement();
-			)
-		{
-			stm.executeUpdate(query);
-		}
-		catch (SQLException e) {
-			SimpleLogger.severe(String.format(ERROR, query, e.getMessage()));
-		}
+		executeUpdate(query,ERROR);
 	}
 	@Override
 	public void delete(Meeting t) {
 		String query = String.format(DELETE, t.getParentId(), t.getProfessorId(), t.getDate().toString());
-		try (
-				Connection c = DaoConnector.getIstance().getConnection();
-				Statement stm = c.createStatement();
-			)
-		{
-			stm.executeUpdate(query);
-
-		} catch (SQLException e) {
-			SimpleLogger.severe(String.format(ERROR, query, e.getMessage()));
-		}
+		
+		executeUpdate(query,ERROR);
+		
 	}
 }

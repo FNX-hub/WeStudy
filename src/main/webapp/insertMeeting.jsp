@@ -15,7 +15,7 @@
 <%@ page import = "java.time.LocalDate" %>
 <%@ page import = "java.text.SimpleDateFormat" %>"
 <%@ page import = "java.util.ArrayList" %>"
-
+<%@ page import = "logic.control.gui.BookMeetingWeb" %>" 
 
 </head>
 
@@ -72,21 +72,21 @@
 						
 							MeetingBean bean = new MeetingBean(parentId,professorId,date,message);
 							
-							out.print(parentId + "!" + professorId + "!" + date);
 							
 							
-							ManageMeetingControl controller = new ManageMeetingControl();
-							
-      						String sessionRole = (String)session.getAttribute("userRole"); 
-      					 
-							controller.newMeeting(bean);
 							
 							if(confirm.equals("yes")){
-								bean.setConfirmed(true);
+							
+								new BookMeetingWeb(bean);
+								
+								
+								//controller.confirm();
+								//bean.setConfirmed(true);
 								useCaseResult = "Meeting created with success";
 							}
 							else{
-								bean.setConfirmed(false);
+								//controller.abort();
+								//bean.setConfirmed(false);
 								useCaseResult = "Error: Meeting not confirmed";
 							}
 
