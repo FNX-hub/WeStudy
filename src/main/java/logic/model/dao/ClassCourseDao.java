@@ -40,9 +40,7 @@ public class ClassCourseDao implements Dao<ClassCourse>{
 	//Dato id di uno studente, restituisci TUTTI i corsi di cui fa parte
 		public List<ClassCourse> getFromStudentId(Integer studentId){
 			List<ClassCourse> courses = new ArrayList<>();
-			
 			String query = String.format(SELECT_BY_STUDENT_ID,studentId);
-			
 			try (
 					Connection c = DaoConnector.getIstance().getConnection();
 					Statement stm = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);

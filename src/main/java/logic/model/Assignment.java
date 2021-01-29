@@ -14,7 +14,7 @@ public abstract class Assignment {
 	
 	
 	//Per recuperarlo dalla persistenza
-	public Assignment(String type, String description, LocalDate creation, LocalDate deadline) {
+	protected Assignment(String type, String description, LocalDate creation, LocalDate deadline) {
 		this.type = type;
 		this.description = description;
 		this.creationDate = creation;
@@ -22,7 +22,7 @@ public abstract class Assignment {
 	}
 	
 	//Per crearlo da GUI
-	public Assignment(String type, String description, LocalDate deadline) {
+	protected Assignment(String type, String description, LocalDate deadline) {
 		this.type = type;
 		this.description = description;
 		this.creationDate = LocalDate.now();

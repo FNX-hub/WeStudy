@@ -2,12 +2,12 @@ package logic.model;
 
 public abstract class User {
 
-	private Integer id;
-	private String surname;
-	private String name;
-	private String password;
+	protected Integer id;
+	protected String surname;
+	protected String name;
+	protected String password;
 	
-	public User(Integer id, String surname, String name, String password) {
+	protected User(Integer id, String surname, String name, String password) {
 		this.id = id;
 		this.surname = surname;
 		this.name = name;

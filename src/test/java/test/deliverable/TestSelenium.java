@@ -1,4 +1,4 @@
-package testTrani;
+package test.deliverable;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -13,14 +13,14 @@ import static org.junit.Assert.assertEquals;
 
 
 //@author Adriano
-public class Selenium {
+public class TestSelenium {
 	
 	//NB questo test funziona soltanto in locale con il sito e il database attivi su localhost:8080
 	//Date le corrette credenziali di accesso di uno studente, 
 	//	controlla se il login viene effettuato con successo
 	//	controlla se la pagina caricata sia quella corrispondente al ruolo dell'utente
 	@Test
-	public void LoginTest() throws InterruptedException{
+	public void LoginTest(){
 		
 		//Variabili di controllo
 		Integer expectedSuccesses = 2;
@@ -39,8 +39,6 @@ public class Selenium {
 		//Scrivi dentro la textbox della password
 		driver.findElement(By.xpath("/html/body/div/div/form/input[2]")).sendKeys("1234");
 		
-		Thread.sleep(500);
-		
 		//Clicca il bottone del login
 		driver.findElement(By.xpath("/html/body/div/div/form/button")).click(); 
 		
@@ -52,8 +50,6 @@ public class Selenium {
 		
 		//Stampa di controllo
 		SimpleLogger.info("VALORE ESTRATTO: <" + stringBoxContent + ">");
-		
-		Thread.sleep(500);
 		
 		//Clicca sul bottone per caricare la mainPage
 		driver.findElement(By.xpath("/html/body/div/div/table/tbody/tr[2]/td/a/b")).click(); 

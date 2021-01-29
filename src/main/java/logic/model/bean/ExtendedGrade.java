@@ -33,17 +33,6 @@ public class ExtendedGrade {
 	}
 	
 	
-	public ExtendedGrade(Integer studentId, String courseName, String studentName, String studentSurname, Date date, Integer mark, String description, String type) {
-		this.studentId = new SimpleIntegerProperty(studentId);
-		this.coursename = new SimpleStringProperty(courseName);
-		this.studentName = new SimpleStringProperty(studentName);
-		this.studentSurname = new SimpleStringProperty(studentSurname);
-		this.databaseDate = new SimpleObjectProperty<>(LocalDate.parse(date.toString()));
-		this.mark = new SimpleIntegerProperty(mark);
-		this.description = new SimpleStringProperty(description);
-		this.type = new SimpleStringProperty(type);				
-	}
-	
 	public Integer getStudentId() {
 		return studentId.get();
 	}

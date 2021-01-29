@@ -13,6 +13,7 @@ import logic.model.dao.DaoFactory;
 
 //@author Simone e Adriano
 public class LoginControl {
+	private static final String ID = "%d:%s";
 	
 	public LoginControl() {
 		SimpleLogger.info("LoginControl creato con successo");
@@ -74,7 +75,7 @@ public class LoginControl {
 		if(user != null && bean.getPassword().equals(user.getPassword())) {
 			type = UserType.PROFESSOR;
 			userSession = new UserBean(type, user.getId(), user.getSurname(), user.getName());
-			String id = String.format("%d:%s", userSession.getId(), userSession.getName());
+			String id = String.format(ID, userSession.getId(), userSession.getName());
 			Session.getIstance().addSession(id, userSession);
 			userList.add(user);
 			return userSession;
@@ -83,7 +84,7 @@ public class LoginControl {
 		if(user != null && bean.getPassword().equals(user.getPassword())) {
 			type = UserType.PARENT;
 			userSession = new UserBean(type, user.getId(), user.getSurname(), user.getName());
-			String id = String.format("%d:%s", userSession.getId(), userSession.getName());
+			String id = String.format(ID, userSession.getId(), userSession.getName());
 			Session.getIstance().addSession(id, userSession);
 			userList.add(user);
 			return userSession;			
@@ -92,7 +93,7 @@ public class LoginControl {
 		if(user != null && bean.getPassword().equals(user.getPassword())) {
 			type = UserType.STUDENT;
 			userSession = new UserBean(type, user.getId(), user.getSurname(), user.getName());
-			String id = String.format("%d:%s", userSession.getId(), userSession.getName());
+			String id = String.format(ID, userSession.getId(), userSession.getName());
 			Session.getIstance().addSession(id, userSession);
 			userList.add(user);
 			return userSession;	
@@ -101,7 +102,7 @@ public class LoginControl {
 	}
 	
 	public void logout(UserBean session) {
-		String id = String.format("%d:%s", session.getId(), session.getName());
+		String id = String.format(ID, session.getId(), session.getName());
 		Session.getIstance().closeSession(id);
 	}
 }

@@ -1,4 +1,4 @@
-package testTrani;
+package test.deliverable;
 
 import static org.junit.Assert.assertEquals;
 

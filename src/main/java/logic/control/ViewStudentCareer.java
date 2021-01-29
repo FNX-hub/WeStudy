@@ -46,7 +46,8 @@ public class ViewStudentCareer{
 				String type = grades.get(k).getType();
 				Date date = grades.get(k).getDate();
 				
-				ExtendedGrade grade = new ExtendedGrade(studentId, courseName, studentName, studentSurname, date, mark, description, type);
+				ExtendedGrade grade = new ExtendedGrade(studentId, studentName, studentSurname, date, mark, description, type);
+				grade.setCoursename(courseName);
 				convertedGrades.add(grade);
 			}
 		}

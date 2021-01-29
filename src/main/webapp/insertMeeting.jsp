@@ -66,32 +66,19 @@
 						String message = request.getParameter("SelectMeetingMessage");
 						String confirm = request.getParameter("SelectMeetingConfirm");
 						
+						
+						
 						try{
+						
 							MeetingBean bean = new MeetingBean(parentId,professorId,date,message);
+							
+							out.print(parentId + "!" + professorId + "!" + date);
+							
+							
 							ManageMeetingControl controller = new ManageMeetingControl();
 							
-							
-							
-      					String sessionRole = (String)session.getAttribute("userRole"); 
+      						String sessionRole = (String)session.getAttribute("userRole"); 
       					 
-      					List<MeetingBean> beans = new ArrayList<>();
-      					
-      					//prendi TUTTI i meeting di questo utente
-						if(sessionRole.equals("Professor")){
-							beans = controller.getUserMeeting(bean.getProfessorId(), UserType.PROFESSOR);
-						}
-						if(sessionRole.equals("Parent")){
-							beans = controller.getUserMeeting(bean.getParentId(), UserType.PARENT);
-						}
-							
-
-							for(MeetingBean old : beans) {
-								if(old.getDate().equals(bean.getDate()) && old.getParentId().equals(bean.getParentId()) && old.getProfessorId().equals(bean.getProfessorId())){
-									//meeting esistente
-									throw new WrongDeclarationCustomException(null);									
-								}
-							}
-							
 							controller.newMeeting(bean);
 							
 							if(confirm.equals("yes")){
@@ -107,6 +94,10 @@
 						catch(WrongDeclarationCustomException e){
 							useCaseResult = "ERROR: you can not book a meeting for a past date or an already existing meeting";
 						}
+						catch(NullPointerException e){
+							useCaseResult = "ERROR: internal error";
+						}
+						
 						
 						out.println(useCaseResult);
 					%>

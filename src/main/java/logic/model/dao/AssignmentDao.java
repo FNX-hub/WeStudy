@@ -25,11 +25,8 @@ public class AssignmentDao implements Dao<Assignment> {
 	// SQL statements
 		
 	private static final String SELECT_ALL = "SELECT * FROM assignment";
-	//private static final String SELECT_BY_PRIMARY_KEY = "SELECT * FROM assignment WHERE id = '%d'";
 	private static final String INSERT = "INSERT INTO assignment (course_id,delivery_date,creation_date,type,description) VALUES ('%d','%s','%s','%s','%s')";	
 	private static final String SELECT_CLASSCOURSE = "SELECT * FROM assignment WHERE course_id = '%d'";
-	//private static final String UPDATE = "UPDATE assignment SET delivery_date = '%s', creation_date = '%s', type = '%s', description = '%s' WHERE id = '%d'";
-	//"DELETE FROM assignment WHERE id = '%d'";
 	
 	
 	// Error message

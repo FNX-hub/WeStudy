@@ -38,7 +38,7 @@ public class GradeDao implements Dao<Grade> {
 	//Restituisci TUTTI i Grade presenti nel database
 	@Override
 	public List<Grade> getAll() {
-		List<Grade> listGrade = new ArrayList<Grade>();
+		List<Grade> listGrade = new ArrayList<>();
 		
 		try (
 				Connection c = DaoConnector.getIstance().getConnection();
@@ -114,7 +114,7 @@ public class GradeDao implements Dao<Grade> {
 	
 	//Dato uno Student e un ClassCourse - restituisci i voti di quello Student in quel ClassCourse
 	public List<Grade> getStudentCourseGrades(Integer courseId, Integer studentId){
-		List<Grade> courseGrades = new ArrayList<Grade>();
+		List<Grade> courseGrades = new ArrayList<>();
 		String query = String.format(SELECT_STUDENT_COURSE, studentId, courseId);
 
 		try (
@@ -151,7 +151,7 @@ public class GradeDao implements Dao<Grade> {
 	
 	//Dato un ClassCourse - restituisci TUTTI i voti assegnati a TUTTI gli studenti
 	public List<Grade> getCourseGrades(Integer courseId) {
-		List<Grade> courseGrades = new ArrayList<Grade>();
+		List<Grade> courseGrades = new ArrayList<>();
 		String query = String.format(SELECT_COURSE, courseId);
 
 		try (
@@ -192,7 +192,7 @@ public class GradeDao implements Dao<Grade> {
 
 	//Restituisci TUTTI i voti assegnati a uno studente - vista dello studente o del genitore
 	public List<Grade> getStudentGrades(Integer studentId) {
-		List<Grade> courseGrades = new ArrayList<Grade>();
+		List<Grade> courseGrades = new ArrayList<>();
 		String query = String.format(SELECT_STUDENT, studentId);
 
 		try (

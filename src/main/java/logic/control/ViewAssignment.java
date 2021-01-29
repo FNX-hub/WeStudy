@@ -50,12 +50,12 @@ public class ViewAssignment{
 		//Richiedi al DAO TUTTI i codici id di TUTTI i classCourse di cui lo studente con questo id fa parte
 		List<ClassCourse> allCourses = DaoFactory.getClassCourseDao().getFromStudentId(studentBean.getId());
 		
-		SimpleLogger.info("DEBUG: numero di corsi trovati: " + allCourses.size());
+		SimpleLogger.info("numero di corsi trovati: " + allCourses.size());
 		
 		//Per ogni id del classCourse ottenuto -> richiedi alla DAO la lista di Assignment corrispondenti
 		for(int i=0 ; i<allCourses.size() ; i++) {
 			Integer courseId = allCourses.get(i).getId();
-			SimpleLogger.info("DEBUG: (" + i + ") id corso: " + courseId);
+			SimpleLogger.info("(" + i + ") id corso: " + courseId);
 			
 			//richiedi gli assignment di quel classCourse
 			try {
@@ -65,9 +65,9 @@ public class ViewAssignment{
 				ClassCourse extractedCourse = DaoFactory.getClassCourseDao().getFromId(courseId);
 				String courseName = extractedCourse.getSubject();
 				
-				SimpleLogger.info("DEBUG: (" + i + ") nome corso: " + courseName);
+				SimpleLogger.info("(" + i + ") nome corso: " + courseName);
 				
-				SimpleLogger.info("DEBUG: (" + i + ") numero di assignment: " + results.size());
+				SimpleLogger.info("(" + i + ") numero di assignment: " + results.size());
 				
 				//Aggiungi alla lista di bean TUTTI gli Assignment di quel classCourse
 				for(int j=0 ; j<results.size() ; j++) {
@@ -82,8 +82,8 @@ public class ViewAssignment{
 				}
 			}
 			catch(NullPointerException e) {
-				SimpleLogger.info("DEBUG: (" + i + ") Catturata eccezione");
-				SimpleLogger.info("DEBUG: (" + i + ") numero di assignment: 0");
+				SimpleLogger.info("(" + i + ") Catturata eccezione");
+				SimpleLogger.info("(" + i + ") numero di assignment: 0");
 			}
 
 		}
