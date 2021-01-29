@@ -76,7 +76,7 @@ public class ManageClassAssignment{
 				break;
 		}
 
-		SimpleLogger.info("DEBUG: created Assignment: " + assignment.getDescription() + "|" + assignment.getType() +  "|" + assignment.getCreationDate() +  "|" + assignment.getDeadlineDate());
+		
 		
 		Integer courseId = classCourseBean.getCourseId();
 	

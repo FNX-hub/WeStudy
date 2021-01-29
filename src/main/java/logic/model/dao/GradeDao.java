@@ -77,10 +77,8 @@ public class GradeDao implements Dao<Grade> {
 		
 		
 		// - - - - - - - - - - - - - - - - - - - -
-		listGrade = executeQuery(SELECT_ALL, listGrade);
+		return executeQuery(SELECT_ALL, listGrade);
 		// - - - - - - - - - - - - - - - - - - - -
-		
-		return listGrade;
 	}
 	
 	
@@ -133,12 +131,9 @@ public class GradeDao implements Dao<Grade> {
 		List<Grade> courseGrades = new ArrayList<>();
 		String query = String.format(SELECT_STUDENT_COURSE, studentId, courseId);
 
-		
 		//creato metodo comune per risolvere code smell
-		courseGrades = executeQuery(query, courseGrades);
+		return executeQuery(query, courseGrades);
 		//------------------------------------------------------------
-		
-		return courseGrades;
 	}
 	
 	
@@ -148,10 +143,8 @@ public class GradeDao implements Dao<Grade> {
 		String query = String.format(SELECT_COURSE, courseId);
 
 		//creato metodo comune per risolvere code smell
-		courseGrades = executeQuery(query, courseGrades);
+		return executeQuery(query, courseGrades);
 		//------------------------------------------------------------
-		
-		return courseGrades;
 	}
 	
 	
@@ -163,11 +156,8 @@ public class GradeDao implements Dao<Grade> {
 
 		
 		//creato metodo comune per risolvere code smell
-		courseGrades = executeQuery(query, courseGrades);
+		return executeQuery(query, courseGrades);
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - -
-		
-		
-		return courseGrades;
 	}
 
 
