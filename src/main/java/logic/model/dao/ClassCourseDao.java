@@ -39,7 +39,7 @@ public class ClassCourseDao implements Dao<ClassCourse>{
 	
 	
 	//per risolvere code smell codice duplicato
-	public List<ClassCourse> executeQuery(String query, List<ClassCourse> courses){		
+	private List<ClassCourse> executeQuery(String query, List<ClassCourse> courses){		
 		//----------------------------------------------------------------------------
 		try (
 				Connection c = DaoConnector.getIstance().getConnection();

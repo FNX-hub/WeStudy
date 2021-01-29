@@ -34,16 +34,13 @@ public class GradeDao implements Dao<Grade> {
 	// Error
 	private static final String ERROR = "Unable to execute %s: %s";
 	
-	
-	//Restituisci TUTTI i Grade presenti nel database
-	@Override
-	public List<Grade> getAll() {
-		List<Grade> listGrade = new ArrayList<>();
-		
+
+	//Inserito per risolvere il code smelll
+	private List<Grade> executeQuery(String query, List<Grade> listGrade){
 		try (
 				Connection c = DaoConnector.getIstance().getConnection();
 				Statement stm = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-				ResultSet rs = stm.executeQuery(SELECT_ALL)
+				ResultSet rs = stm.executeQuery(query)
 			)
 		{
 			if(!rs.first()) {
@@ -63,11 +60,26 @@ public class GradeDao implements Dao<Grade> {
 				listGrade.add(grade);
 				
 				
-			} while(rs.next()); //Ripeti finchè il resultSet rs contiene tuple
+			} while(rs.next()); //Ripeti fino a che il resultSet rs contiene tuple
 			
 		}catch(SQLException e) {
-			SimpleLogger.severe(String.format(ERROR, SELECT_ALL, e.getMessage()));
+			SimpleLogger.severe(String.format(ERROR, query, e.getMessage()));
 		}
+		return listGrade;
+	}
+	// - - - - - - - - - - - - - - - - - - - -
+	
+	
+	//Restituisci TUTTI i Grade presenti nel database
+	@Override
+	public List<Grade> getAll() {
+		List<Grade> listGrade = new ArrayList<>();
+		
+		
+		// - - - - - - - - - - - - - - - - - - - -
+		listGrade = executeQuery(SELECT_ALL, listGrade);
+		// - - - - - - - - - - - - - - - - - - - -
+		
 		return listGrade;
 	}
 	
@@ -98,16 +110,20 @@ public class GradeDao implements Dao<Grade> {
 	@Override
 	public void save(Grade t) {
 		SimpleLogger.info("utilizzato un metodo con differente segnatura");
+		//NOT IMPLEMENTED
+		//utilizza differente segnatura
 	}
 	
 	@Override
 	public void update(Grade t, String[] pkeys) {
-		SimpleLogger.info("operazione non prevista");
+		//NOT IMPLEMENTED
+		//utilizza differente segnatura
 	}
 
 	@Override
 	public void delete(Grade t) {
-		SimpleLogger.info("operazione non prevista");
+		//NOT IMPLEMENTED
+		//utilizza differente segnatura
 	}
 
 	
@@ -117,34 +133,11 @@ public class GradeDao implements Dao<Grade> {
 		List<Grade> courseGrades = new ArrayList<>();
 		String query = String.format(SELECT_STUDENT_COURSE, studentId, courseId);
 
-		try (
-				Connection c = DaoConnector.getIstance().getConnection();
-				Statement stm = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-				ResultSet rs = stm.executeQuery(query)
-			)
-		{
-			if(!rs.first()) {
-				return courseGrades;
-			}
-			do {				
-				//Estrai i valori dal DB
-				Integer mark = rs.getInt(VALUE);
-				String type = rs.getString(TYPE);
-				String description = rs.getString(DESCRIPTION);
-				Date databaseDate = rs.getDate(DATE);
-				
-				//Inizializza un Grade - NB la responsabilita' di associarlo al corretto ClassCourse NON appartiene a questa DAO
-				Grade grade = new Grade(mark, databaseDate,description,type);
-				
-				//Aggiungi il Grade alla lista di Grade ottenuti dalla query
-				courseGrades.add(grade);
-				
-				
-			} while(rs.next()); //Ripeti finchè il resultSet rs contiene tuple
-			
-		}catch(SQLException e) {
-			SimpleLogger.severe(String.format(ERROR, SELECT_COURSE, e.getMessage()));
-		}
+		
+		//creato metodo comune per risolvere code smell
+		courseGrades = executeQuery(query, courseGrades);
+		//------------------------------------------------------------
+		
 		return courseGrades;
 	}
 	
@@ -154,39 +147,12 @@ public class GradeDao implements Dao<Grade> {
 		List<Grade> courseGrades = new ArrayList<>();
 		String query = String.format(SELECT_COURSE, courseId);
 
-		try (
-				Connection c = DaoConnector.getIstance().getConnection();
-				Statement stm = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-				ResultSet rs = stm.executeQuery(query)
-			)
-		{
-			if(!rs.first()) {
-				return courseGrades;
-			}
-			do {				
-				//Estrai i valori dal DB
-				Integer mark = rs.getInt(VALUE);
-				String type = rs.getString(TYPE);
-				String description = rs.getString(DESCRIPTION);
-				Date databaseDate = rs.getDate(DATE);
-				
-				//Inizializza un Grade - NB la responsabilita' di associarlo al corretto ClassCourse NON appartiene a questa DAO
-				Grade grade = new Grade(mark, databaseDate,description,type);
-				
-				//Aggiungi il Grade alla lista di Grade ottenuti dalla query
-				courseGrades.add(grade);
-				
-				
-			} while(rs.next()); //Ripeti finchè il resultSet rs contiene tuple
-			
-		}catch(SQLException e) {
-			SimpleLogger.severe(String.format(ERROR, SELECT_COURSE, e.getMessage()));
-		}
+		//creato metodo comune per risolvere code smell
+		courseGrades = executeQuery(query, courseGrades);
+		//------------------------------------------------------------
+		
 		return courseGrades;
 	}
-	
-	
-	
 	
 	
 
@@ -195,34 +161,12 @@ public class GradeDao implements Dao<Grade> {
 		List<Grade> courseGrades = new ArrayList<>();
 		String query = String.format(SELECT_STUDENT, studentId);
 
-		try (
-				Connection c = DaoConnector.getIstance().getConnection();
-				Statement stm = c.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-				ResultSet rs = stm.executeQuery(query)
-			)
-		{
-			if(!rs.first()) {
-				return courseGrades;
-			}
-			do {				
-				//Estrai i valori dal DB
-				Integer mark = rs.getInt(VALUE);
-				String type = rs.getString(TYPE);
-				String description = rs.getString(DESCRIPTION);
-				Date databaseDate = rs.getDate(DATE);
-				
-				//Inizializza un Grade - NB la responsabilita' di associarlo al corretto ClassCourse NON appartiene a questa DAO
-				Grade grade = new Grade(mark, databaseDate,description,type);
-				
-				//Aggiungi il Grade alla lista di Grade ottenuti dalla query
-				courseGrades.add(grade);
-				
-				
-			} while(rs.next()); //Ripeti fino a che il resultSet rs contiene tuple
-			
-		}catch(SQLException e) {
-			SimpleLogger.severe(String.format(ERROR, SELECT_STUDENT, e.getMessage()));
-		}
+		
+		//creato metodo comune per risolvere code smell
+		courseGrades = executeQuery(query, courseGrades);
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - -
+		
+		
 		return courseGrades;
 	}
 
