@@ -77,8 +77,11 @@ dependencies {
 	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
 	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.22'
 	
-	// Selenium Dependency
+	// Selenium Dependency Simone
 	// https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
 	compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '2.41.0'
+	
+	// Selenium Adriano
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.+'
 	
 }
