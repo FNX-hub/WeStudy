@@ -3,8 +3,6 @@ package logic.control;
 import java.util.ArrayList;
 import java.util.List;
 
-import logic.model.Parent;
-import logic.model.Professor;
 import logic.model.User;
 import logic.model.bean.LoginBean;
 import logic.model.bean.Session;
@@ -72,24 +70,32 @@ public class LoginControl {
 		List<User> userList = new ArrayList<>();
 		UserBean userSession = null;
 		UserType type = null;
-		userList.add(DaoFactory.getProfessorDao().getFromId(bean.getId()));
-		userList.add(DaoFactory.getParentDao().getFromId(bean.getId()));
-		userList.add(DaoFactory.getStudentDao().getFromId(bean.getId()));
-		for(User user : userList) {
-			if(user.getPassword().equals(bean.getPassword())) {
-				if(user.getClass().equals(Parent.class)) {
-					type = UserType.PARENT;
-				}
-				else if(user.getClass().equals(Professor.class)) {
-					type = UserType.PROFESSOR;
-				} else {
-					type = UserType.STUDENT;					
-				}
-				userSession = new UserBean(type, user.getId(), user.getSurname(), user.getName());
-				String id = String.format("%d:%s", userSession.getId(), userSession.getName());
-				Session.getIstance().addSession(id, userSession);
-				break;
-			}	
+		User user = DaoFactory.getProfessorDao().getFromId(bean.getId());
+		if(user != null && bean.getPassword().equals(user.getPassword())) {
+			type = UserType.PROFESSOR;
+			userSession = new UserBean(type, user.getId(), user.getSurname(), user.getName());
+			String id = String.format("%d:%s", userSession.getId(), userSession.getName());
+			Session.getIstance().addSession(id, userSession);
+			userList.add(user);
+			return userSession;
+		}
+		user = DaoFactory.getParentDao().getFromId(bean.getId());
+		if(user != null && bean.getPassword().equals(user.getPassword())) {
+			type = UserType.PARENT;
+			userSession = new UserBean(type, user.getId(), user.getSurname(), user.getName());
+			String id = String.format("%d:%s", userSession.getId(), userSession.getName());
+			Session.getIstance().addSession(id, userSession);
+			userList.add(user);
+			return userSession;			
+		}
+		user = DaoFactory.getStudentDao().getFromId(bean.getId());
+		if(user != null && bean.getPassword().equals(user.getPassword())) {
+			type = UserType.STUDENT;
+			userSession = new UserBean(type, user.getId(), user.getSurname(), user.getName());
+			String id = String.format("%d:%s", userSession.getId(), userSession.getName());
+			Session.getIstance().addSession(id, userSession);
+			userList.add(user);
+			return userSession;	
 		}
 		return userSession;
 	}

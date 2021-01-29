@@ -43,7 +43,6 @@ public class LoginFxControl implements LoginBoundary {
 			appliation.show();
 			this.stage.close();
 		} catch (NullPointerException e) {
-			e.printStackTrace();
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Wrong Credentials");
 			alert.initStyle(StageStyle.DECORATED);

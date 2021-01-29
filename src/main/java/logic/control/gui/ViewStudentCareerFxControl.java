@@ -1,6 +1,7 @@
 package logic.control.gui;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -81,9 +82,19 @@ public class ViewStudentCareerFxControl implements ManageClassCourseInformation,
 	public void update() {
 		beanList.removeAll(tvGrades.getItems());
 		if(session.getType().equals(UserType.STUDENT)) {
-			beanList.addAll(this.getStudentGrades(session));			
+			List<ExtendedGrade> list = getStudentGrades(session);
+			list.forEach(grade-> {
+				if(grade.getCoursename().equals(cbCourse.getValue().getSubject())) {
+					beanList.add(grade);
+				}
+			});			
 		} else {
-			beanList.addAll(this.getStudentGrades(cbStudent.getValue()));			
+			List<ExtendedGrade> list = getStudentGrades(cbStudent.getValue());
+			list.forEach(grade-> {
+				if(grade.getCoursename().equals(cbCourse.getValue().getSubject())) {
+					beanList.add(grade);
+				}
+			});		
 		}
 	}
 
