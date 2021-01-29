@@ -68,6 +68,12 @@
 						try{
 							MeetingBean bean = new MeetingBean(parentId,professorId,date,message);
 							ManageMeetingControl controller = new ManageMeetingControl();
+							List<MeetingBean> beans = controller.getUserMeeting(bean.getParentId(), UserType.PARENT);
+							for(MeetingBean old : beans) {
+								if(old.getDate().equals(bean.getDate()) && old.getParentId().equals(bean.getParentId()) && old.getProfessorId().equals(bean.getProfessorId())){
+									throw new WrongDeclarationCustomException(null);									
+								}
+							}
 							controller.newMeeting(bean);
 							
 							if(confirm.equals("yes")){
@@ -80,11 +86,8 @@
 							}
 
 						}
-						catch(NullPointerException e){
-							useCaseResult = "ERROR: internal error";
-						}
 						catch(WrongDeclarationCustomException e){
-							useCaseResult = "ERROR: you can not book a meeting for a past date";
+							useCaseResult = "ERROR: you can not book a meeting for a past date or an already existing meeting";
 						}
 						
 						out.println(useCaseResult);

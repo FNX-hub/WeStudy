@@ -6,12 +6,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import logic.model.Observer;
 import logic.model.bean.MeetingBean;
 import logic.model.bean.UserBean;
@@ -43,7 +46,11 @@ public class ManageMeetingFxControl implements ManageMeetingBoundary, Observer {
 	private void showMeetingDetails(MeetingBean meeting) {
 		try{
 			this.selected = meeting;
-			txtMessage.setText(meeting.getMessage());
+			if(selected.getMessage().isBlank()) {
+				txtMessage.setText("No Message");				
+			} else {
+				txtMessage.setText(meeting.getMessage());				
+			}
 		} catch (NullPointerException e) {
 			txtMessage.setText("No meeting selected");			
 		}
@@ -52,9 +59,17 @@ public class ManageMeetingFxControl implements ManageMeetingBoundary, Observer {
 	@FXML
 	private void deleteMeeting() {
 		if(this.selected != null) {
-			deleteMeeting(selected);
-			beanList.remove(selected);
-			selected = null;
+			if(selected.getDate().isBefore(LocalDate.now())) {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setHeaderText("Warning");
+				alert.setContentText("You can not book a meeting for a past date");
+				alert.initStyle(StageStyle.DECORATED);
+				alert.showAndWait();
+			} else {
+				deleteMeeting(selected);
+				beanList.remove(selected);
+				selected = null;				
+			}
 		}
 		update();
 	}
