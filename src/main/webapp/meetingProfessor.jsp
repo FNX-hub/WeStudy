@@ -167,8 +167,8 @@ function apri(url) {
 				<tr>
 				
 					<td>
-						<select name="SelectMeetingProfessorId" size="1">
 						
+						<select name="SelectMeetingParentId" size="1">
 						<%
 							for(int i=0 ; i<parentsId.size() ; i++){
 						%>
@@ -182,7 +182,7 @@ function apri(url) {
 					</td>
 				
 					<td>
-						<select name="SelectMeetingParentId" size="1">
+						<select name="SelectMeetingProfessorId" size="1">
 						<option>
 						<% out.print(intSessionId); %>
 						</option>

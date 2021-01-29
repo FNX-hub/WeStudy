@@ -14,6 +14,7 @@
 <%@ page import = "java.sql.Date" %>"
 <%@ page import = "java.time.LocalDate" %>
 <%@ page import = "java.text.SimpleDateFormat" %>"
+<%@ page import = "java.util.ArrayList" %>"
 
 
 </head>
@@ -68,12 +69,29 @@
 						try{
 							MeetingBean bean = new MeetingBean(parentId,professorId,date,message);
 							ManageMeetingControl controller = new ManageMeetingControl();
-							List<MeetingBean> beans = controller.getUserMeeting(bean.getParentId(), UserType.PARENT);
+							
+							
+							
+      					String sessionRole = (String)session.getAttribute("userRole"); 
+      					 
+      					List<MeetingBean> beans = new ArrayList<>();
+      					
+      					//prendi TUTTI i meeting di questo utente
+						if(sessionRole.equals("Professor")){
+							beans = controller.getUserMeeting(bean.getProfessorId(), UserType.PROFESSOR);
+						}
+						if(sessionRole.equals("Parent")){
+							beans = controller.getUserMeeting(bean.getParentId(), UserType.PARENT);
+						}
+							
+
 							for(MeetingBean old : beans) {
 								if(old.getDate().equals(bean.getDate()) && old.getParentId().equals(bean.getParentId()) && old.getProfessorId().equals(bean.getProfessorId())){
+									//meeting esistente
 									throw new WrongDeclarationCustomException(null);									
 								}
 							}
+							
 							controller.newMeeting(bean);
 							
 							if(confirm.equals("yes")){
