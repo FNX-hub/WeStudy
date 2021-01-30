@@ -88,18 +88,6 @@ public class ManageMeetingControl implements Runnable, Observer {
 	}
 	
 	/**
-	 * Kill the thread and confirm the booking
-	 */
-	private void confirmMeeting() {
-		if(isRunning()) {
-			stop();
-			Meeting m = new Meeting(bean.getParentId(), bean.getProfessorId(), bean.getDate(), bean.getMessage());
-			DaoFactory.getMeetingDao().save(m);
-			this.bean = null;
-		}
-	}
-	
-	/**
 	 * Save in persistence the Meeting
 	 * @param bean - {@link MeetingBean}
 	 */

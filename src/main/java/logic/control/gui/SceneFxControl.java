@@ -13,7 +13,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import logic.control.AppLauncher;
-import logic.control.SimpleLogger;
 import logic.model.bean.UserBean;
 import logic.view.boundary.LoginBoundary;
 
