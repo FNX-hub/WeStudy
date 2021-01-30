@@ -11,7 +11,7 @@ import logic.model.dao.StudentDao;
 public class DatabaseSimpleTest {
 	
 	@Test
-	public void AssignmentDao() {
+	public void studentDao() {
 		//Parametri di controllo
 		Integer expectedNumOfFailures = 0;
 		Integer actualFailures = 0;
