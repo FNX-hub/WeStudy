@@ -1,0 +1,255 @@
+{
+  "id": "45143533-d05f-40b5-ae09-ef7ddd9a48bc",
+  "version": "2.0",
+  "name": "WeStudy",
+  "url": "http://localhost:8080/WeStudy",
+  "tests": [{
+    "id": "4be17324-11ac-4c50-9297-73ffd0b6e686",
+    "name": "ProfessorBooking",
+    "commands": [{
+      "id": "06f5c627-8ee8-4693-a64f-2e7d858649e6",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/WeStudy/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f81924c7-0891-4901-b9a5-2fd4b52de361",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "804x698",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c8c16bbc-61ab-4143-8a82-28db2bf8784c",
+      "comment": "",
+      "command": "type",
+      "target": "id=insertedUsername",
+      "targets": [
+        ["id=insertedUsername", "id"],
+        ["name=insertedUsername", "name"],
+        ["css=#insertedUsername", "css:finder"],
+        ["xpath=//input[@id='insertedUsername']", "xpath:attributes"],
+        ["xpath=//form[@id='login']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "85afb780-80ba-4b32-bcf0-20fbe0964071",
+      "comment": "",
+      "command": "type",
+      "target": "id=insertedPassword",
+      "targets": [
+        ["id=insertedPassword", "id"],
+        ["name=insertedPassword", "name"],
+        ["css=#insertedPassword", "css:finder"],
+        ["xpath=//input[@id='insertedPassword']", "xpath:attributes"],
+        ["xpath=//form[@id='login']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "pr1"
+    }, {
+      "id": "6758c6a3-cb4f-4404-a9a0-9734b94cdbaa",
+      "comment": "",
+      "command": "click",
+      "target": "css=button",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='login']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d80323d6-0550-47f3-8e86-0540f32213f0",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(2) b",
+      "targets": [
+        ["css=tr:nth-child(2) b", "css:finder"],
+        ["xpath=//b", "xpath:position"],
+        ["xpath=//b[contains(.,'Click Here to Start')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f5d5059e-fedb-4e82-bdc0-c3c1ca353a33",
+      "comment": "",
+      "command": "click",
+      "target": "css=.w3-bar-item:nth-child(5) > b",
+      "targets": [
+        ["css=.w3-bar-item:nth-child(5) > b", "css:finder"],
+        ["xpath=//a[5]/b", "xpath:position"],
+        ["xpath=//b[contains(.,'Meeting')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "519a5d37-79b8-4af7-9cea-453d586b43fa",
+      "comment": "",
+      "command": "click",
+      "target": "id=start",
+      "targets": [
+        ["id=start", "id"],
+        ["name=SelectMeetingDate", "name"],
+        ["css=#start", "css:finder"],
+        ["xpath=//input[@id='start']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fad0742c-a226-41d0-a832-238380d8b5b7",
+      "comment": "",
+      "command": "click",
+      "target": "id=start",
+      "targets": [
+        ["id=start", "id"],
+        ["name=SelectMeetingDate", "name"],
+        ["css=#start", "css:finder"],
+        ["xpath=//input[@id='start']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "41aee82b-5bce-4b6e-a728-a52a69e452e3",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "id=start",
+      "targets": [
+        ["id=start", "id"],
+        ["name=SelectMeetingDate", "name"],
+        ["css=#start", "css:finder"],
+        ["xpath=//input[@id='start']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b031f393-1c32-4251-b5d0-64f577212c8f",
+      "comment": "",
+      "command": "type",
+      "target": "id=start",
+      "targets": [
+        ["id=start", "id"],
+        ["name=SelectMeetingDate", "name"],
+        ["css=#start", "css:finder"],
+        ["xpath=//input[@id='start']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "2025-09-30"
+    }, {
+      "id": "ae4a98e9-d491-438d-ab39-dc81dc2d5452",
+      "comment": "",
+      "command": "click",
+      "target": "name=SelectMeetingMessage",
+      "targets": [
+        ["name=SelectMeetingMessage", "name"],
+        ["css=td:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='SelectMeetingMessage']", "xpath:attributes"],
+        ["xpath=//td[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e25f3645-e5b5-4f0f-9410-54fe23356ebd",
+      "comment": "",
+      "command": "type",
+      "target": "name=SelectMeetingMessage",
+      "targets": [
+        ["name=SelectMeetingMessage", "name"],
+        ["css=td:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='SelectMeetingMessage']", "xpath:attributes"],
+        ["xpath=//td[4]/input", "xpath:position"]
+      ],
+      "value": "SELENIUMTEST"
+    }, {
+      "id": "0fee8bd0-3bcc-457a-ab0e-c6a6da391b7b",
+      "comment": "",
+      "command": "click",
+      "target": "name=AddMeetingButton",
+      "targets": [
+        ["name=AddMeetingButton", "name"],
+        ["css=form:nth-child(5) > input", "css:finder"],
+        ["xpath=//input[@name='AddMeetingButton']", "xpath:attributes"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5b67ba2c-f92a-4bf0-a683-f694b9d3199f",
+      "comment": "",
+      "command": "click",
+      "target": "css=b",
+      "targets": [
+        ["css=b", "css:finder"],
+        ["xpath=//b", "xpath:position"],
+        ["xpath=//b[contains(.,'Click Here to return to mainPage')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8e9ed4ca-3b4b-4725-9392-4e8b69c583f4",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Meeting",
+      "targets": [
+        ["linkText=Meeting", "linkText"],
+        ["css=.w3-bar-item:nth-child(5)", "css:finder"],
+        ["xpath=//a[contains(@href, 'meetingProfessor.jsp')]", "xpath:href"],
+        ["xpath=//a[5]", "xpath:position"],
+        ["xpath=//a[contains(.,'Meeting')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "50f115fa-e7ff-4fc5-8ed4-c60ffc617cd8",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(2) > td:nth-child(6)",
+      "targets": [
+        ["css=tr:nth-child(2) > td:nth-child(6)", "css:finder"],
+        ["xpath=//tr[2]/td[6]", "xpath:position"],
+        ["xpath=//td[contains(.,'SELENIUMTEST')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "82ae59f4-734a-45e6-b4be-62f5a1435528",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(2) > td:nth-child(6)",
+      "targets": [
+        ["css=tr:nth-child(2) > td:nth-child(6)", "css:finder"],
+        ["xpath=//tr[2]/td[6]", "xpath:position"],
+        ["xpath=//td[contains(.,'SELENIUMTEST')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e83a9b5a-417d-4088-8a92-83528fdd0a59",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "css=tr:nth-child(2) > td:nth-child(6)",
+      "targets": [
+        ["css=tr:nth-child(2) > td:nth-child(6)", "css:finder"],
+        ["xpath=//tr[2]/td[6]", "xpath:position"],
+        ["xpath=//td[contains(.,'SELENIUMTEST')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "291481bd-4025-41b6-a5ea-78cb37fde92d",
+      "comment": "",
+      "command": "click",
+      "target": "name=RemoveMeetingButton",
+      "targets": [
+        ["name=RemoveMeetingButton", "name"],
+        ["css=form:nth-child(7) > input", "css:finder"],
+        ["xpath=//input[@name='RemoveMeetingButton']", "xpath:attributes"],
+        ["xpath=//form[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "2a13e815-3055-491f-b0d0-16eb606a339d",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["4be17324-11ac-4c50-9297-73ffd0b6e686"]
+  }],
+  "urls": ["http://localhost:8080/", "http://localhost:8080/WeStudy"],
+  "plugins": []
+}

@@ -101,7 +101,6 @@ public class SceneFxControl implements LoginBoundary {
 		menuItemQuestion.setVisible(false);
 		menuItemEvent.setVisible(false);
 		this.userSession = userSession;
-		SimpleLogger.info("ok2");
 		switch(userSession.getType()) {
 		case PARENT:
 			menuItemCourse.setVisible(false);

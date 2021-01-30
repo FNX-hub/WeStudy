@@ -111,11 +111,13 @@ public class ManageMeetingControl implements Runnable, Observer {
 	@Override
 	public void update() {
 		try{
-			if(bean.getConfirmed().booleanValue()) {
-					confirmMeeting();
-			} else {
-				abortMeeting();
-			}
+		if(bean.getConfirmed().booleanValue()) {
+			Meeting m = new Meeting(bean.getParentId(), bean.getProfessorId(), bean.getDate(), bean.getMessage());
+			DaoFactory.getMeetingDao().save(m);
+			this.bean = null;
+		} else {
+			this.bean = null;
+		}
 		} catch (NullPointerException e) {
 			SimpleLogger.severe(e.getLocalizedMessage());
 		}

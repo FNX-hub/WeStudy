@@ -10,12 +10,11 @@
 
 <%@ page import = "logic.model.bean.*" %>
 <%@ page import = "java.util.List" %>
-<%@ page import = "logic.control.*" %>"
-<%@ page import = "java.sql.Date" %>"
+<%@ page import = "logic.control.*" %>
+<%@ page import = "java.sql.Date" %>
 <%@ page import = "java.time.LocalDate" %>
-<%@ page import = "java.text.SimpleDateFormat" %>"
-<%@ page import = "java.util.ArrayList" %>"
-<%@ page import = "logic.control.gui.BookMeetingWeb" %>" 
+<%@ page import = "java.text.SimpleDateFormat" %>
+<%@ page import = "java.util.ArrayList" %> 
 
 </head>
 
@@ -71,22 +70,19 @@
 						try{
 						
 							MeetingBean bean = new MeetingBean(parentId,professorId,date,message);
-							
-							
-							
-							
-							if(confirm.equals("yes")){
-							
-								new BookMeetingWeb(bean);
-								
-								
-								//controller.confirm();
-								//bean.setConfirmed(true);
+							ManageMeetingControl control = new ManageMeetingControl();
+							List<MeetingBean> meetingList = control.getUserMeeting(bean.getParentId(), UserType.PARENT);
+							for(MeetingBean meeting : meetingList) {
+								if(meeting.getParentId().equals(bean.getParentId()) && meeting.getDate().equals(bean.getDate()) && meeting.getProfessorId().equals(bean.getProfessorId())) {
+									throw new WrongDeclarationCustomException("duplicate meeting");
+								}
+							}
+							control.newMeeting(bean);
+							if(confirm.equals("yes")) {
+								bean.setConfirmed(true);
 								useCaseResult = "Meeting created with success";
 							}
-							else{
-								//controller.abort();
-								//bean.setConfirmed(false);
+							else {
 								useCaseResult = "Error: Meeting not confirmed";
 							}
 
