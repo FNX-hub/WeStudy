@@ -1,0 +1,254 @@
+{
+  "id": "31988cca-a7c7-40db-8f66-153b84995813",
+  "version": "2.0",
+  "name": "SeleniumAssignmentTrani",
+  "url": "http://localhost:8080",
+  "tests": [{
+    "id": "9368678d-e65a-4b85-9241-7b62ff6d3a66",
+    "name": "WrongDateInsertAssignment",
+    "commands": [{
+      "id": "70203aff-52f1-4d50-8cff-8f646676ee64",
+      "comment": "",
+      "command": "open",
+      "target": "/WeStudy/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a674e213-eaee-4821-b55e-85723e79effd",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x728",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2eccada0-db16-4c0a-8767-56d0ac442fb4",
+      "comment": "",
+      "command": "type",
+      "target": "id=insertedUsername",
+      "targets": [
+        ["id=insertedUsername", "id"],
+        ["name=insertedUsername", "name"],
+        ["css=#insertedUsername", "css:finder"],
+        ["xpath=//input[@id='insertedUsername']", "xpath:attributes"],
+        ["xpath=//form[@id='login']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "735a8a62-3fd6-4d6c-b662-8e53794f6b22",
+      "comment": "",
+      "command": "type",
+      "target": "id=insertedPassword",
+      "targets": [
+        ["id=insertedPassword", "id"],
+        ["name=insertedPassword", "name"],
+        ["css=#insertedPassword", "css:finder"],
+        ["xpath=//input[@id='insertedPassword']", "xpath:attributes"],
+        ["xpath=//form[@id='login']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "Spazio"
+    }, {
+      "id": "613a3631-8c4c-426a-84e8-a91e26cf94eb",
+      "comment": "",
+      "command": "click",
+      "target": "css=button",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='login']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c682b85b-3610-495a-9cb7-2613ca7accdc",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(2) b",
+      "targets": [
+        ["css=tr:nth-child(2) b", "css:finder"],
+        ["xpath=//b", "xpath:position"],
+        ["xpath=//b[contains(.,'Click Here to Start')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5a8e9fd9-2579-4971-b32d-93986400c78d",
+      "comment": "",
+      "command": "click",
+      "target": "name=insertedClassCourseId",
+      "targets": [
+        ["name=insertedClassCourseId", "name"],
+        ["css=select", "css:finder"],
+        ["xpath=//select[@name='insertedClassCourseId']", "xpath:attributes"],
+        ["xpath=//form[@id='classChoice']/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8f168a0e-bd9b-4c69-9e18-2f4edd9046a9",
+      "comment": "",
+      "command": "select",
+      "target": "name=insertedClassCourseId",
+      "targets": [],
+      "value": "label=100"
+    }, {
+      "id": "f804a5d2-d230-4755-bd14-472efd007c94",
+      "comment": "",
+      "command": "click",
+      "target": "name=insertedClassCourseId",
+      "targets": [
+        ["name=insertedClassCourseId", "name"],
+        ["css=select", "css:finder"],
+        ["xpath=//select[@name='insertedClassCourseId']", "xpath:attributes"],
+        ["xpath=//form[@id='classChoice']/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e9300aaf-44bf-48f7-be80-eb242870015e",
+      "comment": "",
+      "command": "click",
+      "target": "css=button",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='classChoice']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Show Selected Class')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3ca7ff6a-5024-4d74-9fc5-ed5265e7bcf9",
+      "comment": "",
+      "command": "click",
+      "target": "id=start",
+      "targets": [
+        ["id=start", "id"],
+        ["name=SelectAssignmentDeadline", "name"],
+        ["css=#start", "css:finder"],
+        ["xpath=//input[@id='start']", "xpath:attributes"],
+        ["xpath=//td[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9c2316dd-b7c4-4a31-9b65-287ec0750c23",
+      "comment": "",
+      "command": "type",
+      "target": "id=start",
+      "targets": [
+        ["id=start", "id"],
+        ["name=SelectAssignmentDeadline", "name"],
+        ["css=#start", "css:finder"],
+        ["xpath=//input[@id='start']", "xpath:attributes"],
+        ["xpath=//td[4]/input", "xpath:position"]
+      ],
+      "value": "2019-10-18"
+    }, {
+      "id": "b11f3bcc-36e4-4f74-be11-684d80ffe50f",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(2) tr:nth-child(2) > td:nth-child(2)",
+      "targets": [
+        ["css=td:nth-child(2) tr:nth-child(2) > td:nth-child(2)", "css:finder"],
+        ["xpath=//td[2]/form/table/tbody/tr[2]/td[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "36acd304-d936-44ea-8f91-b7aeebc37385",
+      "comment": "",
+      "command": "click",
+      "target": "name=SelectAssignmentType",
+      "targets": [
+        ["name=SelectAssignmentType", "name"],
+        ["css=td:nth-child(2) td:nth-child(2) > select", "css:finder"],
+        ["xpath=//select[@name='SelectAssignmentType']", "xpath:attributes"],
+        ["xpath=//td[2]/form/table/tbody/tr[2]/td[2]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "179dfba7-928a-424a-ad43-adad9cbd22ec",
+      "comment": "",
+      "command": "select",
+      "target": "name=SelectAssignmentType",
+      "targets": [],
+      "value": "label=PROJECT"
+    }, {
+      "id": "531afe9d-4e22-4c6c-8015-729ea4c8828e",
+      "comment": "",
+      "command": "click",
+      "target": "name=SelectAssignmentType",
+      "targets": [
+        ["name=SelectAssignmentType", "name"],
+        ["css=td:nth-child(2) td:nth-child(2) > select", "css:finder"],
+        ["xpath=//select[@name='SelectAssignmentType']", "xpath:attributes"],
+        ["xpath=//td[2]/form/table/tbody/tr[2]/td[2]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "59a1024e-3a7a-4888-9dc1-f3f8ac7ddb41",
+      "comment": "",
+      "command": "click",
+      "target": "name=SelectAssignmentDescription",
+      "targets": [
+        ["name=SelectAssignmentDescription", "name"],
+        ["css=td:nth-child(3) > input", "css:finder"],
+        ["xpath=//input[@name='SelectAssignmentDescription']", "xpath:attributes"],
+        ["xpath=//td[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5902afe4-4fbc-4df6-a50f-b83d3deb089e",
+      "comment": "",
+      "command": "type",
+      "target": "name=SelectAssignmentDescription",
+      "targets": [
+        ["name=SelectAssignmentDescription", "name"],
+        ["css=td:nth-child(3) > input", "css:finder"],
+        ["xpath=//input[@name='SelectAssignmentDescription']", "xpath:attributes"],
+        ["xpath=//td[3]/input", "xpath:position"]
+      ],
+      "value": "data errata"
+    }, {
+      "id": "837530b8-658d-42b6-8788-d637f0a34263",
+      "comment": "",
+      "command": "click",
+      "target": "name=AddAssignmentButton",
+      "targets": [
+        ["name=AddAssignmentButton", "name"],
+        ["css=td:nth-child(2) > form > input", "css:finder"],
+        ["xpath=//input[@name='AddAssignmentButton']", "xpath:attributes"],
+        ["xpath=//td[2]/form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "126edbc6-3841-42a5-a242-177a539544c8",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=tr:nth-child(2) > td:nth-child(2)",
+      "targets": [
+        ["css=tr:nth-child(2) > td:nth-child(2)", "css:finder"],
+        ["xpath=//tr[2]/td[2]", "xpath:position"],
+        ["xpath=//td[contains(.,'ERROR: deadline can not be before today date')]", "xpath:innerText"]
+      ],
+      "value": "ERROR: deadline can not be before today date"
+    }, {
+      "id": "6f39a620-2fdf-4dc1-b88b-ec5856e5b315",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "0e1d52dc-82fb-46a3-ad44-264763af2c54",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["9368678d-e65a-4b85-9241-7b62ff6d3a66"]
+  }],
+  "urls": ["http://localhost:8080/"],
+  "plugins": []
+}
